@@ -23,7 +23,7 @@ struct Login: View {
                         .fill(otpModel.code == "" ? .gray.opacity(0.4) : .blue)
                         .frame(height: 2)
                 }
-                .frame(width: 40)
+                .frame(width: 60)
                 
                 
                 VStack(spacing: 8) {
@@ -56,7 +56,7 @@ struct Login: View {
                     }
                     .overlay {
                         ProgressView()
-                            .opacity(otpModel.isLoading ? 1 : 0)
+                            .opacity(otpModel.isLoading ? 1.0 : 0)
                     }
             }
             .disabled(otpModel.code == "" || otpModel.number == "")

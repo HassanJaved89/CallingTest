@@ -57,6 +57,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FE650C4A2A53F877005D9C9B /* OTP */ = {
+			isa = PBXGroup;
+			children = (
+				FE650C4C2A53F894005D9C9B /* ViewModel */,
+				FE650C4B2A53F88D005D9C9B /* View */,
+			);
+			path = OTP;
+			sourceTree = "<group>";
+		};
+		FE650C4B2A53F88D005D9C9B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FE650C482A52F378005D9C9B /* Login.swift */,
+				FECEBCD02A52CE7900550888 /* Verification.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FE650C4C2A53F894005D9C9B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FE650C452A52D4EE005D9C9B /* OTPViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		FECEBC2D2A4AE2C900550888 = {
 			isa = PBXGroup;
 			children = (
@@ -114,11 +140,9 @@
 		FECEBCC42A52BE5000550888 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				FE650C4A2A53F877005D9C9B /* OTP */,
 				FECEBC392A4AE2C900550888 /* CallingApp.swift */,
 				FECEBC3B2A4AE2C900550888 /* ContentView.swift */,
-				FECEBCD02A52CE7900550888 /* Verification.swift */,
-				FE650C452A52D4EE005D9C9B /* OTPViewModel.swift */,
-				FE650C482A52F378005D9C9B /* Login.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
