@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FE650C462A52D4EE005D9C9B /* OTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE650C452A52D4EE005D9C9B /* OTPViewModel.swift */; };
 		FE650C492A52F378005D9C9B /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE650C482A52F378005D9C9B /* Login.swift */; };
+		FE650C4F2A540223005D9C9B /* AccountSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE650C4E2A540223005D9C9B /* AccountSettings.swift */; };
 		FECEBC3A2A4AE2C900550888 /* CallingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECEBC392A4AE2C900550888 /* CallingApp.swift */; };
 		FECEBC3C2A4AE2C900550888 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECEBC3B2A4AE2C900550888 /* ContentView.swift */; };
 		FECEBC3E2A4AE2CB00550888 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FECEBC3D2A4AE2CB00550888 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 		FE650C452A52D4EE005D9C9B /* OTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewModel.swift; sourceTree = "<group>"; };
 		FE650C472A52F0B9005D9C9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		FE650C482A52F378005D9C9B /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		FE650C4E2A540223005D9C9B /* AccountSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettings.swift; sourceTree = "<group>"; };
 		FECEBC362A4AE2C900550888 /* Calling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FECEBC392A4AE2C900550888 /* CallingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallingApp.swift; sourceTree = "<group>"; };
 		FECEBC3B2A4AE2C900550888 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -81,6 +83,15 @@
 				FE650C452A52D4EE005D9C9B /* OTPViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FE650C4D2A5401C2005D9C9B /* CreateAccount */ = {
+			isa = PBXGroup;
+			children = (
+				FE650C4A2A53F877005D9C9B /* OTP */,
+				FE650C4E2A540223005D9C9B /* AccountSettings.swift */,
+			);
+			path = CreateAccount;
 			sourceTree = "<group>";
 		};
 		FECEBC2D2A4AE2C900550888 = {
@@ -140,7 +151,7 @@
 		FECEBCC42A52BE5000550888 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				FE650C4A2A53F877005D9C9B /* OTP */,
+				FE650C4D2A5401C2005D9C9B /* CreateAccount */,
 				FECEBC392A4AE2C900550888 /* CallingApp.swift */,
 				FECEBC3B2A4AE2C900550888 /* ContentView.swift */,
 			);
@@ -237,6 +248,7 @@
 				FECEBC3C2A4AE2C900550888 /* ContentView.swift in Sources */,
 				FECEBCBF2A52B81B00550888 /* AgoraRep.swift in Sources */,
 				FECEBC3A2A4AE2C900550888 /* CallingApp.swift in Sources */,
+				FE650C4F2A540223005D9C9B /* AccountSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,7 +379,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Calling/Preview Content\"";
 				DEVELOPMENT_TEAM = R332B5D47Y;
 				ENABLE_PREVIEWS = YES;
-				EXCLUDED_ARCHS = "";
+				EXCLUDED_ARCHS = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Calling/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = Camera;
@@ -402,7 +414,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Calling/Preview Content\"";
 				DEVELOPMENT_TEAM = R332B5D47Y;
 				ENABLE_PREVIEWS = YES;
-				EXCLUDED_ARCHS = "";
+				EXCLUDED_ARCHS = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Calling/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = Camera;
