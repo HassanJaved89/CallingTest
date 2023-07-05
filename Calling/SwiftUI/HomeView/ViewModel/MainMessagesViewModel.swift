@@ -8,7 +8,9 @@
 import Foundation
 import FirebaseFirestore
 
-struct ChatUser {
+struct ChatUser: Identifiable {
+    var id:String { uid }
+    
     let uid, userName, profileImageUrl: String
     
     init(data: [String: Any]) {

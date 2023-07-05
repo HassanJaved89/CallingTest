@@ -10,6 +10,7 @@ import SwiftUI
 struct MainMessagesView: View {
     
     @State var shouldShowLogOutOptions = false
+    @State var shouldShowNewMessageScreen = false
     
     @ObservedObject private var vm = MainMessagesViewModel()
     
@@ -20,7 +21,6 @@ struct MainMessagesView: View {
         }
         .overlay(
             newMessageButton, alignment: .bottom)
-        .navigationBarHidden(true)
     }
     
     private var customNavBar: some View {
@@ -111,11 +111,9 @@ struct MainMessagesView: View {
         }
     }
     
-    @State var shouldShowNewMessageScreen = false
-    
     private var newMessageButton: some View {
         Button {
-            shouldShowNewMessageScreen.toggle()
+            shouldShowNewMessageScreen = true
         } label: {
             HStack {
                 Spacer()
@@ -131,7 +129,7 @@ struct MainMessagesView: View {
                 .shadow(radius: 15)
         }
         .fullScreenCover(isPresented: $shouldShowNewMessageScreen) {
-            Text("New message")
+            CreateNewMessageView()
         }
     }
 }
