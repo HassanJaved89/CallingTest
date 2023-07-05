@@ -9,20 +9,33 @@ import SwiftUI
 
 struct AccountSettings: View {
     
+    @AppStorage("isFirstTimeSignIn") private var isFirstTimeSignIn = false
     @State var userName: String = ""
+    @State private var showImagePicker = false
+    @State private var selectedImage: UIImage?
     
     var body: some View {
         VStack(spacing: 30) {
             Button {
-                
+                showImagePicker.toggle()
             } label: {
-                Image(systemName: "person.fill")
-                    .font(.system(size: 60))
-                    .padding()
-                    .background {
-                        Circle()
-                            .stroke(lineWidth: 2)
-                    }
+                if let selectedImage {
+                    Image(uiImage: selectedImage)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 128, height: 128)
+                        .cornerRadius(64)
+                }
+                else {
+                    Image(systemName: "person.fill")
+                        .font(.system(size: 60))
+                        .padding()
+                        .background {
+                            Circle()
+                                .stroke(lineWidth: 2)
+                        }
+                }
+                
             }
             
             VStack {
@@ -33,7 +46,7 @@ struct AccountSettings: View {
             .padding()
             
             Button {
-                
+                createAccountTapped()
             } label: {
                 HStack {
                     Text("Create")
@@ -45,14 +58,20 @@ struct AccountSettings: View {
                 }
                 
             }
-            
-
-            
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .padding()
         .padding(.vertical, 50)
-        
+        .sheet(isPresented: $showImagePicker) {
+            ImagePickerView(selectedImage: $selectedImage)
+        }
+    }
+    
+    func createAccountTapped() {
+        //isFirstTimeSignIn = false
+        FirebaseManager.shared.persistImageToStore(imageData: (selectedImage?.jpegData(compressionQuality: 0.8))!) { success in
+            
+        }
     }
 }
 

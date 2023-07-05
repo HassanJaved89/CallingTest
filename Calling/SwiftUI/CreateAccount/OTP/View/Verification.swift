@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Verification: View {
     
+    @AppStorage("isFirstTimeSignIn") private var isFirstTimeSignIn = false
     @EnvironmentObject var otpModel: AnyOTPModel
     @FocusState var activeField: OTPField?
     @State var otpFields: [String] = Array(repeating: "", count: 6)
@@ -21,6 +22,7 @@ struct Verification: View {
             Button {
                 Task {
                     isLoading = true
+                    isFirstTimeSignIn = true
                     let _ = await otpModel.verifyOTP(otp: otpFields.joined())
                     isLoading = false
                 }

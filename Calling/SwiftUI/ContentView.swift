@@ -6,12 +6,18 @@ import Firebase
 struct ContentView: View {
     
     @State private var isUserSignedIn = false
+    @AppStorage("isFirstTimeSignIn") private var isFirstTimeSignIn = false
     
     var body: some View {
         NavigationView {
             
             if isUserSignedIn {
-                Text("Home")
+                if isFirstTimeSignIn {
+                    AccountSettings()
+                }
+                else {
+                    Text("Home")
+                }
             }
             else {
                 Login()
@@ -23,6 +29,13 @@ struct ContentView: View {
     }
     
     func checkUserState() {
+        /*
+        do {
+            try Auth.auth().signOut()
+        }
+        catch {
+            
+        }*/
         
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
