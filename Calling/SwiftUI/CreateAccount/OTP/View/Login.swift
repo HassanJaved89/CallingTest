@@ -9,30 +9,34 @@ import SwiftUI
 
 struct Login: View {
     
-    @StateObject var otpModel: OTPViewModel = OTPViewModel()
+    @StateObject var otpModel: AnyOTPModel = AnyOTPModel(FirebaseOTPService())
+    
+    @State var number: String = ""
+    @State var code: String = ""
+    @State var showAlert: Bool = false
+    @State var isLoading = false
     
     var body: some View {
         VStack {
             HStack(spacing: 10) {
                 VStack(spacing: 8) {
-                    TextField("1", text: $otpModel.code)
+                    TextField("1", text: $code)
                         .keyboardType(.numberPad)
                         .multilineTextAlignment(.center)
                     
                     Rectangle()
-                        .fill(otpModel.code == "" ? .gray.opacity(0.4) : .blue)
+                        .fill(code == "" ? .gray.opacity(0.4) : .blue)
                         .frame(height: 2)
                 }
                 .frame(width: 60)
                 
-                
                 VStack(spacing: 8) {
-                    TextField("56906578", text: $otpModel.number)
+                    TextField("56906578", text: $number)
                         .keyboardType(.numberPad)
                         .multilineTextAlignment(.center)
                     
                     Rectangle()
-                        .fill(otpModel.number == "" ? .gray.opacity(0.4) : .blue)
+                        .fill(number == "" ? .gray.opacity(0.4) : .blue)
                         .frame(height: 2)
                 }
                 
@@ -40,8 +44,10 @@ struct Login: View {
             .padding(.vertical)
             
             Button {
+                isLoading = true
                 Task {
-                    await otpModel.sendOtp()
+                    let _ = await otpModel.sendOTP(code: code, number: number)
+                    isLoading = false
                 }
             } label: {
                 Text("Verify")
@@ -52,24 +58,22 @@ struct Login: View {
                     .background {
                         RoundedRectangle(cornerRadius: 10, style: .continuous)
                             .fill(.blue)
-                            .opacity(otpModel.isLoading ? 0 : 1)
+                            .opacity(isLoading ? 0 : 1)
                     }
                     .overlay {
                         ProgressView()
-                            .opacity(otpModel.isLoading ? 1.0 : 0)
+                            .opacity(isLoading ? 1.0 : 0)
                     }
             }
-            .disabled(otpModel.code == "" || otpModel.number == "")
-            .opacity(otpModel.code == "" || otpModel.number == "" ? 0.4 : 1)
+            .disabled(code == "" || number == "")
+            .opacity(code == "" || number == "" ? 0.4 : 1)
         }
         .navigationTitle("Login")
         .padding()
         .frame(maxHeight: .infinity, alignment: .top)
         .background {
-            NavigationLink(tag: "VERIFICATION", selection: $otpModel.navigationTag) {
-                Verification().environmentObject(otpModel)
-            } label: {}
-                .labelsHidden()
+            NavigationLink(destination: Verification().environmentObject(otpModel), tag: OTPProcessState.otpSent, selection: $otpModel.state) {
+            }
         }
         .alert(otpModel.errorMsg, isPresented: $otpModel.showAlert){}
     }

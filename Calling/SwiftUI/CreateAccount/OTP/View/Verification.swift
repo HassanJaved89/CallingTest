@@ -9,8 +9,10 @@ import SwiftUI
 
 struct Verification: View {
     
-    @EnvironmentObject var otpModel: OTPViewModel
+    @EnvironmentObject var otpModel: AnyOTPModel
     @FocusState var activeField: OTPField?
+    @State var otpFields: [String] = Array(repeating: "", count: 6)
+    @State var isLoading = false
     
     var body: some View {
         VStack {
@@ -18,7 +20,9 @@ struct Verification: View {
             
             Button {
                 Task {
-                    await otpModel.verifyOTP()
+                    isLoading = true
+                    let _ = await otpModel.verifyOTP(otp: otpFields.joined())
+                    isLoading = false
                 }
             } label: {
                 Text("Verify")
@@ -29,11 +33,11 @@ struct Verification: View {
                     .background {
                         RoundedRectangle(cornerRadius: 10, style: .continuous)
                             .fill(.blue)
-                            .opacity(otpModel.isLoading ? 0 : 1)
+                            .opacity(isLoading ? 0 : 1)
                     }
                     .overlay {
                         ProgressView()
-                            .opacity(otpModel.isLoading ? 1 : 0)
+                            .opacity(isLoading ? 1 : 0)
                     }
             }
             .disabled(checkStates())
@@ -57,7 +61,7 @@ struct Verification: View {
         .padding()
         .frame(maxHeight: .infinity, alignment: .top)
         .navigationTitle("Verification")
-        .onChange(of: otpModel.otpFields) { newValue in
+        .onChange(of: otpFields) { newValue in
             otpCondition(value: newValue)
         }
         .alert(otpModel.errorMsg, isPresented: $otpModel.showAlert){}
@@ -65,7 +69,7 @@ struct Verification: View {
     
     func checkStates() -> Bool {
         for index in 0..<6 {
-            if otpModel.otpFields[index].isEmpty { return true }
+            if otpFields[index].isEmpty { return true }
         }
         
         return false
@@ -87,7 +91,7 @@ struct Verification: View {
         
         for index in 0..<6 {
             if value[index].count > 1 {
-                otpModel.otpFields[index] = String(value[index].last!)
+                otpFields[index] = String(value[index].last!)
             }
         }
     }
@@ -97,7 +101,7 @@ struct Verification: View {
         HStack(spacing: 14) {
             ForEach(0..<6, id: \.self) { index in
                 VStack(spacing: 8) {
-                    TextField("", text: $otpModel.otpFields[index])
+                    TextField("", text: $otpFields[index])
                         .keyboardType(.numberPad)
                         .textContentType(.oneTimeCode)
                         .multilineTextAlignment(.center)

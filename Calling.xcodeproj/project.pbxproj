@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FE650C462A52D4EE005D9C9B /* OTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE650C452A52D4EE005D9C9B /* OTPViewModel.swift */; };
+		FE650C462A52D4EE005D9C9B /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE650C452A52D4EE005D9C9B /* FirebaseService.swift */; };
 		FE650C492A52F378005D9C9B /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE650C482A52F378005D9C9B /* Login.swift */; };
 		FE650C4F2A540223005D9C9B /* AccountSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE650C4E2A540223005D9C9B /* AccountSettings.swift */; };
+		FE650C512A54336F005D9C9B /* OTPProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE650C502A54336F005D9C9B /* OTPProtocol.swift */; };
+		FE650C532A5441B2005D9C9B /* AnyOTPModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE650C522A5441B2005D9C9B /* AnyOTPModel.swift */; };
 		FECEBC3A2A4AE2C900550888 /* CallingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECEBC392A4AE2C900550888 /* CallingApp.swift */; };
 		FECEBC3C2A4AE2C900550888 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECEBC3B2A4AE2C900550888 /* ContentView.swift */; };
 		FECEBC3E2A4AE2CB00550888 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FECEBC3D2A4AE2CB00550888 /* Assets.xcassets */; };
@@ -27,10 +29,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FE650C452A52D4EE005D9C9B /* OTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewModel.swift; sourceTree = "<group>"; };
+		FE650C452A52D4EE005D9C9B /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		FE650C472A52F0B9005D9C9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		FE650C482A52F378005D9C9B /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		FE650C4E2A540223005D9C9B /* AccountSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettings.swift; sourceTree = "<group>"; };
+		FE650C502A54336F005D9C9B /* OTPProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPProtocol.swift; sourceTree = "<group>"; };
+		FE650C522A5441B2005D9C9B /* AnyOTPModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyOTPModel.swift; sourceTree = "<group>"; };
 		FECEBC362A4AE2C900550888 /* Calling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FECEBC392A4AE2C900550888 /* CallingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallingApp.swift; sourceTree = "<group>"; };
 		FECEBC3B2A4AE2C900550888 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,6 +66,8 @@
 		FE650C4A2A53F877005D9C9B /* OTP */ = {
 			isa = PBXGroup;
 			children = (
+				FE650C502A54336F005D9C9B /* OTPProtocol.swift */,
+				FE650C522A5441B2005D9C9B /* AnyOTPModel.swift */,
 				FE650C4C2A53F894005D9C9B /* ViewModel */,
 				FE650C4B2A53F88D005D9C9B /* View */,
 			);
@@ -80,7 +86,7 @@
 		FE650C4C2A53F894005D9C9B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				FE650C452A52D4EE005D9C9B /* OTPViewModel.swift */,
+				FE650C452A52D4EE005D9C9B /* FirebaseService.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -243,8 +249,10 @@
 			files = (
 				FE650C492A52F378005D9C9B /* Login.swift in Sources */,
 				FECEBCD12A52CE7900550888 /* Verification.swift in Sources */,
+				FE650C532A5441B2005D9C9B /* AnyOTPModel.swift in Sources */,
 				FECEBCBD2A52B7FB00550888 /* AgoraViewController.swift in Sources */,
-				FE650C462A52D4EE005D9C9B /* OTPViewModel.swift in Sources */,
+				FE650C462A52D4EE005D9C9B /* FirebaseService.swift in Sources */,
+				FE650C512A54336F005D9C9B /* OTPProtocol.swift in Sources */,
 				FECEBC3C2A4AE2C900550888 /* ContentView.swift in Sources */,
 				FECEBCBF2A52B81B00550888 /* AgoraRep.swift in Sources */,
 				FECEBC3A2A4AE2C900550888 /* CallingApp.swift in Sources */,
@@ -379,7 +387,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Calling/Preview Content\"";
 				DEVELOPMENT_TEAM = R332B5D47Y;
 				ENABLE_PREVIEWS = YES;
-				EXCLUDED_ARCHS = arm64;
+				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Calling/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = Camera;
@@ -414,7 +422,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Calling/Preview Content\"";
 				DEVELOPMENT_TEAM = R332B5D47Y;
 				ENABLE_PREVIEWS = YES;
-				EXCLUDED_ARCHS = arm64;
+				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Calling/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = Camera;
