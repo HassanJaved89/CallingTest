@@ -13,6 +13,7 @@ struct AccountSettings: View {
     @State var userName: String = ""
     @State private var showImagePicker = false
     @State private var selectedImage: UIImage?
+    @State private var isLoading = false
     
     var body: some View {
         VStack(spacing: 30) {
@@ -55,6 +56,10 @@ struct AccountSettings: View {
                         .foregroundColor(.white)
                         .font(.system(size: 20))
                         .padding()
+                        .overlay {
+                            ProgressView()
+                                .opacity(isLoading ? 1.0 : 0)
+                        }
                 }
                 
             }
@@ -68,9 +73,11 @@ struct AccountSettings: View {
     }
     
     func createAccountTapped() {
-        //isFirstTimeSignIn = false
-        FirebaseManager.shared.persistImageToStore(imageData: (selectedImage?.jpegData(compressionQuality: 0.8))!) { success in
-            
+        isLoading = true
+        
+        FirebaseManager.shared.persisUserDataToStore(imageData: (selectedImage?.jpegData(compressionQuality: 0.8))!, userName: userName) { success in
+            isFirstTimeSignIn = false
+            isLoading = false
         }
     }
 }

@@ -8,11 +8,13 @@
 import Foundation
 import Firebase
 import FirebaseStorage
+import FirebaseFirestore
 
 class FirebaseManager: NSObject {
     
     let auth: Auth
     let storage: Storage
+    let fireStore: Firestore
     
     static let shared = FirebaseManager()
     
@@ -21,11 +23,12 @@ class FirebaseManager: NSObject {
         
         self.auth = Auth.auth()
         self.storage = Storage.storage()
+        self.fireStore = Firestore.firestore()
         
         super.init()
     }
     
-    func persistImageToStore(imageData: Data, completion: @escaping (String?) -> Void) {
+    func persisUserDataToStore(imageData: Data, userName: String, completion: @escaping (String?) -> Void) {
         guard let userId = Auth.auth().currentUser?.uid else {
             completion(nil)
             return
@@ -56,6 +59,15 @@ class FirebaseManager: NSObject {
                 
                 if let downloadURL = url?.absoluteString {
                     // Image uploaded successfully
+                    let userData = ["userName": userName, "uid": userId, "profileImageUrl": downloadURL]
+                    FirebaseManager.shared.fireStore.collection("users")
+                        .document(userId).setData(userData) { err in
+                            if let err = err {
+                                print(err)
+                                return
+                            }
+                        }
+                    
                     completion(downloadURL)
                 } else {
                     // Download URL not found
@@ -64,4 +76,5 @@ class FirebaseManager: NSObject {
             }
         }
     }
+    
 }

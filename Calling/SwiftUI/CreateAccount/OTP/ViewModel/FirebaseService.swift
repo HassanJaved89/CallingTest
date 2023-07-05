@@ -47,7 +47,7 @@ class FirebaseOTPService: OTPProtocol {
         do {
             
             let credentials = PhoneAuthProvider.provider().credential(withVerificationID: verificationCode, verificationCode: otp)
-            let result = try await Auth.auth().signIn(with: credentials)
+            let _ = try await Auth.auth().signIn(with: credentials)
             state = .success
             return true
             

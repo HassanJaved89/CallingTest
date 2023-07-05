@@ -16,7 +16,7 @@ struct ContentView: View {
                     AccountSettings()
                 }
                 else {
-                    Text("Home")
+                    MainMessagesView()
                 }
             }
             else {
@@ -29,13 +29,6 @@ struct ContentView: View {
     }
     
     func checkUserState() {
-        /*
-        do {
-            try Auth.auth().signOut()
-        }
-        catch {
-            
-        }*/
         
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
