@@ -10,8 +10,8 @@ import SwiftUI
 struct CreateNewMessageView: View {
     
     @Environment(\.presentationMode) var presentationMode
-    
     @ObservedObject var vm = CreateNewMessageViewModel()
+    var didSelectNewChatUser: (ChatUser) -> ()
     
     var body: some View {
         NavigationView {
@@ -20,6 +20,7 @@ struct CreateNewMessageView: View {
                 ForEach(vm.users) { user in
                     Button {
                         presentationMode.wrappedValue.dismiss()
+                        didSelectNewChatUser(user)
                     } label: {
                         HStack(spacing: 16) {
                             

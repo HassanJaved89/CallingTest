@@ -16,7 +16,7 @@ struct ContentView: View {
                     AccountSettings()
                 }
                 else {
-                    MainMessagesView()
+                    MainMessagesView(chatUser: ChatUser(data: ["" : ""]))
                 }
             }
             else {

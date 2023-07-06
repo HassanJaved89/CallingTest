@@ -11,6 +11,8 @@ struct MainMessagesView: View {
     
     @State var shouldShowLogOutOptions = false
     @State var shouldShowNewMessageScreen = false
+    @State var shouldShowChatLogScreen = false
+    @State var chatUser: ChatUser
     
     @ObservedObject private var vm = MainMessagesViewModel()
     
@@ -18,6 +20,10 @@ struct MainMessagesView: View {
         VStack {
             customNavBar
             messagesView
+            
+            NavigationLink("", isActive: $shouldShowChatLogScreen) {
+                ChatLogView(chatUser: self.chatUser)
+            }
         }
         .overlay(
             newMessageButton, alignment: .bottom)
@@ -129,7 +135,10 @@ struct MainMessagesView: View {
                 .shadow(radius: 15)
         }
         .fullScreenCover(isPresented: $shouldShowNewMessageScreen) {
-            CreateNewMessageView()
+            CreateNewMessageView { user in
+                self.chatUser = user
+                self.shouldShowChatLogScreen.toggle()
+            }
         }
     }
 }
