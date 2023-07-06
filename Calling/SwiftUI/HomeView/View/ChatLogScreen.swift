@@ -10,6 +10,7 @@ import SwiftUI
 struct ChatLogView: View {
     
     let chatUser: ChatUser?
+    static let emptyScrollToString = "Empty"
     
     init(chatUser: ChatUser?) {
         self.chatUser = chatUser
@@ -28,52 +29,40 @@ struct ChatLogView: View {
     }
     
     private var messagesView: some View {
-            VStack {
-                if #available(iOS 15.0, *) {
-                    ScrollView {
-                        ForEach(vm.chatMessages) { message in
-                            VStack {
-                                if message.fromId == FirebaseManager.shared.auth.currentUser?.uid {
-                                    HStack {
-                                        Spacer()
-                                        HStack {
-                                            Text(message.text)
-                                                .foregroundColor(.white)
-                                        }
-                                        .padding()
-                                        .background(Color.blue)
-                                        .cornerRadius(8)
-                                    }
-                                } else {
-                                    HStack {
-                                        HStack {
-                                            Text(message.text)
-                                                .foregroundColor(.black)
-                                        }
-                                        .padding()
-                                        .background(Color.white)
-                                        .cornerRadius(8)
-                                        Spacer()
-                                    }
-                                }
+        VStack {
+            if #available(iOS 15.0, *) {
+                ScrollView {
+                    ScrollViewReader { scrollViewProxy in
+                        VStack {
+                            ForEach(vm.chatMessages) { message in
+                                MessageView(message: message)
                             }
-                            .padding(.horizontal)
-                            .padding(.top, 8)
+                            
+                            HStack{ Spacer() }
+                            .id(Self.emptyScrollToString)
+                        }
+                        .onReceive(vm.$count) { _ in
+                            withAnimation(.easeOut(duration: 0.5)) {
+                                scrollViewProxy.scrollTo(Self.emptyScrollToString, anchor: .bottom)
+                            }
                             
                         }
                         
-                        HStack{ Spacer() }
+                        
+                        
                     }
-                    .background(Color(.init(white: 0.95, alpha: 1)))
-                    .safeAreaInset(edge: .bottom) {
-                        chatBottomBar
-                            .background(Color(.systemBackground).ignoresSafeArea())
-                    }
-                } else {
-                    // Fallback on earlier versions
+                    
                 }
+                .background(Color(.init(white: 0.95, alpha: 1)))
+                .safeAreaInset(edge: .bottom) {
+                    chatBottomBar
+                        .background(Color(.systemBackground).ignoresSafeArea())
+                }
+            } else {
+                // Fallback on earlier versions
             }
         }
+    }
     
     private var chatBottomBar: some View {
         HStack(spacing: 16) {
@@ -100,6 +89,41 @@ struct ChatLogView: View {
         }
         .padding(.horizontal)
         .padding(.vertical, 8)
+    }
+}
+
+struct MessageView: View {
+    
+    let message: ChatMessage
+    
+    var body: some View {
+        VStack {
+            if message.fromId == FirebaseManager.shared.auth.currentUser?.uid {
+                HStack {
+                    Spacer()
+                    HStack {
+                        Text(message.text)
+                            .foregroundColor(.white)
+                    }
+                    .padding()
+                    .background(Color.blue)
+                    .cornerRadius(8)
+                }
+            } else {
+                HStack {
+                    HStack {
+                        Text(message.text)
+                            .foregroundColor(.black)
+                    }
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(8)
+                    Spacer()
+                }
+            }
+        }
+        .padding(.horizontal)
+        .padding(.top, 8)
     }
 }
 
