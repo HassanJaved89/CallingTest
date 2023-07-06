@@ -28,36 +28,52 @@ struct ChatLogView: View {
     }
     
     private var messagesView: some View {
-        VStack {
-            if #available(iOS 15.0, *) {
-                ScrollView {
-                    ForEach(0..<20) { num in
-                        HStack {
-                            Spacer()
-                            HStack {
-                                Text("FAKE MESSAGE FOR NOW")
-                                    .foregroundColor(.white)
+            VStack {
+                if #available(iOS 15.0, *) {
+                    ScrollView {
+                        ForEach(vm.chatMessages) { message in
+                            VStack {
+                                if message.fromId == FirebaseManager.shared.auth.currentUser?.uid {
+                                    HStack {
+                                        Spacer()
+                                        HStack {
+                                            Text(message.text)
+                                                .foregroundColor(.white)
+                                        }
+                                        .padding()
+                                        .background(Color.blue)
+                                        .cornerRadius(8)
+                                    }
+                                } else {
+                                    HStack {
+                                        HStack {
+                                            Text(message.text)
+                                                .foregroundColor(.black)
+                                        }
+                                        .padding()
+                                        .background(Color.white)
+                                        .cornerRadius(8)
+                                        Spacer()
+                                    }
+                                }
                             }
-                            .padding()
-                            .background(Color.blue)
-                            .cornerRadius(8)
+                            .padding(.horizontal)
+                            .padding(.top, 8)
+                            
                         }
-                        .padding(.horizontal)
-                        .padding(.top, 8)
+                        
+                        HStack{ Spacer() }
                     }
-                    
-                    HStack{ Spacer() }
+                    .background(Color(.init(white: 0.95, alpha: 1)))
+                    .safeAreaInset(edge: .bottom) {
+                        chatBottomBar
+                            .background(Color(.systemBackground).ignoresSafeArea())
+                    }
+                } else {
+                    // Fallback on earlier versions
                 }
-                .background(Color(.init(white: 0.95, alpha: 1)))
-                .safeAreaInset(edge: .bottom) {
-                    chatBottomBar
-                        .background(Color(.systemBackground).ignoresSafeArea())
-                }
-            } else {
-                // Fallback on earlier versions
             }
         }
-    }
     
     private var chatBottomBar: some View {
         HStack(spacing: 16) {

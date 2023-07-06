@@ -21,10 +21,9 @@ struct MainMessagesView: View {
             customNavBar
             messagesView
             
-            NavigationLink("", isActive: $shouldShowChatLogScreen) {
-                ChatLogView(chatUser: self.chatUser)
-            }
+            NavigationLink("", destination: ChatLogView(chatUser: self.chatUser), isActive: $shouldShowChatLogScreen)
         }
+        .navigationBarHidden(true)
         .overlay(
             newMessageButton, alignment: .bottom)
     }
