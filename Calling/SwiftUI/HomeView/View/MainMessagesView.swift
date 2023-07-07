@@ -11,9 +11,9 @@ struct MainMessagesView: View {
     
     @State var shouldShowLogOutOptions = false
     @State var shouldShowNewMessageScreen = false
-    @State var shouldShowChatLogScreen = false
+    @State var shouldNavigateToChatLogView = false
     @State var chatUser: ChatUser
-    
+    var chatLogViewModel = ChatLogViewModel(chatUser: nil)
     @ObservedObject private var vm = MainMessagesViewModel()
     
     var body: some View {
@@ -21,7 +21,9 @@ struct MainMessagesView: View {
             customNavBar
             messagesView
             
-            NavigationLink("", destination: ChatLogView(chatUser: self.chatUser), isActive: $shouldShowChatLogScreen)
+            NavigationLink("", isActive: $shouldNavigateToChatLogView) {
+                ChatLogView(vm: chatLogViewModel)
+            }
         }
         .navigationBarHidden(true)
         .overlay(
@@ -87,21 +89,25 @@ struct MainMessagesView: View {
         ScrollView {
             ForEach(vm.recentMessages) { recentMessage in
                 VStack {
-                    NavigationLink {
-                        Text("Destination")
+                    Button {
+                        let uid = FirebaseManager.shared.auth.currentUser?.uid == recentMessage.fromId ? recentMessage.toId : recentMessage.fromId
+                        self.chatUser = .init(data: [FirebaseConstants.userName: recentMessage.userName, FirebaseConstants.profileImageUrl: recentMessage.profileImageUrl, FirebaseConstants.uid: uid])
+                        self.chatLogViewModel.chatUser = self.chatUser
+                        self.chatLogViewModel.fetch()
+                        self.shouldNavigateToChatLogView.toggle()
                     } label: {
                         HStack(spacing: 16) {
                             
-                            AsyncImage(url: URL(string: recentMessage.profileImageUrl ?? "")) { returnedImage in
+                            AsyncImage(url: URL(string: recentMessage.profileImageUrl)) { returnedImage in
                                                 returnedImage
-                                                    .resizable()
-                                                    .scaledToFill()
-                                                    .frame(width: 64, height: 64)
-                                                    .clipped()
-                                                    .cornerRadius(64)
-                                                    .overlay(RoundedRectangle(cornerRadius: 64)
-                                                                .stroke(Color.black, lineWidth: 1))
-                                                    .shadow(radius: 5)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 64, height: 64)
+                                    .clipped()
+                                    .cornerRadius(64)
+                                    .overlay(RoundedRectangle(cornerRadius: 64)
+                                                .stroke(Color.black, lineWidth: 1))
+                                    .shadow(radius: 5)
                                             } placeholder: {
                                                 ProgressView()
                                             }
@@ -111,6 +117,7 @@ struct MainMessagesView: View {
                                 Text(recentMessage.userName)
                                     .font(.system(size: 16, weight: .bold))
                                     .foregroundColor(Color(.label))
+                                    .multilineTextAlignment(.leading)
                                 Text(recentMessage.text)
                                     .font(.system(size: 14))
                                     .foregroundColor(Color(.darkGray))
@@ -118,10 +125,12 @@ struct MainMessagesView: View {
                             }
                             Spacer()
                             
-                            Text("22d")
+                            Text(recentMessage.timeAgo)
                                 .font(.system(size: 14, weight: .semibold))
+                                .foregroundColor(Color(.label))
                         }
                     }
+
 
                     
                     Divider()
@@ -151,8 +160,10 @@ struct MainMessagesView: View {
         }
         .fullScreenCover(isPresented: $shouldShowNewMessageScreen) {
             CreateNewMessageView { user in
+                self.shouldNavigateToChatLogView.toggle()
                 self.chatUser = user
-                self.shouldShowChatLogScreen.toggle()
+                self.chatLogViewModel.chatUser = user
+                self.chatLogViewModel.fetch()
             }
         }
     }

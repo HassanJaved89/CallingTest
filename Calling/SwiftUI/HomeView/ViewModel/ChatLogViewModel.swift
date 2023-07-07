@@ -7,7 +7,7 @@
 
 import Foundation
 import Firebase
-import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 struct FirebaseConstants {
     static let fromId = "fromId"
@@ -21,19 +21,10 @@ struct FirebaseConstants {
     static let users = "users"
 }
 
-struct ChatMessage: Identifiable {
-    
-    var id: String { documentId }
-    
-    let documentId: String
+struct ChatMessage: Codable, Identifiable {
+    @DocumentID var id: String?
     let fromId, toId, text: String
-    
-    init(documentId: String, data: [String: Any]) {
-        self.documentId = documentId
-        self.fromId = data[FirebaseConstants.fromId] as? String ?? ""
-        self.toId = data[FirebaseConstants.toId] as? String ?? ""
-        self.text = data[FirebaseConstants.text] as? String ?? ""
-    }
+    let timestamp: Date
 }
 
 class ChatLogViewModel: ObservableObject {
@@ -42,11 +33,17 @@ class ChatLogViewModel: ObservableObject {
     @Published var errorMessage = ""
     @Published var chatMessages = [ChatMessage]()
     @Published var count = 0
+    var fireStoreListener: ListenerRegistration?
     
-    let chatUser: ChatUser?
+    var chatUser: ChatUser?
     
     init(chatUser: ChatUser?) {
+        print("Chat log init")
         self.chatUser = chatUser
+    }
+    
+    func fetch() {
+        print("Fetch called")
         if self.chatUser?.uid != "" {
             fetchMessages()
         }
@@ -153,7 +150,7 @@ class ChatLogViewModel: ObservableObject {
     private func fetchMessages() {
             guard let fromId = FirebaseManager.shared.auth.currentUser?.uid else { return }
             guard let toId = chatUser?.uid else { return }
-            FirebaseManager.shared.fireStore
+            fireStoreListener = FirebaseManager.shared.fireStore
                 .collection("messages")
                 .document(fromId)
                 .collection(toId)
@@ -167,8 +164,12 @@ class ChatLogViewModel: ObservableObject {
                     
                     querySnapshot?.documentChanges.forEach({ change in
                         if change.type == .added {
-                            let data = change.document.data()
-                            self.chatMessages.append(.init(documentId: change.document.documentID, data: data))
+                            do {
+                                if let cm = try? change.document.data(as: ChatMessage.self) {
+                                    self.chatMessages.append(cm)
+                                    print("Appending chatMessage in ChatLogView: \(Date())")
+                                }
+                            }
                         }
                     })
                     
@@ -177,4 +178,9 @@ class ChatLogViewModel: ObservableObject {
                     }
                 }
         }
+    
+    
+    func viewScreenRemoved() {
+        self.fireStoreListener?.remove()
+    }
 }

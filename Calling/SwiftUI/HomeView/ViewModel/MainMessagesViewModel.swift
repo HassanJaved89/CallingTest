@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 struct ChatUser: Identifiable {
     var id:String { uid }
@@ -20,24 +20,17 @@ struct ChatUser: Identifiable {
     }
 }
 
-struct RecentMessage: Identifiable {
-    
-    var id: String { documentId }
-    
-    let documentId: String
+struct RecentMessage: Codable, Identifiable {
+    @DocumentID var id: String?
     let text, userName: String
     let fromId, toId: String
     let profileImageUrl: String
-    let timestamp: Timestamp
+    let timestamp: Date
     
-    init(documentId: String, data: [String: Any]) {
-        self.documentId = documentId
-        self.text = data["text"] as? String ?? ""
-        self.fromId = data["fromId"] as? String ?? ""
-        self.toId = data["toId"] as? String ?? ""
-        self.profileImageUrl = data["profileImageUrl"] as? String ?? ""
-        self.userName = data["userName"] as? String ?? ""
-        self.timestamp = data["timestamp"] as? Timestamp ?? Timestamp(date: Date())
+    var timeAgo: String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .abbreviated
+        return formatter.localizedString(for: timestamp, relativeTo: Date())
     }
 }
 
@@ -48,6 +41,7 @@ class MainMessagesViewModel: ObservableObject {
     @Published var recentMessages = [RecentMessage]()
     
     init() {
+        print("Main message init")
         fetchCurrentUser()
         fetchRecentMessages()
     }
@@ -76,7 +70,7 @@ class MainMessagesViewModel: ObservableObject {
             }
             
             self.chatUser = ChatUser(data: data)
-            
+            FirebaseManager.shared.currentUser = self.chatUser
         }
     }
     
@@ -99,15 +93,16 @@ class MainMessagesViewModel: ObservableObject {
                     let docId = change.document.documentID
                     
                     if let index = self.recentMessages.firstIndex(where: { rm in
-                        return rm.documentId == docId
+                        return rm.id == docId
                     }) {
                         self.recentMessages.remove(at: index)
                     }
                     
-                    self.recentMessages.insert(.init(documentId: docId, data: change.document.data()), at: 0)
-                    
-                    
-//                    self.recentMessages.append()
+                    do {
+                        if let rm = try? change.document.data(as: RecentMessage.self) {
+                            self.recentMessages.insert(rm, at: 0)
+                        }
+                    }
                 })
             }
     }

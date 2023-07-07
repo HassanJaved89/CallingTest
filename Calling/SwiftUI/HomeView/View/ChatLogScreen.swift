@@ -9,23 +9,19 @@ import SwiftUI
 
 struct ChatLogView: View {
     
-    let chatUser: ChatUser?
-    static let emptyScrollToString = "Empty"
-    
-    init(chatUser: ChatUser?) {
-        self.chatUser = chatUser
-        self.vm = .init(chatUser: chatUser)
-    }
-    
     @ObservedObject var vm: ChatLogViewModel
+    static let emptyScrollToString = "Empty"
     
     var body: some View {
         ZStack {
             messagesView
             Text(vm.errorMessage)
         }
-        .navigationTitle(chatUser?.userName ?? "")
+        .navigationTitle(vm.chatUser?.userName ?? "")
             .navigationBarTitleDisplayMode(.inline)
+            .onDisappear {
+                self.vm.viewScreenRemoved()
+        }
     }
     
     private var messagesView: some View {
@@ -42,13 +38,11 @@ struct ChatLogView: View {
                             .id(Self.emptyScrollToString)
                         }
                         .onReceive(vm.$count) { _ in
-                            withAnimation(.easeOut(duration: 0.5)) {
+                            withAnimation(.easeOut(duration: 1.0)) {
                                 scrollViewProxy.scrollTo(Self.emptyScrollToString, anchor: .bottom)
                             }
                             
                         }
-                        
-                        
                         
                     }
                     
@@ -142,6 +136,6 @@ private struct DescriptionPlaceholder: View {
 
 struct ChatLogView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatLogView(chatUser: .init(data: ["uid": "R8ZrxIT4uRZMVZeWwWeQWPI5zUE3", "username": "Tekrowe"]))
+        ChatLogView(vm: ChatLogViewModel(chatUser: ChatUser(data: ["userName": "Tekrowe"])))
     }
 }
