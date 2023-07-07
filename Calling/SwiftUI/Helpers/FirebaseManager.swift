@@ -16,6 +16,8 @@ class FirebaseManager: NSObject {
     let storage: Storage
     let fireStore: Firestore
     
+    var currentUser: ChatUser?
+    
     static let shared = FirebaseManager()
     
     override init() {
