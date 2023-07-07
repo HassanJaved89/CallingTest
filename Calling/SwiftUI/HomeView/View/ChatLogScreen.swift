@@ -10,6 +10,9 @@ import SwiftUI
 struct ChatLogView: View {
     
     @ObservedObject var vm: ChatLogViewModel
+    @State private var showImagePicker = false
+    @State private var isSheetPresented = false
+    @State var selectedImage: UIImage?
     static let emptyScrollToString = "Empty"
     
     var body: some View {
@@ -21,6 +24,65 @@ struct ChatLogView: View {
             .navigationBarTitleDisplayMode(.inline)
             .onDisappear {
                 self.vm.viewScreenRemoved()
+        }
+        .sheet(isPresented: $showImagePicker, onDismiss: loadImage) {
+            ImagePickerView(selectedImage: $selectedImage)
+        }
+        .onChange(of: selectedImage) { image in
+            if let image = image {
+                DispatchQueue.main.async {
+                    selectedImage = image
+                    isSheetPresented = true
+                }
+            }
+        }
+        .sheet(isPresented: $isSheetPresented) {
+            if let image = selectedImage {
+                SelectedImageView(image: image) { image in
+                    DispatchQueue.main.async {
+                        isSheetPresented = false
+                        vm.sendImage(image: image)
+                    }
+                }
+            }
+        }
+    }
+    
+    func loadImage() {
+        guard selectedImage != nil else { return }
+        isSheetPresented = true
+    }
+    
+    struct SelectedImageView: View {
+        var image: UIImage
+        var handleSend: (UIImage) -> ()
+        
+        var body: some View {
+            VStack {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color.black)
+                    .navigationBarTitleDisplayMode(.inline)
+                
+                Spacer()
+                
+                Button {
+                    handleSend(image)
+                } label: {
+                    Text("Send")
+                        .frame(width: 80, height: 30)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.blue)
+                        .font(.title3)
+                        .cornerRadius(20)
+                        
+                }
+                .padding()
+            }
+            
         }
     }
     
@@ -60,9 +122,14 @@ struct ChatLogView: View {
     
     private var chatBottomBar: some View {
         HStack(spacing: 16) {
-            Image(systemName: "photo.on.rectangle")
-                .font(.system(size: 24))
-                .foregroundColor(Color(.darkGray))
+            Button {
+                showImagePicker.toggle()
+            } label: {
+                Image(systemName: "photo.on.rectangle")
+                    .font(.system(size: 24))
+                    .foregroundColor(Color(.darkGray))
+            }
+            
             ZStack {
                 DescriptionPlaceholder()
                 TextEditor(text: $vm.chatText)
@@ -95,25 +162,66 @@ struct MessageView: View {
             if message.fromId == FirebaseManager.shared.auth.currentUser?.uid {
                 HStack {
                     Spacer()
-                    HStack {
-                        Text(message.text)
-                            .foregroundColor(.white)
+                    if message.chatImageUrl != nil && message.chatImageUrl != "" {
+                        HStack {
+                            Spacer()
+                            
+                            AsyncImage(url: URL(string: message.chatImageUrl ?? "")) { returnedImage in
+                                                returnedImage
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 200, height: 200, alignment: .trailing)
+                                                    .shadow(radius: 5)
+                                            } placeholder: {
+                                                ProgressView()
+                                                    .frame(width: 200, height: 200)
+                                            }
+                            
+                        }
+                        .padding(.vertical, 5)
                     }
-                    .padding()
-                    .background(Color.blue)
-                    .cornerRadius(8)
+                    else {
+                        HStack {
+                            Text(message.text)
+                                .foregroundColor(.white)
+                        }
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(8)
+                    }
+                    
                 }
             } else {
-                HStack {
+                if message.chatImageUrl != nil && message.chatImageUrl != "" {
                     HStack {
-                        Text(message.text)
-                            .foregroundColor(.black)
+                        AsyncImage(url: URL(string: message.chatImageUrl ?? "")) { returnedImage in
+                                            returnedImage
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 200, height: 200, alignment: .leading)
+                                                .shadow(radius: 5)
+                                        } placeholder: {
+                                            ProgressView()
+                                                .frame(width: 200, height: 200)
+                                        }
+                        
+                        Spacer()
                     }
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(8)
-                    Spacer()
+                    .padding(.vertical, 5)
                 }
+                else {
+                    HStack {
+                        HStack {
+                            Text(message.text)
+                                .foregroundColor(.black)
+                        }
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(8)
+                        Spacer()
+                    }
+                }
+                
             }
         }
         .padding(.horizontal)

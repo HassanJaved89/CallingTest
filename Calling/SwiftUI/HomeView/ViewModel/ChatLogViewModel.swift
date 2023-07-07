@@ -8,6 +8,7 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
+import FirebaseStorage
 
 struct FirebaseConstants {
     static let fromId = "fromId"
@@ -19,17 +20,20 @@ struct FirebaseConstants {
     static let profileImageUrl = "profileImageUrl"
     static let messages = "messages"
     static let users = "users"
+    static let chatImageUrl = "chatImageUrl"
 }
 
 struct ChatMessage: Codable, Identifiable {
     @DocumentID var id: String?
     let fromId, toId, text: String
+    let chatImageUrl: String? 
     let timestamp: Date
 }
 
 class ChatLogViewModel: ObservableObject {
     
     @Published var chatText = ""
+    var imageUploadUrl = ""
     @Published var errorMessage = ""
     @Published var chatMessages = [ChatMessage]()
     @Published var count = 0
@@ -60,7 +64,7 @@ class ChatLogViewModel: ObservableObject {
             .collection(toId)
             .document()
         
-        let messageData = [FirebaseConstants.fromId: fromId, FirebaseConstants.toId: toId, FirebaseConstants.text: self.chatText, FirebaseConstants.timestamp: Timestamp()] as [String : Any]
+        let messageData = [FirebaseConstants.fromId: fromId, FirebaseConstants.toId: toId, FirebaseConstants.text: self.chatText, FirebaseConstants.chatImageUrl: imageUploadUrl, FirebaseConstants.timestamp: Timestamp()] as [String : Any]
         
         document.setData(messageData) { error in
             if let error = error {
@@ -90,6 +94,42 @@ class ChatLogViewModel: ObservableObject {
             }
             
             print("Recipient saved message as well")
+        }
+    }
+    
+    func sendImage(image: UIImage) {
+        guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }
+                
+        // Create a unique filename for the image
+        let filename = UUID().uuidString
+        
+        // Create a Firestore reference to the desired collection
+        let storageRef = Storage.storage().reference().child("images").child(filename)
+        
+        // Upload the image to Firestore
+        storageRef.putData(imageData, metadata: nil) { (_, error) in
+            if let error = error {
+                // Handle the upload error
+                print("Error uploading image: \(error.localizedDescription)")
+            } else {
+                // Image uploaded successfully
+                print("Image uploaded!")
+                
+                // Get the download URL for the image
+                storageRef.downloadURL { url, error in
+                    if let error = error {
+                        // Handle the download URL retrieval error
+                        print("Error getting download URL: \(error.localizedDescription)")
+                        return
+                    }
+                    
+                    if let downloadURL = url?.absoluteString {
+                       print(downloadURL)
+                        self.imageUploadUrl = downloadURL
+                        self.handleSend()
+                    }
+                }
+            }
         }
     }
     
