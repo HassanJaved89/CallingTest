@@ -13,6 +13,7 @@ struct ChatLogView: View {
     @State private var showImagePicker = false
     @State private var isSheetPresented = false
     @State var selectedImage: UIImage?
+    @StateObject var audioRecorder = AudioRecorder()
     static let emptyScrollToString = "Empty"
     
     var body: some View {
@@ -36,6 +37,9 @@ struct ChatLogView: View {
                 }
             }
         }
+        .onChange(of: audioRecorder.recordedFileURL, perform: { newValue in
+            vm.sendAudio(recordedFileURL: audioRecorder.recordedFileURL)
+        })
         .sheet(isPresented: $isSheetPresented) {
             if let image = selectedImage {
                 SelectedImageView(image: image) { image in
@@ -138,6 +142,20 @@ struct ChatLogView: View {
             .frame(height: 40)
             
             Button {
+                if audioRecorder.isRecording {
+                    audioRecorder.stopRecording()
+                } else {
+                    audioRecorder.startRecording()
+                }
+                
+                audioRecorder.isRecording.toggle()
+            } label: {
+                Image(systemName: audioRecorder.isRecording ? "stop.circle" :  "mic.circle.fill")
+                    .font(.system(size: 50))
+                    .foregroundColor(.blue)
+            }
+
+            Button {
                 vm.handleSend()
             } label: {
                 Text("Send")
@@ -155,6 +173,8 @@ struct ChatLogView: View {
 
 struct MessageView: View {
     
+    @StateObject var audioPlayerHelper = AudioPlayerHelper()
+    @State private var isAnimating = false
     let message: ChatMessage
     
     var body: some View {
@@ -179,6 +199,30 @@ struct MessageView: View {
                             
                         }
                         .padding(.vertical, 5)
+                    }
+                    else if message.audioUrl != nil && message.audioUrl != "" {
+                        HStack {
+                            Spacer()
+                            
+                            Button {
+                                        audioPlayerHelper.isPlaying.toggle()
+
+                                        if audioPlayerHelper.isPlaying {
+                                            audioPlayerHelper.playAudio(from: URL(string: message.audioUrl!)!)
+                                            startAnimating()
+                                        } else {
+                                            audioPlayerHelper.stopAudio()
+                                            stopAnimating()
+                                        }
+                                    } label: {
+                                        Image(systemName: "headphones")
+                                            .font(.system(size: 50))
+                                            .foregroundColor(.blue)
+                                            .rotationEffect(audioPlayerHelper.isPlaying ? .degrees(0) : .degrees(-10))
+                                            .scaleEffect(audioPlayerHelper.isPlaying ? 1.1 : 1.0)
+                                            .animation(Animation.easeInOut(duration: 0.5).repeatForever(autoreverses: true), value: audioPlayerHelper.isPlaying)
+                                    }
+                        }
                     }
                     else {
                         HStack {
@@ -209,6 +253,30 @@ struct MessageView: View {
                     }
                     .padding(.vertical, 5)
                 }
+                else if message.audioUrl != nil && message.audioUrl != "" {
+                    HStack {
+                        
+                        Button {
+                            
+                            audioPlayerHelper.isPlaying.toggle()
+                            
+                            if audioPlayerHelper.isPlaying {
+                                audioPlayerHelper.playAudio(from: URL(string: message.audioUrl!)!
+)
+                            }
+                            else {
+                                audioPlayerHelper.stopAudio()
+                            }
+                            
+                        } label: {
+                            Image(systemName: "headphones")
+                                .font(.system(size: 50))
+                                .foregroundColor(.blue)
+                        }
+                        
+                        Spacer()
+                    }
+                }
                 else {
                     HStack {
                         HStack {
@@ -226,6 +294,18 @@ struct MessageView: View {
         }
         .padding(.horizontal)
         .padding(.top, 8)
+    }
+    
+    func startAnimating() {
+        withAnimation {
+            isAnimating = true
+        }
+    }
+
+    func stopAnimating() {
+        withAnimation {
+            isAnimating = false
+        }
     }
 }
 

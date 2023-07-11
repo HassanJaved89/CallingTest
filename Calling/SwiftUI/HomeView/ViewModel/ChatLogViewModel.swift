@@ -21,12 +21,13 @@ struct FirebaseConstants {
     static let messages = "messages"
     static let users = "users"
     static let chatImageUrl = "chatImageUrl"
+    static let audioUrl = "audioUrl"
 }
 
 struct ChatMessage: Codable, Identifiable {
     @DocumentID var id: String?
     let fromId, toId, text: String
-    let chatImageUrl: String? 
+    let chatImageUrl, audioUrl: String? 
     let timestamp: Date
 }
 
@@ -34,6 +35,7 @@ class ChatLogViewModel: ObservableObject {
     
     @Published var chatText = ""
     var imageUploadUrl = ""
+    var audioUrl = ""
     @Published var errorMessage = ""
     @Published var chatMessages = [ChatMessage]()
     @Published var count = 0
@@ -64,7 +66,7 @@ class ChatLogViewModel: ObservableObject {
             .collection(toId)
             .document()
         
-        let messageData = [FirebaseConstants.fromId: fromId, FirebaseConstants.toId: toId, FirebaseConstants.text: self.chatText, FirebaseConstants.chatImageUrl: imageUploadUrl, FirebaseConstants.timestamp: Timestamp()] as [String : Any]
+        let messageData = [FirebaseConstants.fromId: fromId, FirebaseConstants.toId: toId, FirebaseConstants.text: self.chatText, FirebaseConstants.chatImageUrl: imageUploadUrl, FirebaseConstants.audioUrl: audioUrl, FirebaseConstants.timestamp: Timestamp()] as [String : Any]
         
         document.setData(messageData) { error in
             if let error = error {
@@ -130,6 +132,56 @@ class ChatLogViewModel: ObservableObject {
                     }
                 }
             }
+        }
+    }
+    
+    
+    func sendAudio(recordedFileURL: URL?) {
+        if let fileURL = recordedFileURL {
+            let storage = Storage.storage()
+            let storageRef = storage.reference()
+            
+            let filename = UUID().uuidString
+            
+            let fileRef = storageRef.child("recordings/\(filename).wav")
+
+            // Start the upload
+            let uploadTask = fileRef.putFile(from: fileURL, metadata: nil) { metadata, error in
+                if let error = error {
+                    // Handle the error
+                    print("Error uploading file: \(error.localizedDescription)")
+                    return
+                }
+
+                // Upload success
+                print("File uploaded successfully")
+                
+                // Optionally, you can also get the download URL
+                fileRef.downloadURL { url, error in
+                    if let error = error {
+                        // Handle the error
+                        print("Error getting download URL: \(error.localizedDescription)")
+                        return
+                    }
+                    
+                    if let downloadURL = url {
+                        print("Download URL: \(downloadURL.absoluteString)")
+                        self.audioUrl = downloadURL.absoluteString
+                        self.handleSend()
+                    }
+                }
+            }
+
+            /*
+            // Observe the upload progress
+            uploadTask.observe(.progress) { snapshot in
+                guard let progress = snapshot.progress else {
+                    return
+                }
+
+                let percentComplete = 100.0 * Double(progress.completedUnitCount) / Double(progress.totalUnitCount)
+                print("Upload progress: \(percentComplete)%")
+            }*/
         }
     }
     
