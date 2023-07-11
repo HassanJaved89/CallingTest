@@ -185,43 +185,15 @@ struct MessageView: View {
                     if message.chatImageUrl != nil && message.chatImageUrl != "" {
                         HStack {
                             Spacer()
-                            
-                            AsyncImage(url: URL(string: message.chatImageUrl ?? "")) { returnedImage in
-                                                returnedImage
-                                                    .resizable()
-                                                    .scaledToFit()
-                                                    .frame(width: 200, height: 200, alignment: .trailing)
-                                                    .shadow(radius: 5)
-                                            } placeholder: {
-                                                ProgressView()
-                                                    .frame(width: 200, height: 200)
-                                            }
-                            
+                            chatImageView
+                            .frame(width: 200, height: 200, alignment: .trailing)
                         }
                         .padding(.vertical, 5)
                     }
                     else if message.audioUrl != nil && message.audioUrl != "" {
                         HStack {
                             Spacer()
-                            
-                            Button {
-                                        audioPlayerHelper.isPlaying.toggle()
-
-                                        if audioPlayerHelper.isPlaying {
-                                            audioPlayerHelper.playAudio(from: URL(string: message.audioUrl!)!)
-                                            startAnimating()
-                                        } else {
-                                            audioPlayerHelper.stopAudio()
-                                            stopAnimating()
-                                        }
-                                    } label: {
-                                        Image(systemName: "headphones")
-                                            .font(.system(size: 50))
-                                            .foregroundColor(.blue)
-                                            .rotationEffect(audioPlayerHelper.isPlaying ? .degrees(0) : .degrees(-10))
-                                            .scaleEffect(audioPlayerHelper.isPlaying ? 1.1 : 1.0)
-                                            .animation(Animation.easeInOut(duration: 0.5).repeatForever(autoreverses: true), value: audioPlayerHelper.isPlaying)
-                                    }
+                            audioView
                         }
                     }
                     else {
@@ -233,47 +205,19 @@ struct MessageView: View {
                         .background(Color.blue)
                         .cornerRadius(8)
                     }
-                    
                 }
             } else {
                 if message.chatImageUrl != nil && message.chatImageUrl != "" {
                     HStack {
-                        AsyncImage(url: URL(string: message.chatImageUrl ?? "")) { returnedImage in
-                                            returnedImage
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: 200, height: 200, alignment: .leading)
-                                                .shadow(radius: 5)
-                                        } placeholder: {
-                                            ProgressView()
-                                                .frame(width: 200, height: 200)
-                                        }
-                        
+                        chatImageView
+                        .frame(width: 200, height: 200, alignment: .leading)
                         Spacer()
                     }
                     .padding(.vertical, 5)
                 }
                 else if message.audioUrl != nil && message.audioUrl != "" {
                     HStack {
-                        
-                        Button {
-                            
-                            audioPlayerHelper.isPlaying.toggle()
-                            
-                            if audioPlayerHelper.isPlaying {
-                                audioPlayerHelper.playAudio(from: URL(string: message.audioUrl!)!
-)
-                            }
-                            else {
-                                audioPlayerHelper.stopAudio()
-                            }
-                            
-                        } label: {
-                            Image(systemName: "headphones")
-                                .font(.system(size: 50))
-                                .foregroundColor(.blue)
-                        }
-                        
+                        audioView
                         Spacer()
                     }
                 }
@@ -296,15 +240,38 @@ struct MessageView: View {
         .padding(.top, 8)
     }
     
-    func startAnimating() {
-        withAnimation {
-            isAnimating = true
+    private var chatImageView: some View {
+        AsyncImage(url: URL(string: message.chatImageUrl ?? "")) { returnedImage in
+            returnedImage
+                .resizable()
+                .scaledToFit()
+                //.frame(width: 200, height: 200, alignment: .trailing)
+                .shadow(radius: 5)
+        } placeholder: {
+            ProgressView()
+                .frame(width: 200, height: 200)
         }
     }
+    
+    private var audioView: some View {
+        Button {
 
-    func stopAnimating() {
-        withAnimation {
-            isAnimating = false
+            audioPlayerHelper.isPlaying.toggle()
+            
+            if audioPlayerHelper.isPlaying {
+                audioPlayerHelper.playAudio(from: URL(string: message.audioUrl!)!)
+            }
+            else {
+                audioPlayerHelper.stopAudio()
+            }
+            
+        } label: {
+            Image(systemName: "headphones")
+                .font(.system(size: 50))
+                .foregroundColor(.blue)
+                .rotationEffect(audioPlayerHelper.isPlaying ? .degrees(0) : .degrees(-10))
+                .scaleEffect(audioPlayerHelper.isPlaying ? 1.1 : 1.0)
+                .animation(Animation.easeInOut(duration: 0.5).repeat(while: audioPlayerHelper.isPlaying))
         }
     }
 }
@@ -325,5 +292,16 @@ private struct DescriptionPlaceholder: View {
 struct ChatLogView_Previews: PreviewProvider {
     static var previews: some View {
         ChatLogView(vm: ChatLogViewModel(chatUser: ChatUser(data: ["userName": "Tekrowe"])))
+    }
+}
+
+
+extension Animation {
+    func `repeat`(while expression: Bool, autoreverses: Bool = true) -> Animation {
+        if expression {
+            return self.repeatForever(autoreverses: autoreverses)
+        } else {
+            return self
+        }
     }
 }
