@@ -20,7 +20,8 @@ struct ContentView: View {
                 }
             }
             else {
-                Login()
+                //Login()
+                GetStarted()
             }
         }
         .onAppear {
