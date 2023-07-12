@@ -30,19 +30,35 @@ struct AccountSettings: View {
                 else {
                     Image(systemName: "person.fill")
                         .font(.system(size: 60))
+                        .tint(AppColors.greenColor.color)
                         .padding()
                         .background {
                             Circle()
-                                .stroke(lineWidth: 2)
+                                .fill(.gray.opacity(0.2))
+//                                .stroke(lineWidth: 2)
+                                .tint(AppColors.greenColor.color)
+                        }
+                        .overlay(alignment: .bottomTrailing) {
+                            Button {
+                                showImagePicker.toggle()
+                            } label: {
+                                Image("imageUpload")
+                                    .frame(width: 35, height: 35 ,alignment: .bottom)
+                            }
+
                         }
                 }
                 
             }
             
             VStack {
-                TextField("Username", text: $userName)
-                Rectangle().fill(Color.blue)
-                    .frame(height: 1)
+                TextField("Type name here", text: $userName)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)
+                    .background {
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(Color.gray.opacity(0.1))
+                    }
             }
             .padding()
             
@@ -50,20 +66,30 @@ struct AccountSettings: View {
                 createAccountTapped()
             } label: {
                 HStack {
-                    Text("Create")
-                        .frame(maxWidth: .infinity, maxHeight: 45)
-                        .background(Color.blue)
+                    Text("Save")
                         .foregroundColor(.white)
-                        .font(.system(size: 20))
-                        .padding()
-                        .overlay {
-                            ProgressView()
-                                .opacity(isLoading ? 1.0 : 0)
-                        }
+                        .padding(.vertical, 12)
+//                        .overlay {
+//                            ProgressView()
+//                                .opacity(isLoading ? 1.0 : 0)
+//                        }
                 }
-                
+            }
+            .buttonStyle(GradientButtonStyle()).opacity(isLoading ? 0.1 : 1.0)
+            .overlay {
+                ProgressView()
+                    .foregroundColor(.white)
+                    .opacity(isLoading ? 1.0 : 0)
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .keyboard) {
+                Button("Done") {
+                    self.hideKeyboard()
+                }
+            }
+        }
+        .navigationTitle("Profile")
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .padding()
         .padding(.vertical, 50)

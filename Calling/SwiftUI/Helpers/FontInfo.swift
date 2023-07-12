@@ -21,3 +21,14 @@ extension Font {
         return .system(size: size.rawValue)
     }
 }
+
+enum AppColors {
+    case greenColor
+    
+    var color: Color {
+        switch self {
+        case .greenColor:
+            return Color(hex: "#01411C") ?? .green
+        }
+    }
+}

@@ -9,6 +9,8 @@ import Foundation
 
 class AnyOTPModel: OTPProtocol, ObservableObject {
     var errorMsg: String = ""
+    var code = ""
+    var number = ""
     
     @Published var state: OTPProcessState? = .idle
     @Published var showAlert = false
@@ -24,6 +26,9 @@ class AnyOTPModel: OTPProtocol, ObservableObject {
     }
     
     func sendOTP(code: String, number: String) async -> Bool {
+        self.code = code
+        self.number = number
+        
         let result = await baseSendOTP(code, number)
         errorMsg = otpObject.errorMsg
         DispatchQueue.main.async {

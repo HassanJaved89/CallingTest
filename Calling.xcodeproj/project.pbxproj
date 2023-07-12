@@ -127,7 +127,6 @@
 			isa = PBXGroup;
 			children = (
 				FE650C4A2A53F877005D9C9B /* OTP */,
-				FE650C4E2A540223005D9C9B /* AccountSettings.swift */,
 			);
 			path = CreateAccount;
 			sourceTree = "<group>";
@@ -241,6 +240,7 @@
 		FEF29F8C2A557A710025564B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FE650C4E2A540223005D9C9B /* AccountSettings.swift */,
 				FEF29F882A5578400025564B /* MainMessagesView.swift */,
 				FE0AAA372A5593EC00E9A4D0 /* CreateNewMessageView.swift */,
 				FE0AAA392A569C2700E9A4D0 /* ChatLogScreen.swift */,
@@ -507,7 +507,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -542,7 +542,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -16,7 +16,21 @@ struct Verification: View {
     @State var isLoading = false
     
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
+            
+            Image("starsImage", bundle: nil)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 120, height: 120)
+            
+            Text("We have sent you a code to verify your phone number")
+                .multilineTextAlignment(.center)
+                .font(.customFont(size: .medium))
+                .fontWeight(.bold)
+            
+            Text("Sent to +92\(otpModel.number)")
+                .font(.customFont(size: .medium))
+            
             otpField()
             
             Button {
@@ -32,32 +46,47 @@ struct Verification: View {
                     .foregroundColor(.white)
                     .padding(.vertical, 12)
                     .frame(maxWidth: .infinity)
-                    .background {
-                        RoundedRectangle(cornerRadius: 10, style: .continuous)
-                            .fill(.blue)
-                            .opacity(isLoading ? 0 : 1)
+//                    .background {
+//                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+//                            .fill(.blue)
+//                            .opacity(isLoading ? 0 : 1)
+//                    }
+//                    .overlay {
+//                        ProgressView()
+//                            .opacity(isLoading ? 1 : 0)
+//                    }
+            }
+            .buttonStyle(GradientButtonStyle()).opacity(isLoading ? 0.1 : 1.0)
+            .overlay {
+                ProgressView()
+                    .foregroundColor(.white)
+                    .opacity(isLoading ? 1.0 : 0)
+            }
+            .toolbar {
+                ToolbarItem(placement: .keyboard) {
+                    Button("Done") {
+                        self.hideKeyboard()
                     }
-                    .overlay {
-                        ProgressView()
-                            .opacity(isLoading ? 1 : 0)
-                    }
+                }
             }
             .disabled(checkStates())
             .opacity(checkStates() ? 0.4 : 1.0)
             .padding(.vertical)
             
-            HStack(spacing: 12) {
+            VStack(spacing: 15) {
                 Text("Didn't get otp?")
-                    .font(.caption)
+                    .font(.customFont(size: .medium))
                     .foregroundColor(.gray)
                 
-                Button("Resend") {
+                Button("Request Again") {
                     
                 }
-                .font(.callout)
+                .font(.customFont(size: .large))
+                .fontWeight(.bold)
+                .foregroundColor(AppColors.greenColor.color)
 
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(maxWidth: .infinity)
 
         }
         .padding()
@@ -108,12 +137,19 @@ struct Verification: View {
                         .textContentType(.oneTimeCode)
                         .multilineTextAlignment(.center)
                         .focused($activeField, equals: activeStateForIndex(index: index))
+                        .tint(AppColors.greenColor.color)
+                        .frame(height: 55)
+                        .background {
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(activeField == activeStateForIndex(index: index) ? AppColors.greenColor.color : .gray.opacity(0.2), lineWidth: 2)
+                        }
                     
+                    /*
                     Rectangle()
                         .fill(activeField == activeStateForIndex(index: index) ? .blue : .gray.opacity(0.3))
-                        .frame(height: 4)
+                        .frame(height: 4)*/
                 }
-                .frame(height: 40)
+                .frame(height: 80)
             }
         }
     }

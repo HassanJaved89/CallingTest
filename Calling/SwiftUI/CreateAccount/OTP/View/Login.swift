@@ -51,7 +51,7 @@ struct Login: View {
                 }
                 
                 VStack(spacing: 8) {
-                    TextField("56906578", text: $number)
+                    TextField("", text: $number)
                         .keyboardType(.numberPad)
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)
@@ -72,14 +72,17 @@ struct Login: View {
             Button {
                 isLoading = true
                 Task {
+                    if number.hasPrefix("0") {
+                        number = String(number.dropFirst())
+                    }
                     let _ = await otpModel.sendOTP(code: code, number: number)
                     isLoading = false
                 }
             } label: {
-                Text("Verify")
+                Text("Sign in")
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
-                    .padding(.vertical, 12)
+                    .padding(.vertical, 15)
                     .frame(maxWidth: .infinity)
 //                    .background {
 //

@@ -28,7 +28,7 @@ struct CallingApp: App {
     
     var body: some Scene {
         WindowGroup {
-            Login()
+            ContentView()
         }
     }
 }
