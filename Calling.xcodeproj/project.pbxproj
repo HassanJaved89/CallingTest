@@ -13,6 +13,8 @@
 		FE0AAA3C2A56A9FD00E9A4D0 /* ChatLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0AAA3B2A56A9FD00E9A4D0 /* ChatLogViewModel.swift */; };
 		FE0AAA492A5D2A5100E9A4D0 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0AAA482A5D2A5100E9A4D0 /* AudioRecorder.swift */; };
 		FE0AAA4B2A5D321800E9A4D0 /* AudioPlayerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0AAA4A2A5D321800E9A4D0 /* AudioPlayerHelper.swift */; };
+		FE29CA752A5E858F00805A4F /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE29CA742A5E858F00805A4F /* GradientButton.swift */; };
+		FE29CA772A5E93BE00805A4F /* FontInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE29CA762A5E93BE00805A4F /* FontInfo.swift */; };
 		FE650C462A52D4EE005D9C9B /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE650C452A52D4EE005D9C9B /* FirebaseService.swift */; };
 		FE650C492A52F378005D9C9B /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE650C482A52F378005D9C9B /* Login.swift */; };
 		FE650C4F2A540223005D9C9B /* AccountSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE650C4E2A540223005D9C9B /* AccountSettings.swift */; };
@@ -49,6 +51,8 @@
 		FE0AAA3B2A56A9FD00E9A4D0 /* ChatLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogViewModel.swift; sourceTree = "<group>"; };
 		FE0AAA482A5D2A5100E9A4D0 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		FE0AAA4A2A5D321800E9A4D0 /* AudioPlayerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerHelper.swift; sourceTree = "<group>"; };
+		FE29CA742A5E858F00805A4F /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
+		FE29CA762A5E93BE00805A4F /* FontInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontInfo.swift; sourceTree = "<group>"; };
 		FE650C452A52D4EE005D9C9B /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		FE650C472A52F0B9005D9C9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		FE650C482A52F378005D9C9B /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
@@ -210,6 +214,8 @@
 				FE0AAA482A5D2A5100E9A4D0 /* AudioRecorder.swift */,
 				FE0AAA4A2A5D321800E9A4D0 /* AudioPlayerHelper.swift */,
 				FEAA14AC2A5D433100158FC0 /* AudioSessionManager.swift */,
+				FE29CA742A5E858F00805A4F /* GradientButton.swift */,
+				FE29CA762A5E93BE00805A4F /* FontInfo.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -343,6 +349,7 @@
 				FEF29F792A5551E00025564B /* FirebaseManager.swift in Sources */,
 				FE0AAA382A5593EC00E9A4D0 /* CreateNewMessageView.swift in Sources */,
 				FE650C492A52F378005D9C9B /* Login.swift in Sources */,
+				FE29CA752A5E858F00805A4F /* GradientButton.swift in Sources */,
 				FE0AAA3C2A56A9FD00E9A4D0 /* ChatLogViewModel.swift in Sources */,
 				FE0AAA4B2A5D321800E9A4D0 /* AudioPlayerHelper.swift in Sources */,
 				FECEBCD12A52CE7900550888 /* Verification.swift in Sources */,
@@ -356,6 +363,7 @@
 				FECEBCBF2A52B81B00550888 /* AgoraRep.swift in Sources */,
 				FECEBC3A2A4AE2C900550888 /* CallingApp.swift in Sources */,
 				FE650C4F2A540223005D9C9B /* AccountSettings.swift in Sources */,
+				FE29CA772A5E93BE00805A4F /* FontInfo.swift in Sources */,
 				FEF29F8F2A557A950025564B /* MainMessagesViewModel.swift in Sources */,
 				FEAA14AD2A5D433100158FC0 /* AudioSessionManager.swift in Sources */,
 				FE0AAA3A2A569C2700E9A4D0 /* ChatLogScreen.swift in Sources */,

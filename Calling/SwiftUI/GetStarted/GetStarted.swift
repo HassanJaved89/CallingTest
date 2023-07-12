@@ -8,14 +8,20 @@
 import SwiftUI
 
 struct GetStarted: View {
+    
+    @State private var navigateToNextScreen = false
+    
     var body: some View {
         ZStack(alignment: .top) {
             Image("GetStartedBackgroundImage", bundle: nil)
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
+                .overlay {
+                    Color.black.opacity(0.3)
+                }
             
-            VStack(alignment: .center) {
+            VStack(alignment: .leading) {
                 
                 HStack {
                     Image("MinistryImage", bundle: nil)
@@ -28,40 +34,36 @@ struct GetStarted: View {
                         Text("Government of Pakistan")
                     }
                     .foregroundColor(.black)
-                    .font(.system(size: 16))
+                    .font(.customFont(size: .medium))
                 }
-                .padding(.top, 125)
+                .padding(.top, 120)
                 
                 Text("Connect with your colleagues securely")
                     .foregroundColor(.white)
-                    .font(.system(size: 50))
+                    .font(.customFont(size: .xxLarge))
                     .padding(.top, 30)
                 
                 Text("Our chat app is the perfect way to securely connect with your business contacts")
                     .foregroundColor(.white)
-                    .font(.system(size: 18))
+                    .font(.customFont(size: .large))
                     .padding(.top, 30)
                 
                 Button {
-                    
+                    navigateToNextScreen = true
                 } label: {
                     Text("Get Started")
-                        .foregroundColor(.white)
-                        .padding()
-                        .background {
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(Color.green)
-                                .frame(width: 300, height: 50)
-                                
-                        }
                 }
-                .padding(.top, 30)
+                .buttonStyle(GradientButtonStyle())
+                .padding(.top, 40)
 
                 
                 Spacer()
             }
             .padding()
             
+        }
+        .background {
+            NavigationLink(destination: Login(), isActive: $navigateToNextScreen) {}
         }
     }
 }
