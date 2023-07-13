@@ -41,6 +41,15 @@ struct ContentView: View {
             }
         }
     }
+    
+    func signOut() {
+        do {
+            try FirebaseManager.shared.auth.signOut()
+        }
+        catch {
+            
+        }
+    }
 }
 
 #if canImport(UIKit)

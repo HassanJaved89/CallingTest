@@ -30,8 +30,8 @@ class CreateNewMessageViewModel: ObservableObject {
                     let user = ChatUser(data: data)
                     if user.uid != FirebaseManager.shared.auth.currentUser?.uid {
                         self.users.append(.init(data: data))
+                        self.users = self.users.sorted( by: { $0.userName < $1.userName } )
                     }
-                    
                 })
             }
     }

@@ -19,7 +19,9 @@ struct CreateNewMessageView: View {
             
             ScrollView {
                 
-                ForEach(vm.users) { user in
+                ForEach(vm.users.filter {
+                    searchText.isEmpty || $0.userName.localizedCaseInsensitiveContains(searchText)
+                } ) { user in
                     Button {
                         presentationMode.wrappedValue.dismiss()
                         didSelectNewChatUser(user)
@@ -44,14 +46,15 @@ struct CreateNewMessageView: View {
                             Text(user.userName)
                                 .foregroundColor(Color(.label))
                             Spacer()
-                        }.padding(.horizontal)
+                        }
+                        .frame(minHeight: 60)
+                        .padding(.horizontal)
                     }
                     Divider()
                         .padding(.vertical, 8)
                     
-                    
                 }
-            }.navigationTitle("New Message")
+            }.navigationTitle("Contacts")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItemGroup(placement: .navigationBarLeading) {

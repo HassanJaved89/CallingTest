@@ -8,7 +8,8 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct ChatUser: Identifiable {
+struct ChatUser: Identifiable  {
+    
     var id:String { uid }
     
     let uid, userName, profileImageUrl: String
@@ -18,6 +19,7 @@ struct ChatUser: Identifiable {
         self.userName = data["userName"] as? String ?? ""
         self.profileImageUrl = data["profileImageUrl"] as? String ?? ""
     }
+    
 }
 
 struct RecentMessage: Codable, Identifiable {
