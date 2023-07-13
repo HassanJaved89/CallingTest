@@ -16,7 +16,8 @@ struct ContentView: View {
                     AccountSettings()
                 }
                 else {
-                    MainMessagesView(chatUser: ChatUser(data: ["" : ""]))
+                    //MainMessagesView(chatUser: ChatUser(data: ["" : ""]))
+                    HomeViewTab()
                 }
             }
             else {

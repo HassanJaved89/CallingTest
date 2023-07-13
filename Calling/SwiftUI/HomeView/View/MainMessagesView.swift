@@ -14,23 +14,27 @@ struct MainMessagesView: View {
     @State var shouldNavigateToChatLogView = false
     @State var chatUser: ChatUser
     var chatLogViewModel = ChatLogViewModel(chatUser: nil)
+    @State private var searchText = ""
     @ObservedObject private var vm = MainMessagesViewModel()
     
     var body: some View {
-        VStack {
-            customNavBar
+        VStack(spacing: 20) {
+            //customNavBar
+            CustomSearchBar(searchText: $searchText)
             messagesView
             
             NavigationLink("", isActive: $shouldNavigateToChatLogView) {
                 ChatLogView(vm: chatLogViewModel)
             }
         }
-        .navigationBarHidden(true)
+        .padding(.top, 25)
         .overlay(
-            newMessageButton, alignment: .bottom)
+            newMessageButton, alignment: .bottomTrailing)
+        .padding(.horizontal)
     }
     
     private var customNavBar: some View {
+        
         HStack(spacing: 16) {
             
             AsyncImage(url: URL(string: vm.chatUser?.profileImageUrl ?? "")) { returnedImage in
@@ -87,7 +91,9 @@ struct MainMessagesView: View {
     
     private var messagesView: some View {
         ScrollView {
-            ForEach(vm.recentMessages) { recentMessage in
+            ForEach(vm.recentMessages.filter {
+                searchText.isEmpty || $0.userName.localizedCaseInsensitiveContains(searchText)
+            } ) { recentMessage in
                 VStack {
                     Button {
                         let uid = FirebaseManager.shared.auth.currentUser?.uid == recentMessage.fromId ? recentMessage.toId : recentMessage.fromId
@@ -145,6 +151,12 @@ struct MainMessagesView: View {
         Button {
             shouldShowNewMessageScreen = true
         } label: {
+            Image("add")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(maxWidth: 64, maxHeight: 64)
+                .clipped()
+            /*
             HStack {
                 Spacer()
                 Text("+ New Message")
@@ -156,7 +168,7 @@ struct MainMessagesView: View {
                 .background(Color.blue)
                 .cornerRadius(32)
                 .padding(.horizontal)
-                .shadow(radius: 15)
+                .shadow(radius: 15)*/
         }
         .fullScreenCover(isPresented: $shouldShowNewMessageScreen) {
             CreateNewMessageView { user in

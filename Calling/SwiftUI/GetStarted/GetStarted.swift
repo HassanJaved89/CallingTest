@@ -58,7 +58,6 @@ struct GetStarted: View {
                         .buttonStyle(GradientButtonStyle())
                         .padding(.top, 40)
 
-                        
                         Spacer()
                     }
                     .transition(.move(edge: .leading))

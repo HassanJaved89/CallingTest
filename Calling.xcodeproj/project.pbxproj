@@ -27,6 +27,8 @@
 		FEAA14C22A5D7BDD00158FC0 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FEAA14C12A5D7BDD00158FC0 /* FirebaseFirestore */; };
 		FEAA14C42A5D7BDD00158FC0 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FEAA14C32A5D7BDD00158FC0 /* FirebaseFirestoreSwift */; };
 		FEAA14C62A5D7BDD00158FC0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FEAA14C52A5D7BDD00158FC0 /* FirebaseStorage */; };
+		FECDB1A82A5FD87D006F41F7 /* HomeViewTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECDB1A72A5FD87D006F41F7 /* HomeViewTab.swift */; };
+		FECDB1AA2A5FFE1D006F41F7 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECDB1A92A5FFE1D006F41F7 /* CustomSearchBar.swift */; };
 		FECEBC3A2A4AE2C900550888 /* CallingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECEBC392A4AE2C900550888 /* CallingApp.swift */; };
 		FECEBC3C2A4AE2C900550888 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECEBC3B2A4AE2C900550888 /* ContentView.swift */; };
 		FECEBC3E2A4AE2CB00550888 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FECEBC3D2A4AE2CB00550888 /* Assets.xcassets */; };
@@ -61,6 +63,8 @@
 		FE650C522A5441B2005D9C9B /* AnyOTPModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyOTPModel.swift; sourceTree = "<group>"; };
 		FEAA14AC2A5D433100158FC0 /* AudioSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSessionManager.swift; sourceTree = "<group>"; };
 		FEAA14AF2A5D6B0700158FC0 /* GetStarted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStarted.swift; sourceTree = "<group>"; };
+		FECDB1A72A5FD87D006F41F7 /* HomeViewTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewTab.swift; sourceTree = "<group>"; };
+		FECDB1A92A5FFE1D006F41F7 /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		FECEBC362A4AE2C900550888 /* Calling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FECEBC392A4AE2C900550888 /* CallingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallingApp.swift; sourceTree = "<group>"; };
 		FECEBC3B2A4AE2C900550888 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -215,6 +219,7 @@
 				FEAA14AC2A5D433100158FC0 /* AudioSessionManager.swift */,
 				FE29CA742A5E858F00805A4F /* GradientButton.swift */,
 				FE29CA762A5E93BE00805A4F /* FontInfo.swift */,
+				FECDB1A92A5FFE1D006F41F7 /* CustomSearchBar.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -241,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				FE650C4E2A540223005D9C9B /* AccountSettings.swift */,
+				FECDB1A72A5FD87D006F41F7 /* HomeViewTab.swift */,
 				FEF29F882A5578400025564B /* MainMessagesView.swift */,
 				FE0AAA372A5593EC00E9A4D0 /* CreateNewMessageView.swift */,
 				FE0AAA392A569C2700E9A4D0 /* ChatLogScreen.swift */,
@@ -357,7 +363,9 @@
 				FECEBCBD2A52B7FB00550888 /* AgoraViewController.swift in Sources */,
 				FE650C462A52D4EE005D9C9B /* FirebaseService.swift in Sources */,
 				FE650C512A54336F005D9C9B /* OTPProtocol.swift in Sources */,
+				FECDB1AA2A5FFE1D006F41F7 /* CustomSearchBar.swift in Sources */,
 				FECEBC3C2A4AE2C900550888 /* ContentView.swift in Sources */,
+				FECDB1A82A5FD87D006F41F7 /* HomeViewTab.swift in Sources */,
 				FEAA14B02A5D6B0700158FC0 /* GetStarted.swift in Sources */,
 				FEF29F772A554E790025564B /* ImagePicker.swift in Sources */,
 				FECEBCBF2A52B81B00550888 /* AgoraRep.swift in Sources */,

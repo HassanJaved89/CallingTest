@@ -12,9 +12,11 @@ struct CreateNewMessageView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var vm = CreateNewMessageViewModel()
     var didSelectNewChatUser: (ChatUser) -> ()
+    @State private var searchText = ""
     
     var body: some View {
         NavigationView {
+            
             ScrollView {
                 
                 ForEach(vm.users) { user in
@@ -50,6 +52,7 @@ struct CreateNewMessageView: View {
                     
                 }
             }.navigationTitle("New Message")
+                .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItemGroup(placement: .navigationBarLeading) {
                         Button {
@@ -60,5 +63,6 @@ struct CreateNewMessageView: View {
                     }
                 }
         }
+        .searchable(text: $searchText)
     }
 }
