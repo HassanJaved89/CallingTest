@@ -35,7 +35,7 @@ struct HomeViewTab: View {
                 }
                 .tag(2)
             
-            Text("Settings")
+            AccountSettings()
                 .tabItem {
                     Image("Settings")
                     Text("Settings")

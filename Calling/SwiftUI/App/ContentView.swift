@@ -26,6 +26,7 @@ struct ContentView: View {
         .onAppear {
             checkUserState()
         }
+        .accentColor(AppColors.greenColor.color)
     }
     
     func checkUserState() {

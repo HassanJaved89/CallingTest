@@ -26,6 +26,19 @@ struct ChatLogView: View {
             .onDisappear {
                 self.vm.viewScreenRemoved()
         }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    
+                } label: {
+                    Image("CallButton")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 30, height: 30)
+                }
+
+            }
+        }   
         .sheet(isPresented: $showImagePicker, onDismiss: loadImage) {
             ImagePickerView(selectedImage: $selectedImage)
         }
