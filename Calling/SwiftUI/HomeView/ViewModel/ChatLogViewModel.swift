@@ -240,6 +240,7 @@ class ChatLogViewModel: ObservableObject {
     }
     
     private func fetchMessages() {
+            self.chatMessages.removeAll()
             guard let fromId = FirebaseManager.shared.auth.currentUser?.uid else { return }
             guard let toId = chatUser?.uid else { return }
             fireStoreListener = FirebaseManager.shared.fireStore

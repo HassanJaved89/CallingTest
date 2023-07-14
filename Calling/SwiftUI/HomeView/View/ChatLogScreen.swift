@@ -79,7 +79,7 @@ struct ChatLogView: View {
                         .frame(width: 80, height: 30)
                         .padding()
                         .foregroundColor(.white)
-                        .background(Color.blue)
+                        .background(AppColors.greenColor.color)
                         .font(.title3)
                         .cornerRadius(20)
                         
@@ -129,7 +129,7 @@ struct ChatLogView: View {
             Button {
                 showImagePicker.toggle()
             } label: {
-                Image(systemName: "photo.on.rectangle")
+                Image("Attachement")
                     .font(.system(size: 24))
                     .foregroundColor(Color(.darkGray))
             }
@@ -137,6 +137,8 @@ struct ChatLogView: View {
             ZStack {
                 DescriptionPlaceholder()
                 TextEditor(text: $vm.chatText)
+                    .cornerRadius(5)
+                    .background(Color.gray.opacity(0.3))
                     .opacity(vm.chatText.isEmpty ? 0.5 : 1)
             }
             .frame(height: 40)
@@ -150,21 +152,19 @@ struct ChatLogView: View {
                 
                 audioRecorder.isRecording.toggle()
             } label: {
-                Image(systemName: audioRecorder.isRecording ? "stop.circle" :  "mic.circle.fill")
-                    .font(.system(size: 50))
-                    .foregroundColor(.blue)
+                Image(systemName: audioRecorder.isRecording ? "stop.circle" :  "mic.circle")
+                    .font(.system(size: 40))
             }
+            .tint(AppColors.greenColor.color)
 
             Button {
                 vm.handleSend()
             } label: {
-                Text("Send")
-                    .foregroundColor(.white)
+                Image("sendButton")
+                    .font(.system(size: 45))
             }
-            .padding(.horizontal)
-            .padding(.vertical, 8)
-            .background(Color.blue)
-            .cornerRadius(4)
+            //.padding(.horizontal)
+            //.padding(.vertical, 8)
         }
         .padding(.horizontal)
         .padding(.vertical, 8)
@@ -202,7 +202,7 @@ struct MessageView: View {
                                 .foregroundColor(.white)
                         }
                         .padding()
-                        .background(Color.blue)
+                        .background(AppColors.greenColor.color)
                         .cornerRadius(8)
                     }
                 }
@@ -267,8 +267,8 @@ struct MessageView: View {
             
         } label: {
             Image(systemName: "headphones")
-                .font(.system(size: 50))
-                .foregroundColor(.blue)
+                .font(.system(size: 45))
+                .foregroundColor(AppColors.greenColor.color)
                 .rotationEffect(audioPlayerHelper.isPlaying ? .degrees(0) : .degrees(-10))
                 .scaleEffect(audioPlayerHelper.isPlaying ? 1.1 : 1.0)
                 .animation(Animation.easeInOut(duration: 0.5).repeat(while: audioPlayerHelper.isPlaying))
@@ -279,7 +279,7 @@ struct MessageView: View {
 private struct DescriptionPlaceholder: View {
     var body: some View {
         HStack {
-            Text("Description")
+            Text("Type here...")
                 .foregroundColor(Color(.gray))
                 .font(.system(size: 17))
                 .padding(.leading, 5)

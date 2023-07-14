@@ -13,9 +13,9 @@ struct MainMessagesView: View {
     @State var shouldShowNewMessageScreen = false
     @State var shouldNavigateToChatLogView = false
     @State var chatUser: ChatUser
-    var chatLogViewModel = ChatLogViewModel(chatUser: nil)
+    @ObservedObject var chatLogViewModel: ChatLogViewModel
     @State private var searchText = ""
-    @ObservedObject private var vm = MainMessagesViewModel()
+    @ObservedObject var vm: MainMessagesViewModel
     
     var body: some View {
         VStack(spacing: 20) {

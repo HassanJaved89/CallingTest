@@ -10,10 +10,11 @@ import SwiftUI
 struct HomeViewTab: View {
     @State private var selectedTab = 0
     @ObservedObject var vm = MainMessagesViewModel()
+    @ObservedObject var chatLogViewModel = ChatLogViewModel(chatUser: nil)
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            MainMessagesView(chatUser: ChatUser(data: ["" : ""]))
+            MainMessagesView(chatUser: ChatUser(data: ["" : ""]), chatLogViewModel: chatLogViewModel, vm: vm)
                 .tabItem {
                     Image("Message")
                     Text("Chats")
