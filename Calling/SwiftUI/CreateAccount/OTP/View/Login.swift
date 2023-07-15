@@ -51,14 +51,25 @@ struct Login: View {
                 }
                 
                 VStack(spacing: 8) {
-                    TextField("", text: $number)
-                        .keyboardType(.numberPad)
-                        .multilineTextAlignment(.center)
-                        .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)
-                        .background {
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(Color.gray.opacity(0.1))
-                        }
+                    HStack {
+                        Text("+92")
+                            //.frame(width: 50, height: 50)
+                            .padding()
+                            .font(.customFont(size: .medium))
+                            .fontWeight(.bold)
+                        
+                        Divider()
+                        
+                        TextField("", text: $number)
+                            .keyboardType(.numberPad)
+                            .multilineTextAlignment(.center)
+                            
+                    }
+                    .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)
+                    .background {
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(Color.gray.opacity(0.1))
+                    }
                     
                     /*
                     Rectangle()

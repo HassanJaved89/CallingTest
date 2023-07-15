@@ -30,7 +30,6 @@
 		FECDB1A82A5FD87D006F41F7 /* HomeViewTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECDB1A72A5FD87D006F41F7 /* HomeViewTab.swift */; };
 		FECDB1AA2A5FFE1D006F41F7 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECDB1A92A5FFE1D006F41F7 /* CustomSearchBar.swift */; };
 		FECDB1AC2A6121DE006F41F7 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FECDB1AB2A6121DE006F41F7 /* Launch Screen.storyboard */; };
-		FECDB1B02A6281BF006F41F7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FECDB1AF2A6281BF006F41F7 /* GoogleService-Info.plist */; };
 		FECEBC3A2A4AE2C900550888 /* CallingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECEBC392A4AE2C900550888 /* CallingApp.swift */; };
 		FECEBC3C2A4AE2C900550888 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECEBC3B2A4AE2C900550888 /* ContentView.swift */; };
 		FECEBC3E2A4AE2CB00550888 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FECEBC3D2A4AE2CB00550888 /* Assets.xcassets */; };
@@ -47,6 +46,7 @@
 		FEF29F8F2A557A950025564B /* MainMessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF29F8E2A557A950025564B /* MainMessagesViewModel.swift */; };
 		FEFE574A2A629ABD00CEB558 /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FECDB1B22A6285ED006F41F7 /* PushKit.framework */; };
 		FEFE574B2A629AC600CEB558 /* CallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FECDB1B72A6285FC006F41F7 /* CallKit.framework */; };
+		FEFE574E2A62F00900CEB558 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FEFE574D2A62F00900CEB558 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,7 +69,6 @@
 		FECDB1A72A5FD87D006F41F7 /* HomeViewTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewTab.swift; sourceTree = "<group>"; };
 		FECDB1A92A5FFE1D006F41F7 /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		FECDB1AB2A6121DE006F41F7 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		FECDB1AF2A6281BF006F41F7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FECDB1B22A6285ED006F41F7 /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = System/Library/Frameworks/PushKit.framework; sourceTree = SDKROOT; };
 		FECDB1B72A6285FC006F41F7 /* CallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CallKit.framework; path = System/Library/Frameworks/CallKit.framework; sourceTree = SDKROOT; };
 		FECEBC362A4AE2C900550888 /* Calling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calling.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +84,7 @@
 		FEF29F882A5578400025564B /* MainMessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMessagesView.swift; sourceTree = "<group>"; };
 		FEF29F8E2A557A950025564B /* MainMessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMessagesViewModel.swift; sourceTree = "<group>"; };
 		FEFE574C2A62A10600CEB558 /* Calling.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Calling.entitlements; sourceTree = "<group>"; };
+		FEFE574D2A62F00900CEB558 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,9 +165,9 @@
 			isa = PBXGroup;
 			children = (
 				FECEBC382A4AE2C900550888 /* Calling */,
-				FECDB1AF2A6281BF006F41F7 /* GoogleService-Info.plist */,
 				FECEBC3D2A4AE2CB00550888 /* Assets.xcassets */,
 				FECEBC372A4AE2C900550888 /* Products */,
+				FEFE574D2A62F00900CEB558 /* GoogleService-Info.plist */,
 				FECDB1B12A6285EC006F41F7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -357,10 +357,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEFE574E2A62F00900CEB558 /* GoogleService-Info.plist in Resources */,
 				FECEBC412A4AE2CB00550888 /* Preview Assets.xcassets in Resources */,
 				FECDB1AC2A6121DE006F41F7 /* Launch Screen.storyboard in Resources */,
 				FECEBC3E2A4AE2CB00550888 /* Assets.xcassets in Resources */,
-				FECDB1B02A6281BF006F41F7 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
