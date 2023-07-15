@@ -12,6 +12,7 @@ struct ChatLogView: View {
     @ObservedObject var vm: ChatLogViewModel
     @State private var showImagePicker = false
     @State private var isSheetPresented = false
+    @State private var isCallingViewPresented = false
     @State var selectedImage: UIImage?
     @StateObject var audioRecorder = AudioRecorder()
     static let emptyScrollToString = "Empty"
@@ -29,7 +30,7 @@ struct ChatLogView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    
+                    isCallingViewPresented = true
                 } label: {
                     Image("CallButton")
                         .resizable()
@@ -42,6 +43,9 @@ struct ChatLogView: View {
         .sheet(isPresented: $showImagePicker, onDismiss: loadImage) {
             ImagePickerView(selectedImage: $selectedImage)
         }
+        .fullScreenCover(isPresented: $isCallingViewPresented, content: {
+            AgoraRep().frame(maxWidth: .infinity, maxHeight: .infinity)
+        })
         .onChange(of: selectedImage) { image in
             if let image = image {
                 DispatchQueue.main.async {

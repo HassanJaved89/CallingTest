@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     // Update with the App ID of your project generated on Agora Console.
     let appID = "317cf867d022435cb977d949d6cdb530"
     // Update with the temporary token generated in Agora Console.
-    var token = "007eJxTYEj1Cjq6PLP7+fOwOvsNc5lDJzzxZkxekNTVKmmk77zh7m8FBmND8+Q0CzPzFAMjIxNj0+QkS3PzFEsTyxSz5JQkU2MDruRFKQ2BjAzf9/xmYIRCEJ+dwTkxJyczL52BAQCVHiCZ"
+    var token = "007eJxTYFCRXTBhTWrBqVzXz1n6wp0SV1OTJHc7PcmYnGy0MPSc/FQFBmND8+Q0CzPzFAMjIxNj0+QkS3PzFEsTyxSz5JQkU2ODtQ2bUhoCGRkCvkszMTJAIIjPzuCcmJOTmZfOwAAALicfCw=="
     // Update with the channel name you used to generate the token in Agora Console.
     var channelName = "Calling"
     
@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         self.agoraView = AgoraVideoViewer(
           connectionData: AgoraConnectionData(
             appId: "317cf867d022435cb977d949d6cdb530",
-            rtcToken: "007eJxTYEj1Cjq6PLP7+fOwOvsNc5lDJzzxZkxekNTVKmmk77zh7m8FBmND8+Q0CzPzFAMjIxNj0+QkS3PzFEsTyxSz5JQkU2MDruRFKQ2BjAzf9/xmYIRCEJ+dwTkxJyczL52BAQCVHiCZ"
+            rtcToken: "007eJxTYFCRXTBhTWrBqVzXz1n6wp0SV1OTJHc7PcmYnGy0MPSc/FQFBmND8+Q0CzPzFAMjIxNj0+QkS3PzFEsTyxSz5JQkU2ODtQ2bUhoCGRkCvkszMTJAIIjPzuCcmJOTmZfOwAAALicfCw=="
           )
         )
         // fill the view

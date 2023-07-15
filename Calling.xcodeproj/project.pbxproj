@@ -30,6 +30,7 @@
 		FECDB1A82A5FD87D006F41F7 /* HomeViewTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECDB1A72A5FD87D006F41F7 /* HomeViewTab.swift */; };
 		FECDB1AA2A5FFE1D006F41F7 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECDB1A92A5FFE1D006F41F7 /* CustomSearchBar.swift */; };
 		FECDB1AC2A6121DE006F41F7 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FECDB1AB2A6121DE006F41F7 /* Launch Screen.storyboard */; };
+		FECDB1B02A6281BF006F41F7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FECDB1AF2A6281BF006F41F7 /* GoogleService-Info.plist */; };
 		FECEBC3A2A4AE2C900550888 /* CallingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECEBC392A4AE2C900550888 /* CallingApp.swift */; };
 		FECEBC3C2A4AE2C900550888 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECEBC3B2A4AE2C900550888 /* ContentView.swift */; };
 		FECEBC3E2A4AE2CB00550888 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FECEBC3D2A4AE2CB00550888 /* Assets.xcassets */; };
@@ -39,12 +40,13 @@
 		FECEBC4D2A4AE46900550888 /* AgoraUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = FECEBC4C2A4AE46900550888 /* AgoraUIKit */; };
 		FECEBCBD2A52B7FB00550888 /* AgoraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECEBCBC2A52B7FB00550888 /* AgoraViewController.swift */; };
 		FECEBCBF2A52B81B00550888 /* AgoraRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECEBCBE2A52B81B00550888 /* AgoraRep.swift */; };
-		FECEBCC62A52CAB600550888 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FECEBCC52A52CAB600550888 /* GoogleService-Info.plist */; };
 		FECEBCD12A52CE7900550888 /* Verification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECEBCD02A52CE7900550888 /* Verification.swift */; };
 		FEF29F772A554E790025564B /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF29F762A554E790025564B /* ImagePicker.swift */; };
 		FEF29F792A5551E00025564B /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF29F782A5551E00025564B /* FirebaseManager.swift */; };
 		FEF29F892A5578400025564B /* MainMessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF29F882A5578400025564B /* MainMessagesView.swift */; };
 		FEF29F8F2A557A950025564B /* MainMessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF29F8E2A557A950025564B /* MainMessagesViewModel.swift */; };
+		FEFE574A2A629ABD00CEB558 /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FECDB1B22A6285ED006F41F7 /* PushKit.framework */; };
+		FEFE574B2A629AC600CEB558 /* CallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FECDB1B72A6285FC006F41F7 /* CallKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +69,9 @@
 		FECDB1A72A5FD87D006F41F7 /* HomeViewTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewTab.swift; sourceTree = "<group>"; };
 		FECDB1A92A5FFE1D006F41F7 /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		FECDB1AB2A6121DE006F41F7 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		FECDB1AF2A6281BF006F41F7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FECDB1B22A6285ED006F41F7 /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = System/Library/Frameworks/PushKit.framework; sourceTree = SDKROOT; };
+		FECDB1B72A6285FC006F41F7 /* CallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CallKit.framework; path = System/Library/Frameworks/CallKit.framework; sourceTree = SDKROOT; };
 		FECEBC362A4AE2C900550888 /* Calling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FECEBC392A4AE2C900550888 /* CallingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallingApp.swift; sourceTree = "<group>"; };
 		FECEBC3B2A4AE2C900550888 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -74,12 +79,12 @@
 		FECEBC402A4AE2CB00550888 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FECEBCBC2A52B7FB00550888 /* AgoraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgoraViewController.swift; sourceTree = "<group>"; };
 		FECEBCBE2A52B81B00550888 /* AgoraRep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgoraRep.swift; sourceTree = "<group>"; };
-		FECEBCC52A52CAB600550888 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FECEBCD02A52CE7900550888 /* Verification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Verification.swift; sourceTree = "<group>"; };
 		FEF29F762A554E790025564B /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		FEF29F782A5551E00025564B /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		FEF29F882A5578400025564B /* MainMessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMessagesView.swift; sourceTree = "<group>"; };
 		FEF29F8E2A557A950025564B /* MainMessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMessagesViewModel.swift; sourceTree = "<group>"; };
+		FEFE574C2A62A10600CEB558 /* Calling.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Calling.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +92,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEFE574B2A629AC600CEB558 /* CallKit.framework in Frameworks */,
+				FEFE574A2A629ABD00CEB558 /* PushKit.framework in Frameworks */,
 				FECEBC492A4AE46900550888 /* AgoraAppGroupDataHelper in Frameworks */,
 				FEAA14C02A5D7BDD00158FC0 /* FirebaseAuth in Frameworks */,
 				FECEBC4B2A4AE46900550888 /* AgoraBroadcastExtensionHelper in Frameworks */,
@@ -145,13 +152,23 @@
 			path = GetStarted;
 			sourceTree = "<group>";
 		};
+		FECDB1B12A6285EC006F41F7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FECDB1B72A6285FC006F41F7 /* CallKit.framework */,
+				FECDB1B22A6285ED006F41F7 /* PushKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FECEBC2D2A4AE2C900550888 = {
 			isa = PBXGroup;
 			children = (
 				FECEBC382A4AE2C900550888 /* Calling */,
-				FECEBCC52A52CAB600550888 /* GoogleService-Info.plist */,
+				FECDB1AF2A6281BF006F41F7 /* GoogleService-Info.plist */,
 				FECEBC3D2A4AE2CB00550888 /* Assets.xcassets */,
 				FECEBC372A4AE2C900550888 /* Products */,
+				FECDB1B12A6285EC006F41F7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -166,6 +183,7 @@
 		FECEBC382A4AE2C900550888 /* Calling */ = {
 			isa = PBXGroup;
 			children = (
+				FEFE574C2A62A10600CEB558 /* Calling.entitlements */,
 				FE650C472A52F0B9005D9C9B /* Info.plist */,
 				FECEBCC42A52BE5000550888 /* SwiftUI */,
 				FECEBCC22A52BE3000550888 /* UIKit */,
@@ -340,9 +358,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FECEBC412A4AE2CB00550888 /* Preview Assets.xcassets in Resources */,
-				FECEBCC62A52CAB600550888 /* GoogleService-Info.plist in Resources */,
 				FECDB1AC2A6121DE006F41F7 /* Launch Screen.storyboard in Resources */,
 				FECEBC3E2A4AE2CB00550888 /* Assets.xcassets in Resources */,
+				FECDB1B02A6281BF006F41F7 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,14 +522,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = Calling/Calling.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Calling/Preview Content\"";
-				DEVELOPMENT_TEAM = R332B5D47Y;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 9ZNYQKY8Z2;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Calling/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tekrowe Calling";
 				INFOPLIST_KEY_NSCameraUsageDescription = Camera;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = Audio;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -528,6 +550,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tekrowe.Calling;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Calling;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -539,14 +563,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = Calling/Calling.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Calling/Preview Content\"";
-				DEVELOPMENT_TEAM = R332B5D47Y;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 9ZNYQKY8Z2;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Calling/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tekrowe Calling";
 				INFOPLIST_KEY_NSCameraUsageDescription = Camera;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = Audio;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -563,6 +591,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tekrowe.Calling;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Calling;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
