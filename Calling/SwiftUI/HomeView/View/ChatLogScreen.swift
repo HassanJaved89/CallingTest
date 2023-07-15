@@ -15,6 +15,8 @@ struct ChatLogView: View {
     @State private var isCallingViewPresented = false
     @State var selectedImage: UIImage?
     @StateObject var audioRecorder = AudioRecorder()
+    @Environment(\.presentationMode) var presentationMode
+    
     static let emptyScrollToString = "Empty"
     
     var body: some View {
@@ -44,7 +46,10 @@ struct ChatLogView: View {
             ImagePickerView(selectedImage: $selectedImage)
         }
         .fullScreenCover(isPresented: $isCallingViewPresented, content: {
-            AgoraRep().frame(maxWidth: .infinity, maxHeight: .infinity)
+            AgoraRep(presentationMode: $isCallingViewPresented).frame(maxWidth: .infinity, maxHeight: .infinity)
+                .onDisappear {
+                    isCallingViewPresented = false 
+                }
         })
         .onChange(of: selectedImage) { image in
             if let image = image {

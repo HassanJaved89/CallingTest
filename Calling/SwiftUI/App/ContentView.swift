@@ -24,7 +24,6 @@ struct ContentView: View {
             }
         }
         .onAppear {
-            signOut()
             checkUserState()
         }
         .accentColor(AppColors.greenColor.color)

@@ -10,13 +10,15 @@ import SwiftUI
 import AgoraRtcKit
 
 struct AgoraRep: UIViewControllerRepresentable {
-    func makeCoordinator() -> Coordinator {
-        return Coordinator(self)
-    }
+    @Binding var presentationMode: Bool
     
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(presentationMode: $presentationMode)
+    }
     
     func makeUIViewController(context: Context) -> some UIViewController {
         let agoraViewController = ViewController()
+        agoraViewController.presentationMode = $presentationMode
         agoraViewController.agoraDelegate = context.coordinator
         return agoraViewController
     }
@@ -26,10 +28,11 @@ struct AgoraRep: UIViewControllerRepresentable {
     }
     
     class Coordinator: NSObject, AgoraRtcEngineDelegate {
-        var parent: AgoraRep
+        //var parent: AgoraRep
+        var presentationMode: Binding<Bool>!
         
-        init(_ agoraRep: AgoraRep) {
-            parent = agoraRep
+        init(presentationMode: Binding<Bool>) {
+            self.presentationMode = presentationMode
         }
     }
 }

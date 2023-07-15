@@ -114,6 +114,9 @@ extension AppDelegate: CXProviderDelegate {
         if let window = UIApplication.shared.windows.first {
             let callViewController = ViewController()
             callViewController.modalPresentationStyle = .fullScreen
+            callViewController.dismissalHandler = {
+                window.rootViewController?.dismiss(animated: true, completion: nil)
+            }
             window.rootViewController?.present(callViewController, animated: true, completion: nil)
         }
     }

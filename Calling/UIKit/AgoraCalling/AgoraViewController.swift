@@ -1,9 +1,13 @@
 import UIKit
+import SwiftUI
 import AgoraUIKit
 import AVFoundation
 import AgoraRtcKit
 
 class ViewController: UIViewController {
+    
+    var presentationMode: Binding<Bool>!
+    var dismissalHandler: (() -> Void)?
     
     // The main entry point for Video SDK
     var agoraEngine: AgoraRtcEngineKit!
@@ -47,7 +51,8 @@ class ViewController: UIViewController {
           connectionData: AgoraConnectionData(
             appId: "317cf867d022435cb977d949d6cdb530",
             rtcToken: "007eJxTYFCRXTBhTWrBqVzXz1n6wp0SV1OTJHc7PcmYnGy0MPSc/FQFBmND8+Q0CzPzFAMjIxNj0+QkS3PzFEsTyxSz5JQkU2ODtQ2bUhoCGRkCvkszMTJAIIjPzuCcmJOTmZfOwAAALicfCw=="
-          )
+          ),
+          delegate: self
         )
         // fill the view
           self.agoraView.fills(view: self.view)
@@ -105,10 +110,11 @@ class ViewController: UIViewController {
     }
 
     func leaveChannel() {
-        agoraEngine.stopPreview()
-        let result = agoraEngine.leaveChannel(nil)
-        // Check if leaving the channel was successful and set joined Bool accordingly
-        if result == 0 { joined = false }
+//        agoraEngine.stopPreview()
+//        let result = agoraEngine.leaveChannel(nil)
+//        // Check if leaving the channel was successful and set joined Bool accordingly
+//        if result == 0 { joined = false }
+        self.agoraView.leaveChannel()
     }
 
 //    override func viewDidLayoutSubviews() {
@@ -208,5 +214,25 @@ extension ViewController: AgoraRtcEngineDelegate {
         videoCanvas.renderMode = .hidden
         videoCanvas.view = remoteView
         agoraEngine.setupRemoteVideo(videoCanvas)
+    }
+}
+
+extension ViewController: AgoraVideoViewerDelegate {
+
+    func extraButtons() -> [UIButton] {
+        let button = UIButton()
+        button.setImage(UIImage(named: "LeaveChannel"), for: .normal)
+        button.addTarget(self, action: #selector(self.leaveCall), for: .touchUpInside)
+        return [button]
+    }
+
+    @objc func leaveCall(sender: UIButton) {
+        leaveChannel()
+        presentationMode?.wrappedValue = false
+        dismissalHandler?()
+    }
+    
+    func rtcEngine(_ engine: AgoraRtcEngineKit, didLeaveChannelWith stats: AgoraChannelStats) {
+        
     }
 }
