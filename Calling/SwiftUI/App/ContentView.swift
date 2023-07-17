@@ -12,7 +12,7 @@ struct ContentView: View {
         NavigationView {
             if isUserSignedIn {
                 if isFirstTimeSignIn {
-                    AccountSettings()
+                    AccountSettings(accountSettingsVm: AccountSettingsViewModel())
                 }
                 else {
                     //MainMessagesView(chatUser: ChatUser(data: ["" : ""]))

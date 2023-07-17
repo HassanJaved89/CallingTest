@@ -14,6 +14,7 @@ struct AccountSettings: View {
     @State private var showImagePicker = false
     @State private var selectedImage: UIImage?
     @State private var isLoading = false
+    @ObservedObject var accountSettingsVm: AccountSettingsViewModel
     
     var body: some View {
         VStack(spacing: 30) {
@@ -28,25 +29,51 @@ struct AccountSettings: View {
                         .cornerRadius(64)
                 }
                 else {
-                    Image(systemName: "person.fill")
-                        .font(.system(size: 60))
-                        .tint(AppColors.greenColor.color)
-                        .padding()
-                        .background {
-                            Circle()
-                                .fill(.gray.opacity(0.2))
-//                                .stroke(lineWidth: 2)
-                                .tint(AppColors.greenColor.color)
-                        }
-                        .overlay(alignment: .bottomTrailing) {
-                            Button {
-                                showImagePicker.toggle()
-                            } label: {
-                                Image("imageUpload")
-                                    .frame(width: 35, height: 35 ,alignment: .bottom)
+                    if accountSettingsVm.user?.profileImageUrl == nil || accountSettingsVm.user?.profileImageUrl == "" {
+                        Image(systemName: "person.fill")
+                            .font(.system(size: 60))
+                            .tint(AppColors.greenColor.color)
+                            .padding()
+                            .background {
+                                Circle()
+                                    .fill(.gray.opacity(0.2))
+    //                                .stroke(lineWidth: 2)
+                                    .tint(AppColors.greenColor.color)
                             }
+                            .overlay(alignment: .bottomTrailing) {
+                                Button {
+                                    showImagePicker.toggle()
+                                } label: {
+                                    Image("imageUpload")
+                                        .frame(width: 35, height: 35 ,alignment: .bottom)
+                                }
 
+                            }
+                    }
+                    else {
+                        AsyncImage(url: URL(string: accountSettingsVm.user?.profileImageUrl ?? "")) {
+                            returnedImage in
+                            returnedImage
+                                .resizable()
+                                //.scaledToFill()
+                                //.font(.system(size: 60))
+                                .frame(width: 80, height: 80)
+                                //.clipped()
+                                .cornerRadius(40)
+                                .overlay(alignment: .bottomTrailing) {
+                                    Button {
+                                        showImagePicker.toggle()
+                                    } label: {
+                                        Image("imageUpload")
+                                            .frame(width: 35, height: 35 ,alignment: .bottom)
+                                    }
+
+                                }
+                                .shadow(radius: 5)
+                        } placeholder: {
+                            ProgressView()
                         }
+                    }
                 }
                 
             }
@@ -89,6 +116,12 @@ struct AccountSettings: View {
                 }
             }
         }
+        .onAppear {
+            Task {
+                let _ = await accountSettingsVm.fetchAllUsers()
+                userName = accountSettingsVm.user?.userName ?? ""
+            }
+        }
         .navigationTitle("Profile")
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .padding()
@@ -108,8 +141,9 @@ struct AccountSettings: View {
     }
 }
 
+/*
 struct CreateAccount_Previews: PreviewProvider {
     static var previews: some View {
         AccountSettings()
     }
-}
+}*/

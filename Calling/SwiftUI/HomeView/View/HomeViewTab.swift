@@ -11,6 +11,7 @@ struct HomeViewTab: View {
     @State private var selectedTab = 0
     @ObservedObject var vm = MainMessagesViewModel()
     @ObservedObject var chatLogViewModel = ChatLogViewModel(chatUser: nil)
+    @ObservedObject var accountSettingsVm = AccountSettingsViewModel()
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -35,7 +36,7 @@ struct HomeViewTab: View {
                 }
                 .tag(2)
             
-            AccountSettings()
+            AccountSettings(accountSettingsVm: accountSettingsVm)
                 .tabItem {
                     Image("Settings")
                     Text("Settings")

@@ -47,6 +47,7 @@
 		FEFE574A2A629ABD00CEB558 /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FECDB1B22A6285ED006F41F7 /* PushKit.framework */; };
 		FEFE574B2A629AC600CEB558 /* CallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FECDB1B72A6285FC006F41F7 /* CallKit.framework */; };
 		FEFE574E2A62F00900CEB558 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FEFE574D2A62F00900CEB558 /* GoogleService-Info.plist */; };
+		FEFE57502A654B6700CEB558 /* AccountSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFE574F2A654B6700CEB558 /* AccountSettingsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,7 @@
 		FEF29F8E2A557A950025564B /* MainMessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMessagesViewModel.swift; sourceTree = "<group>"; };
 		FEFE574C2A62A10600CEB558 /* Calling.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Calling.entitlements; sourceTree = "<group>"; };
 		FEFE574D2A62F00900CEB558 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FEFE574F2A654B6700CEB558 /* AccountSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,6 +283,7 @@
 				FEF29F8E2A557A950025564B /* MainMessagesViewModel.swift */,
 				FE0AAA352A55939700E9A4D0 /* CreateNewMessageViewModel.swift */,
 				FE0AAA3B2A56A9FD00E9A4D0 /* ChatLogViewModel.swift */,
+				FEFE574F2A654B6700CEB558 /* AccountSettingsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 			files = (
 				FEF29F892A5578400025564B /* MainMessagesView.swift in Sources */,
 				FE0AAA362A55939700E9A4D0 /* CreateNewMessageViewModel.swift in Sources */,
+				FEFE57502A654B6700CEB558 /* AccountSettingsViewModel.swift in Sources */,
 				FE0AAA492A5D2A5100E9A4D0 /* AudioRecorder.swift in Sources */,
 				FEF29F792A5551E00025564B /* FirebaseManager.swift in Sources */,
 				FE0AAA382A5593EC00E9A4D0 /* CreateNewMessageView.swift in Sources */,

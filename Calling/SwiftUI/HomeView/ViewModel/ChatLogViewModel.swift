@@ -286,8 +286,7 @@ struct Callrequest:Codable{
 
 extension ChatLogViewModel {
     func sendCall() {
-        
-        guard let url = URL(string: "https://0e45-203-99-190-25.ngrok.io") else{
+        guard let url = URL(string: "http://114.119.185.90:3001/callingApp/Api") else {
             return
         }
         
@@ -301,7 +300,7 @@ extension ChatLogViewModel {
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpBody = jsonData
 
-            let session = URLSession.shared
+            let session = URLSession(configuration: .default, delegate: MyURLSessionDelegate(), delegateQueue: nil)
             let task = session.dataTask(with: request) { (data, response, error) in
                 // Handle the API response
                 if let error = error {
@@ -314,7 +313,8 @@ extension ChatLogViewModel {
                 if let data = data {
                     // Parse the response JSON if needed
                     do {
-                        let response = try JSONDecoder().decode(Callrequest.self, from: data)
+//                        let response = try JSONDecoder().decode(Callrequest.self, from: data)
+                        print(response)
                         print("Successfully sent call")
                         // Process the response object
                     } catch {
@@ -324,10 +324,22 @@ extension ChatLogViewModel {
             }
 
             task.resume()
-            
         } catch {
             // Handle encoding error
         }
+    }
+}
 
+
+class MyURLSessionDelegate: NSObject, URLSessionDelegate {
+    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+            if let serverTrust = challenge.protectionSpace.serverTrust {
+                let credential = URLCredential(trust: serverTrust)
+                completionHandler(.useCredential, credential)
+                return
+            }
+        }
+        completionHandler(.performDefaultHandling, nil)
     }
 }
