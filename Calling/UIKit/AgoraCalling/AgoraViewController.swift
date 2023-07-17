@@ -77,7 +77,6 @@ class ViewController: UIViewController {
     }
     
     
-
     func joinChannel() async {
         if await !self.checkForPermissions() {
             showMessage(title: "Error", text: "Permissions were not granted")
@@ -233,6 +232,5 @@ extension ViewController: AgoraVideoViewerDelegate {
     }
     
     func rtcEngine(_ engine: AgoraRtcEngineKit, didLeaveChannelWith stats: AgoraChannelStats) {
-        
     }
 }

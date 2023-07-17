@@ -15,6 +15,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, PKPushRegistryDelegate, UNUs
     static private(set) var instance: AppDelegate! = nil
     var pushRegistry: PKPushRegistry!
     var voipDeviceToken: String = ""
+    var activeCallUUid = UUID()
     
     func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
@@ -100,7 +101,9 @@ class AppDelegate: NSObject, UIApplicationDelegate, PKPushRegistryDelegate, UNUs
         update.localizedCallerName = callerName
         // Set up the call update properties, such as caller information
         
-        provider.reportNewIncomingCall(with: UUID(), update: update) { error in
+        activeCallUUid = UUID()
+        
+        provider.reportNewIncomingCall(with: activeCallUUid, update: update) { error in
             if error == nil {
                 // Call reported successfully
             }
@@ -125,6 +128,7 @@ extension AppDelegate: CXProviderDelegate {
             callViewController.modalPresentationStyle = .fullScreen
             callViewController.dismissalHandler = {
                 window.rootViewController?.dismiss(animated: true, completion: nil)
+                self.endCall()
             }
             window.rootViewController?.present(callViewController, animated: true, completion: nil)
         }
@@ -136,6 +140,16 @@ extension AppDelegate: CXProviderDelegate {
     }
 }
 
+
+extension AppDelegate {
+    func endCall() {
+        let controller = CXCallController()
+        let transaction = CXTransaction(action: CXEndCallAction(call: activeCallUUid))
+        controller.request(transaction) { error in
+            
+        }
+    }
+}
 
 @main
 struct CallingApp: App {

@@ -285,12 +285,13 @@ struct Callrequest:Codable{
 }
 
 extension ChatLogViewModel {
-    func sendCall() {
+    func sendCall() async {
         guard let url = URL(string: "http://114.119.185.90:3001/callingApp/Api") else {
             return
         }
         
-        let caller = Callrequest(callerName: self.chatUser?.userName ?? "", deviceToken: self.chatUser?.voipDeviceToken ?? "")
+        let receiverDeviceToken = await FirebaseManager.shared.fetchUserWithId(uid: self.chatUser?.uid ?? "")?.voipDeviceToken
+        let caller = Callrequest(callerName: FirebaseManager.shared.currentUser?.userName ?? "", deviceToken: receiverDeviceToken ?? "")
         let encoder = JSONEncoder()
         do {
             let jsonData = try encoder.encode(caller)

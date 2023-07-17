@@ -79,4 +79,22 @@ class FirebaseManager: NSObject {
         }
     }
     
+    func fetchUserWithId(uid: String)async  -> ChatUser? {
+        do {
+            let documentsSnapshot = try await FirebaseManager.shared.fireStore.collection("users").getDocuments()
+            
+            for snapshot in documentsSnapshot.documents {
+                let data = snapshot.data()
+                let user = ChatUser(data: data)
+                if user.uid == uid {
+                    return ChatUser(data: data)
+                }
+            }
+        } catch {
+            return nil
+        }
+        
+        return nil
+    }
+    
 }

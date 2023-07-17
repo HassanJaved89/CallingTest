@@ -20,6 +20,9 @@ struct AgoraRep: UIViewControllerRepresentable {
         let agoraViewController = ViewController()
         agoraViewController.presentationMode = $presentationMode
         agoraViewController.agoraDelegate = context.coordinator
+        agoraViewController.dismissalHandler = {
+            AppDelegate.instance.endCall()
+        }
         return agoraViewController
     }
       

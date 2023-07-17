@@ -53,7 +53,10 @@ struct ChatLogView: View {
         })
         .onChange(of: isCallingViewPresented, perform: { newValue in
             if newValue {
-                vm.sendCall()
+                Task
+                {
+                    await vm.sendCall()
+                }
             }
         })
         .onChange(of: selectedImage) { image in
