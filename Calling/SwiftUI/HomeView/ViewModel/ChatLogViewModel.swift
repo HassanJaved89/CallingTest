@@ -277,3 +277,57 @@ class ChatLogViewModel: ObservableObject {
         self.fireStoreListener?.remove()
     }
 }
+
+
+struct Callrequest:Codable{
+    let callerName: String
+    let deviceToken: String
+}
+
+extension ChatLogViewModel {
+    func sendCall() {
+        
+        guard let url = URL(string: "https://0e45-203-99-190-25.ngrok.io") else{
+            return
+        }
+        
+        let caller = Callrequest(callerName: self.chatUser?.userName ?? "", deviceToken: self.chatUser?.voipDeviceToken ?? "")
+        let encoder = JSONEncoder()
+        do {
+            let jsonData = try encoder.encode(caller)
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+
+            let session = URLSession.shared
+            let task = session.dataTask(with: request) { (data, response, error) in
+                // Handle the API response
+                if let error = error {
+                    // Handle network error
+                    print("Error: \(error)")
+                    return
+                }
+
+                // Handle the API response data
+                if let data = data {
+                    // Parse the response JSON if needed
+                    do {
+                        let response = try JSONDecoder().decode(Callrequest.self, from: data)
+                        print("Successfully sent call")
+                        // Process the response object
+                    } catch {
+                        // Handle decoding error
+                    }
+                }
+            }
+
+            task.resume()
+            
+        } catch {
+            // Handle encoding error
+        }
+
+    }
+}

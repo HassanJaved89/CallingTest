@@ -51,6 +51,11 @@ struct ChatLogView: View {
                     isCallingViewPresented = false 
                 }
         })
+        .onChange(of: isCallingViewPresented, perform: { newValue in
+            if newValue {
+                vm.sendCall()
+            }
+        })
         .onChange(of: selectedImage) { image in
             if let image = image {
                 DispatchQueue.main.async {

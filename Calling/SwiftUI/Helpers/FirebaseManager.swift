@@ -61,7 +61,7 @@ class FirebaseManager: NSObject {
                 
                 if let downloadURL = url?.absoluteString {
                     // Image uploaded successfully
-                    let userData = ["userName": userName, "uid": userId, "profileImageUrl": downloadURL]
+                    let userData = ["userName": userName, "uid": userId, "profileImageUrl": downloadURL, "voipDeviceToken": AppDelegate.instance.voipDeviceToken]
                     FirebaseManager.shared.fireStore.collection("users")
                         .document(userId).setData(userData) { err in
                             if let err = err {

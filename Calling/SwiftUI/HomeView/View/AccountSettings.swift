@@ -101,7 +101,7 @@ struct AccountSettings: View {
     func createAccountTapped() {
         isLoading = true
         
-        FirebaseManager.shared.persisUserDataToStore(imageData: (selectedImage?.jpegData(compressionQuality: 0.8))!, userName: userName) { success in
+        FirebaseManager.shared.persisUserDataToStore(imageData: (selectedImage?.jpegData(compressionQuality: 0.8) ?? UIImage(systemName: "person.fill")?.jpegData(compressionQuality: 0.8))!, userName: userName) { success in
             isFirstTimeSignIn = false
             isLoading = false
         }

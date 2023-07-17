@@ -12,11 +12,14 @@ import CallKit
 
 class AppDelegate: NSObject, UIApplicationDelegate, PKPushRegistryDelegate, UNUserNotificationCenterDelegate {
     
+    static private(set) var instance: AppDelegate! = nil
     var pushRegistry: PKPushRegistry!
+    var voipDeviceToken: String = ""
     
     func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
+        AppDelegate.instance = self
         let _ = FirebaseManager.shared
       
         // Request push notification permissions
@@ -49,8 +52,8 @@ class AppDelegate: NSObject, UIApplicationDelegate, PKPushRegistryDelegate, UNUs
     
     func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {
            if type == .voIP {
-               let deviceToken = pushCredentials.token.map { String(format: "%02x", $0) }.joined()
-               print("pushRegistry -> deviceToken :\(deviceToken)")
+               self.voipDeviceToken = pushCredentials.token.map { String(format: "%02x", $0) }.joined()
+               print("pushRegistry -> deviceToken :\(self.voipDeviceToken)")
                // Here, you can send the device token to your server for VoIP push notification registration
                
                /*
@@ -73,10 +76,16 @@ class AppDelegate: NSObject, UIApplicationDelegate, PKPushRegistryDelegate, UNUs
             // Handle the incoming VoIP push notification here
             
             // Display a CallKit incoming call UI
+            
+            if let callerName = payload.dictionaryPayload["callerName"] as? String {
+                displayIncomingCall(callerName: callerName)
+            }
+            
+            /*
             if let aps = payload.dictionaryPayload["aps"] as? [String: Any],
                let callerName = aps["callerName"] as? String {
                 displayIncomingCall(callerName: callerName)
-            }
+            }*/
         }
     }
     

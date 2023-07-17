@@ -12,12 +12,13 @@ struct ChatUser: Identifiable  {
     
     var id:String { uid }
     
-    let uid, userName, profileImageUrl: String
+    let uid, userName, profileImageUrl, voipDeviceToken: String
     
     init(data: [String: Any]) {
         self.uid = data["uid"] as? String ?? ""
         self.userName = data["userName"] as? String ?? ""
         self.profileImageUrl = data["profileImageUrl"] as? String ?? ""
+        self.voipDeviceToken = data["voipDeviceToken"] as? String ?? ""
     }
     
 }
