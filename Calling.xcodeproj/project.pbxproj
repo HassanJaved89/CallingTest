@@ -48,6 +48,10 @@
 		FEFE574B2A629AC600CEB558 /* CallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FECDB1B72A6285FC006F41F7 /* CallKit.framework */; };
 		FEFE574E2A62F00900CEB558 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FEFE574D2A62F00900CEB558 /* GoogleService-Info.plist */; };
 		FEFE57502A654B6700CEB558 /* AccountSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFE574F2A654B6700CEB558 /* AccountSettingsViewModel.swift */; };
+		FEFE57532A66622300CEB558 /* GroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFE57522A66622300CEB558 /* GroupsView.swift */; };
+		FEFE57582A666E2F00CEB558 /* ChatGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFE57572A666E2F00CEB558 /* ChatGroup.swift */; };
+		FEFE575A2A66700300CEB558 /* AddEditGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFE57592A66700300CEB558 /* AddEditGroup.swift */; };
+		FEFE575C2A66703F00CEB558 /* GroupsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFE575B2A66703F00CEB558 /* GroupsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +91,10 @@
 		FEFE574C2A62A10600CEB558 /* Calling.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Calling.entitlements; sourceTree = "<group>"; };
 		FEFE574D2A62F00900CEB558 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FEFE574F2A654B6700CEB558 /* AccountSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewModel.swift; sourceTree = "<group>"; };
+		FEFE57522A66622300CEB558 /* GroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsView.swift; sourceTree = "<group>"; };
+		FEFE57572A666E2F00CEB558 /* ChatGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGroup.swift; sourceTree = "<group>"; };
+		FEFE57592A66700300CEB558 /* AddEditGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditGroup.swift; sourceTree = "<group>"; };
+		FEFE575B2A66703F00CEB558 /* GroupsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,11 +230,12 @@
 		FECEBCC42A52BE5000550888 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				FEAA14AE2A5D6AF600158FC0 /* GetStarted */,
 				FEF29F8B2A5578ED0025564B /* App */,
+				FEAA14AE2A5D6AF600158FC0 /* GetStarted */,
 				FEF29F752A554E670025564B /* Helpers */,
 				FE650C4D2A5401C2005D9C9B /* CreateAccount */,
 				FEF29F8A2A5578CE0025564B /* HomeView */,
+				FEFE57512A66620E00CEB558 /* Groups */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -286,6 +295,41 @@
 				FEFE574F2A654B6700CEB558 /* AccountSettingsViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FEFE57512A66620E00CEB558 /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				FEFE57562A666E1A00CEB558 /* Model */,
+				FEFE57552A666E0F00CEB558 /* ViewModel */,
+				FEFE57542A666E0900CEB558 /* View */,
+			);
+			path = Groups;
+			sourceTree = "<group>";
+		};
+		FEFE57542A666E0900CEB558 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FEFE57522A66622300CEB558 /* GroupsView.swift */,
+				FEFE57592A66700300CEB558 /* AddEditGroup.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FEFE57552A666E0F00CEB558 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FEFE575B2A66703F00CEB558 /* GroupsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FEFE57562A666E1A00CEB558 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FEFE57572A666E2F00CEB558 /* ChatGroup.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -396,11 +440,15 @@
 				FEF29F772A554E790025564B /* ImagePicker.swift in Sources */,
 				FECEBCBF2A52B81B00550888 /* AgoraRep.swift in Sources */,
 				FECEBC3A2A4AE2C900550888 /* CallingApp.swift in Sources */,
+				FEFE57582A666E2F00CEB558 /* ChatGroup.swift in Sources */,
 				FE650C4F2A540223005D9C9B /* AccountSettings.swift in Sources */,
 				FE29CA772A5E93BE00805A4F /* FontInfo.swift in Sources */,
 				FEF29F8F2A557A950025564B /* MainMessagesViewModel.swift in Sources */,
 				FEAA14AD2A5D433100158FC0 /* AudioSessionManager.swift in Sources */,
+				FEFE57532A66622300CEB558 /* GroupsView.swift in Sources */,
+				FEFE575C2A66703F00CEB558 /* GroupsViewModel.swift in Sources */,
 				FE0AAA3A2A569C2700E9A4D0 /* ChatLogScreen.swift in Sources */,
+				FEFE575A2A66700300CEB558 /* AddEditGroup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,7 @@ struct HomeViewTab: View {
     @ObservedObject var vm = MainMessagesViewModel()
     @ObservedObject var chatLogViewModel = ChatLogViewModel(chatUser: nil)
     @ObservedObject var accountSettingsVm = AccountSettingsViewModel()
+    @ObservedObject var groupsViewModel = GroupsViewModel()
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -29,7 +30,7 @@ struct HomeViewTab: View {
                 }
                 .tag(1)
             
-            Text("Groups")
+            GroupsView(groupsViewModel: groupsViewModel)
                 .tabItem {
                     Image("Groups")
                     Text("Groups")
