@@ -26,17 +26,33 @@ class GroupsViewModel: ObservableObject {
         }
         
         chatGroup.imageUrl = imageURL ?? ""
-        let dictionary = ["name": chatGroup.name, "imageUrl": chatGroup.imageUrl, "participants": [:]] as [String : Any]
+        
+        let dictionary = ["name": chatGroup.name, "imageUrl": chatGroup.imageUrl, "participants": []] as [String : Any]
         
         do {
             _ = try await withCheckedThrowingContinuation { (continuation:CheckedContinuation<ChatGroup?, Error>) in
-                FirebaseManager.shared.fireStore.collection("groups").addDocument(data: dictionary) { error in
-                    if let error = error {
-                        print("Error creating group: \(error)")
-                        continuation.resume(throwing: error)
-                    } else {
-                        print("Group created successfully")
-                        continuation.resume(returning: chatGroup)
+                
+                if chatGroup.id != nil {
+                    FirebaseManager.shared.fireStore.collection("groups")
+                        .document(chatGroup.id ?? "").setData(dictionary) { err in
+                            if let error = err {
+                                print("Error editing group: \(error)")
+                                continuation.resume(throwing: error)
+                            } else {
+                                print("Group edited successfully")
+                                continuation.resume(returning: chatGroup)
+                            }
+                    }
+                }
+                else {
+                    FirebaseManager.shared.fireStore.collection("groups").addDocument(data: dictionary) { error in
+                        if let error = error {
+                            print("Error creating group: \(error)")
+                            continuation.resume(throwing: error)
+                        } else {
+                            print("Group created successfully")
+                            continuation.resume(returning: chatGroup)
+                        }
                     }
                 }
             }
@@ -44,8 +60,6 @@ class GroupsViewModel: ObservableObject {
         catch {
             print(error.localizedDescription)
         }
-        
-        
     }
     
     func fetchGroups() {

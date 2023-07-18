@@ -11,6 +11,7 @@ struct GroupsView: View {
     
     @State private var searchText = ""
     @State var shouldShowNewGroupScreen = false
+    @State var shouldNavigationToGroupView = false
     @ObservedObject var groupsViewModel: GroupsViewModel
     
     var body: some View {
@@ -33,20 +34,15 @@ struct GroupsView: View {
                 searchText.isEmpty || $0.name.localizedCaseInsensitiveContains(searchText)
             } ) { group in
                 VStack {
-                    Button {
-                        
+                    NavigationLink {
+                        AddEditGroup(chatGroup: group, groupsViewModel: groupsViewModel)
                     } label: {
                         HStack(spacing: 16) {
-                            
                             if group.imageUrl == "" {
                                 Image(systemName: "rectangle.3.group.bubble.left")
                                     .resizable()
                                     .scaledToFill()
                                     .frame(width: 40, height: 40)
-                                    //.clipped()
-                                    //.cornerRadius(40)
-                                    //.overlay(RoundedRectangle(cornerRadius: 40)
-                                            //.stroke(Color.black, lineWidth: 1))
                             }
                             else {
                                 AsyncImage(url: URL(string: group.imageUrl)) { returnedImage in
@@ -82,8 +78,6 @@ struct GroupsView: View {
                             
                         }
                     }
-
-
                     
                     Divider()
                         .padding(.vertical, 8)

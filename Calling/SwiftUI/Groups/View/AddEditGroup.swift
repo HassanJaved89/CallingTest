@@ -121,14 +121,14 @@ struct AddEditGroup: View {
             .onAppear {
                 
             }
-            .navigationTitle("Create Group")
+            .navigationTitle(chatGroup.id == nil ? "Create Group" : "")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     Button {
                         presentationMode.wrappedValue.dismiss()
                     } label: {
-                        Text("Cancel")
+                        Text(chatGroup.id == nil ? "Cancel" : "")
                     }
                 }
             }
