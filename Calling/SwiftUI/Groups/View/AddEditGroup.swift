@@ -17,49 +17,31 @@ struct AddEditGroup: View {
     @ObservedObject var groupsViewModel: GroupsViewModel
     
     var body: some View {
-        VStack(spacing: 30) {
-            Button {
-                showImagePicker.toggle()
-            } label: {
-                if let selectedImage {
-                    Image(uiImage: selectedImage)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 128, height: 128)
-                        .cornerRadius(64)
-                }
-                else {
-                    if chatGroup.imageUrl == nil || chatGroup.imageUrl == "" {
-                        Image(systemName: "person.fill")
-                            .font(.system(size: 60))
-                            .tint(AppColors.greenColor.color)
-                            .padding()
-                            .background {
-                                Circle()
-                                    .fill(.gray.opacity(0.2))
-    //                                .stroke(lineWidth: 2)
-                                    .tint(AppColors.greenColor.color)
-                            }
-                            .overlay(alignment: .bottomTrailing) {
-                                Button {
-                                    showImagePicker.toggle()
-                                } label: {
-                                    Image("imageUpload")
-                                        .frame(width: 35, height: 35 ,alignment: .bottom)
-                                }
-
-                            }
+        NavigationView {
+            
+            VStack(spacing: 30) {
+                Button {
+                    showImagePicker.toggle()
+                } label: {
+                    if let selectedImage {
+                        Image(uiImage: selectedImage)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 128, height: 128)
+                            .cornerRadius(64)
                     }
                     else {
-                        AsyncImage(url: URL(string: chatGroup.imageUrl ?? "")) {
-                            returnedImage in
-                            returnedImage
-                                .resizable()
-                                //.scaledToFill()
-                                //.font(.system(size: 60))
-                                .frame(width: 80, height: 80)
-                                //.clipped()
-                                .cornerRadius(40)
+                        if chatGroup.imageUrl == nil || chatGroup.imageUrl == "" {
+                            Image(systemName: "person.fill")
+                                .font(.system(size: 60))
+                                .tint(AppColors.greenColor.color)
+                                .padding()
+                                .background {
+                                    Circle()
+                                        .fill(.gray.opacity(0.2))
+                                    //                                .stroke(lineWidth: 2)
+                                        .tint(AppColors.greenColor.color)
+                                }
                                 .overlay(alignment: .bottomTrailing) {
                                     Button {
                                         showImagePicker.toggle()
@@ -67,59 +49,79 @@ struct AddEditGroup: View {
                                         Image("imageUpload")
                                             .frame(width: 35, height: 35 ,alignment: .bottom)
                                     }
-
+                                    
                                 }
-                                .shadow(radius: 5)
-                        } placeholder: {
-                            ProgressView()
+                        }
+                        else {
+                            AsyncImage(url: URL(string: chatGroup.imageUrl ?? "")) {
+                                returnedImage in
+                                returnedImage
+                                    .resizable()
+                                //.scaledToFill()
+                                //.font(.system(size: 60))
+                                    .frame(width: 80, height: 80)
+                                //.clipped()
+                                    .cornerRadius(40)
+                                    .overlay(alignment: .bottomTrailing) {
+                                        Button {
+                                            showImagePicker.toggle()
+                                        } label: {
+                                            Image("imageUpload")
+                                                .frame(width: 35, height: 35 ,alignment: .bottom)
+                                        }
+                                        
+                                    }
+                                    .shadow(radius: 5)
+                            } placeholder: {
+                                ProgressView()
+                            }
                         }
                     }
+                    
                 }
                 
-            }
-            
-            VStack {
-                TextField("Type name here", text: $chatGroup.name)
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)
-                    .background {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(Color.gray.opacity(0.1))
+                VStack {
+                    TextField("Type name here", text: $chatGroup.name)
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)
+                        .background {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color.gray.opacity(0.1))
+                        }
+                }
+                .padding()
+                
+                Button {
+                    createGroupBtnTapped()
+                } label: {
+                    HStack {
+                        Text("Save")
+                            .foregroundColor(.white)
+                            .padding(.vertical, 12)
+                        //                        .overlay {
+                        //                            ProgressView()
+                        //                                .opacity(isLoading ? 1.0 : 0)
+                        //                        }
                     }
-            }
-            .padding()
-            
-            Button {
-                createGroupBtnTapped()
-            } label: {
-                HStack {
-                    Text("Save")
+                }
+                .buttonStyle(GradientButtonStyle()).opacity(isLoading ? 0.1 : 1.0)
+                .overlay {
+                    ProgressView()
                         .foregroundColor(.white)
-                        .padding(.vertical, 12)
-//                        .overlay {
-//                            ProgressView()
-//                                .opacity(isLoading ? 1.0 : 0)
-//                        }
+                        .opacity(isLoading ? 1.0 : 0)
                 }
             }
-            .buttonStyle(GradientButtonStyle()).opacity(isLoading ? 0.1 : 1.0)
-            .overlay {
-                ProgressView()
-                    .foregroundColor(.white)
-                    .opacity(isLoading ? 1.0 : 0)
-            }
-        }
-        .toolbar {
-            ToolbarItem(placement: .keyboard) {
-                Button("Done") {
-                    self.hideKeyboard()
+            .toolbar {
+                ToolbarItem(placement: .keyboard) {
+                    Button("Done") {
+                        self.hideKeyboard()
+                    }
                 }
             }
-        }
-        .onAppear {
-            
-        }
-        .navigationTitle("Create Group")
+            .onAppear {
+                
+            }
+            .navigationTitle("Create Group")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
@@ -130,11 +132,12 @@ struct AddEditGroup: View {
                     }
                 }
             }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .padding()
-        .padding(.vertical, 50)
-        .sheet(isPresented: $showImagePicker) {
-            ImagePickerView(selectedImage: $selectedImage)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            .padding()
+            .padding(.vertical, 50)
+            .sheet(isPresented: $showImagePicker) {
+                ImagePickerView(selectedImage: $selectedImage)
+            }
         }
     }
     
@@ -142,10 +145,15 @@ struct AddEditGroup: View {
         
         Task {
             isLoading = true
-            await groupsViewModel.addEditGroup(chatGroup: chatGroup, selectedImage: selectedImage ?? UIImage())
-            isLoading = false
+            do {
+                try await groupsViewModel.addEditGroup(chatGroup: chatGroup, selectedImage: selectedImage ?? UIImage())
+            }
+            
+            DispatchQueue.main.async {
+                isLoading = false
+                presentationMode.wrappedValue.dismiss()
+            }
         }
-        
     }
 }
 

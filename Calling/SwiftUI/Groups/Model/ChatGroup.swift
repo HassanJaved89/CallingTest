@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseFirestoreSwift
 
 struct ChatGroup: Codable, Identifiable {
-    var id: String = ""
+    @DocumentID var id: String?
     var name: String
     var imageUrl: String
     var participants: [ChatUser]

@@ -23,7 +23,7 @@ struct GroupsView: View {
             addNewGroupButton, alignment: .bottomTrailing)
         .padding(.horizontal)
         .onAppear {
-            let _ = groupsViewModel.fetchAllGroupsWithUserId(uid: FirebaseManager.shared.currentUser?.id ?? "")
+            groupsViewModel.fetchGroups()
         }
     }
     
@@ -53,10 +53,10 @@ struct GroupsView: View {
                                                     returnedImage
                                         .resizable()
                                         .scaledToFill()
-                                        .frame(width: 64, height: 64)
+                                        .frame(width: 40, height: 40)
                                         .clipped()
-                                        .cornerRadius(64)
-                                        .overlay(RoundedRectangle(cornerRadius: 64)
+                                        .cornerRadius(40)
+                                        .overlay(RoundedRectangle(cornerRadius: 40)
                                                     .stroke(Color.black, lineWidth: 1))
                                         .shadow(radius: 5)
                                                 } placeholder: {

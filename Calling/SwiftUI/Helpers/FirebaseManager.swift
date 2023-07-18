@@ -98,3 +98,44 @@ class FirebaseManager: NSObject {
     }
     
 }
+
+
+//MARK: - Groups
+extension FirebaseManager {
+    
+    func uploadGroupImage(image: UIImage, completion: @escaping (String?) -> Void) {
+        guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }
+                
+        // Create a unique filename for the image
+        let filename = UUID().uuidString
+        
+        // Create a Firestore reference to the desired collection
+        let storageRef = Storage.storage().reference().child("images").child(filename)
+        
+        // Upload the image to Firestore
+        storageRef.putData(imageData, metadata: nil) { (_, error) in
+            if let error = error {
+                // Handle the upload error
+                print("Error uploading image: \(error.localizedDescription)")
+            } else {
+                // Image uploaded successfully
+                print("Image uploaded!")
+                
+                // Get the download URL for the image
+                storageRef.downloadURL { url, error in
+                    if let error = error {
+                        // Handle the download URL retrieval error
+                        print("Error getting download URL: \(error.localizedDescription)")
+                        return
+                    }
+                    
+                    if let downloadURL = url?.absoluteString {
+                       print(downloadURL)
+                        completion(downloadURL)
+                    }
+                }
+            }
+        }
+    }
+    
+}

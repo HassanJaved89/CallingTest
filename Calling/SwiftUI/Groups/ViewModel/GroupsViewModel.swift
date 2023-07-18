@@ -15,25 +15,63 @@ class GroupsViewModel: ObservableObject {
         
     }
     
-    func fetchAllGroupsWithUserId(uid: String) -> [ChatGroup] {
-        groups.removeAll()
+    
+    func addEditGroup(chatGroup: ChatGroup, selectedImage: UIImage) async throws {
+        var chatGroup = chatGroup
         
-        groups.append(ChatGroup(id: "1", name: "Frontend", imageUrl: "", participants: []))
-        groups.append(ChatGroup(id: "2", name: "Backend", imageUrl: "", participants: []))
-        groups.append(ChatGroup(id: "3", name: "QA", imageUrl: "", participants: []))
+        let imageURL = try await withCheckedThrowingContinuation { (continuation:CheckedContinuation<String?, Error>) in
+            FirebaseManager.shared.uploadGroupImage(image: selectedImage) { url in
+                continuation.resume(returning: url)
+            }
+        }
         
-        return groups
+        chatGroup.imageUrl = imageURL ?? ""
+        let dictionary = ["name": chatGroup.name, "imageUrl": chatGroup.imageUrl, "participants": [:]] as [String : Any]
+        
+        do {
+            _ = try await withCheckedThrowingContinuation { (continuation:CheckedContinuation<ChatGroup?, Error>) in
+                FirebaseManager.shared.fireStore.collection("groups").addDocument(data: dictionary) { error in
+                    if let error = error {
+                        print("Error creating group: \(error)")
+                        continuation.resume(throwing: error)
+                    } else {
+                        print("Group created successfully")
+                        continuation.resume(returning: chatGroup)
+                    }
+                }
+            }
+        }
+        catch {
+            print(error.localizedDescription)
+        }
+        
+        
     }
     
-    
-    func addEditGroup(chatGroup: ChatGroup, selectedImage: UIImage) async {
-        if chatGroup.id != "" {
-            // Edit logic
-        }
-        else {
-            // Add logic
-        }
+    func fetchGroups() {
+        self.groups.removeAll()
         
-        return
+        FirebaseManager.shared.fireStore.collection("groups").addSnapshotListener { querySnapshot, error in
+            guard (querySnapshot?.documents) != nil else {
+                print("Error fetching groups: \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
+            
+            querySnapshot?.documentChanges.forEach({ change in
+                let docId = change.document.documentID
+                
+                if let index = self.groups.firstIndex(where: { rm in
+                    return rm.id == docId
+                }) {
+                    self.groups.remove(at: index)
+                }
+                
+                do {
+                    if let rm = try? change.document.data(as: ChatGroup.self) {
+                        self.groups.append(rm)
+                    }
+                }
+            })
+        }
     }
 }
