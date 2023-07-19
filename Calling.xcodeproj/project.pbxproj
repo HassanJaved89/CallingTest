@@ -52,6 +52,7 @@
 		FEFE57582A666E2F00CEB558 /* ChatGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFE57572A666E2F00CEB558 /* ChatGroup.swift */; };
 		FEFE575A2A66700300CEB558 /* AddEditGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFE57592A66700300CEB558 /* AddEditGroup.swift */; };
 		FEFE575C2A66703F00CEB558 /* GroupsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFE575B2A66703F00CEB558 /* GroupsViewModel.swift */; };
+		FEFE575E2A67F40500CEB558 /* AddMembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFE575D2A67F40500CEB558 /* AddMembersView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +96,7 @@
 		FEFE57572A666E2F00CEB558 /* ChatGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGroup.swift; sourceTree = "<group>"; };
 		FEFE57592A66700300CEB558 /* AddEditGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditGroup.swift; sourceTree = "<group>"; };
 		FEFE575B2A66703F00CEB558 /* GroupsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewModel.swift; sourceTree = "<group>"; };
+		FEFE575D2A67F40500CEB558 /* AddMembersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMembersView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -312,6 +314,7 @@
 			children = (
 				FEFE57522A66622300CEB558 /* GroupsView.swift */,
 				FEFE57592A66700300CEB558 /* AddEditGroup.swift */,
+				FEFE575D2A67F40500CEB558 /* AddMembersView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				FEFE57532A66622300CEB558 /* GroupsView.swift in Sources */,
 				FEFE575C2A66703F00CEB558 /* GroupsViewModel.swift in Sources */,
 				FE0AAA3A2A569C2700E9A4D0 /* ChatLogScreen.swift in Sources */,
+				FEFE575E2A67F40500CEB558 /* AddMembersView.swift in Sources */,
 				FEFE575A2A66700300CEB558 /* AddEditGroup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -24,11 +24,20 @@ extension Font {
 
 enum AppColors {
     case greenColor
+    case redColor
+    case redLower
     
     var color: Color {
         switch self {
         case .greenColor:
             return Color(hex: "#01411C") ?? .green
+            
+        case .redColor:
+            return Color(hex: "#F31816") ?? .red
+            
+        case .redLower:
+            return Color(hex: "#F8472C") ?? .red
         }
+        
     }
 }

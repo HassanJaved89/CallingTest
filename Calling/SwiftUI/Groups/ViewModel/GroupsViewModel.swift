@@ -27,7 +27,9 @@ class GroupsViewModel: ObservableObject {
         
         chatGroup.imageUrl = imageURL ?? ""
         
-        let dictionary = ["name": chatGroup.name, "imageUrl": chatGroup.imageUrl, "participants": []] as [String : Any]
+        let participantsData: [[String: Any]] = try chatGroup.participants.map { try JSONSerialization.jsonObject(with: try JSONEncoder().encode($0)) as? [String: Any] ?? [:] }
+        
+        let dictionary = ["name": chatGroup.name, "imageUrl": chatGroup.imageUrl, "participants": participantsData] as [String : Any]
         
         do {
             _ = try await withCheckedThrowingContinuation { (continuation:CheckedContinuation<ChatGroup?, Error>) in

@@ -12,9 +12,9 @@ struct GradientButtonStyle: ButtonStyle {
     var startColor: Color = Color(hex: "#01411C") ?? .green
     var endColor: Color = Color(hex: "#64BD8A") ?? .green
 
-    init(startColor: String? = nil, endColor: String? = nil) {
-        self.startColor = Color(hex: startColor ?? "") ?? Color(hex: "#01411C") ?? .green
-        self.endColor = Color(hex: endColor ?? "") ?? Color(hex: "#64BD8A") ?? .green
+    init(startColor: Color? = nil, endColor: Color? = nil) {
+        self.startColor = startColor ?? self.startColor
+        self.endColor = endColor ?? self.endColor
     }
     
     func makeBody(configuration: Configuration) -> some View {
