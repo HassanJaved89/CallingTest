@@ -100,7 +100,7 @@ struct GroupsView: View {
                 .clipped()
         }
         .fullScreenCover(isPresented: $shouldShowNewGroupScreen) {
-            AddEditGroup(chatGroup: ChatGroup(name: "", imageUrl: "", participants: []), groupsViewModel: groupsViewModel)
+            AddEditGroup(chatGroup: ChatGroup(name: "", imageUrl: "", participants: [FirebaseManager.shared.currentUser!]), groupsViewModel: groupsViewModel)
         }
     }
 }

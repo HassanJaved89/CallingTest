@@ -16,7 +16,7 @@ struct GroupChatView: View {
     var body: some View {
         VStack {
             
-            if chatGroup.participants.count == 0 {
+            if chatGroup.participants.count <= 1 {
                 emptyView
             }
             else {
@@ -40,7 +40,13 @@ struct GroupChatView: View {
             }
         }
         .sheet(isPresented: $shouldShowAddMembersScreen, content: {
-            AddMembersView(vm: CreateNewMessageViewModel(), participants: [])
+            AddMembersView(vm: CreateNewMessageViewModel(), participants: chatGroup.participants, participantsSelected: { participantsArray in
+                chatGroup.participants = participantsArray
+                Task {
+                    try await groupsViewModel.addEditGroup(chatGroup: chatGroup)
+                }
+                
+            })
         })
 //        .fullScreenCover(isPresented: $shouldShowAddMembersScreen) {
 //            AddMembersView(vm: CreateNewMessageViewModel())

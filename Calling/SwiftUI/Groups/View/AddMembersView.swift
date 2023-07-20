@@ -11,8 +11,8 @@ struct AddMembersView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var vm: CreateNewMessageViewModel
     @State var participants: [ChatUser]
-    
     @State private var searchText = ""
+    var participantsSelected: ([ChatUser]) -> Void
     
     var body: some View {
         
@@ -29,7 +29,8 @@ struct AddMembersView: View {
         .navigationBarBackButtonHidden()
         
         Button {
-            
+            participantsSelected(participants)
+            presentationMode.wrappedValue.dismiss()
         } label: {
             Text("Save")
             .foregroundColor(.white)

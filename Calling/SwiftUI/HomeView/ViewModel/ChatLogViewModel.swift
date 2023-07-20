@@ -135,7 +135,6 @@ class ChatLogViewModel: ObservableObject {
         }
     }
     
-    
     func sendAudio(recordedFileURL: URL?) {
         if let fileURL = recordedFileURL {
             let storage = Storage.storage()

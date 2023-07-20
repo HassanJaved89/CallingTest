@@ -16,16 +16,18 @@ class GroupsViewModel: ObservableObject {
     }
     
     
-    func addEditGroup(chatGroup: ChatGroup, selectedImage: UIImage) async throws {
+    func addEditGroup(chatGroup: ChatGroup, selectedImage: UIImage? = nil) async throws {
         var chatGroup = chatGroup
         
-        let imageURL = try await withCheckedThrowingContinuation { (continuation:CheckedContinuation<String?, Error>) in
-            FirebaseManager.shared.uploadGroupImage(image: selectedImage) { url in
-                continuation.resume(returning: url)
+        if let selectedImage {
+            let imageURL = try await withCheckedThrowingContinuation { (continuation:CheckedContinuation<String?, Error>) in
+                FirebaseManager.shared.uploadGroupImage(image: selectedImage) { url in
+                    continuation.resume(returning: url)
+                }
             }
+            
+            chatGroup.imageUrl = imageURL ?? ""
         }
-        
-        chatGroup.imageUrl = imageURL ?? ""
         
         let participantsData: [[String: Any]] = try chatGroup.participants.map { try JSONSerialization.jsonObject(with: try JSONEncoder().encode($0)) as? [String: Any] ?? [:] }
         
@@ -84,7 +86,9 @@ class GroupsViewModel: ObservableObject {
                 
                 do {
                     if let rm = try? change.document.data(as: ChatGroup.self) {
-                        self.groups.append(rm)
+                        if rm.participants.contains(FirebaseManager.shared.currentUser!) {
+                            self.groups.append(rm)
+                        }
                     }
                 }
             })
