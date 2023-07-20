@@ -35,7 +35,8 @@ struct GroupsView: View {
             } ) { group in
                 VStack {
                     NavigationLink {
-                        AddEditGroup(chatGroup: group, groupsViewModel: groupsViewModel)
+                        //AddEditGroup(chatGroup: group, groupsViewModel: groupsViewModel)
+                        GroupChatView(chatGroup: group, groupsViewModel: groupsViewModel)
                     } label: {
                         HStack(spacing: 16) {
                             if group.imageUrl == "" {

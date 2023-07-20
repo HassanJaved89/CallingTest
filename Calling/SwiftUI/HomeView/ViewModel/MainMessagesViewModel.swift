@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct ChatUser: Codable, Identifiable  {
+struct ChatUser: Codable, Identifiable, Equatable  {
     
     var id:String { uid }
     

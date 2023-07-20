@@ -53,6 +53,7 @@
 		FEFE575A2A66700300CEB558 /* AddEditGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFE57592A66700300CEB558 /* AddEditGroup.swift */; };
 		FEFE575C2A66703F00CEB558 /* GroupsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFE575B2A66703F00CEB558 /* GroupsViewModel.swift */; };
 		FEFE575E2A67F40500CEB558 /* AddMembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFE575D2A67F40500CEB558 /* AddMembersView.swift */; };
+		FEFE57602A69025200CEB558 /* GroupChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFE575F2A69025200CEB558 /* GroupChatView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +98,7 @@
 		FEFE57592A66700300CEB558 /* AddEditGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditGroup.swift; sourceTree = "<group>"; };
 		FEFE575B2A66703F00CEB558 /* GroupsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewModel.swift; sourceTree = "<group>"; };
 		FEFE575D2A67F40500CEB558 /* AddMembersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMembersView.swift; sourceTree = "<group>"; };
+		FEFE575F2A69025200CEB558 /* GroupChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -314,6 +316,7 @@
 			children = (
 				FEFE57522A66622300CEB558 /* GroupsView.swift */,
 				FEFE57592A66700300CEB558 /* AddEditGroup.swift */,
+				FEFE575F2A69025200CEB558 /* GroupChatView.swift */,
 				FEFE575D2A67F40500CEB558 /* AddMembersView.swift */,
 			);
 			path = View;
@@ -428,6 +431,7 @@
 				FEF29F792A5551E00025564B /* FirebaseManager.swift in Sources */,
 				FE0AAA382A5593EC00E9A4D0 /* CreateNewMessageView.swift in Sources */,
 				FE650C492A52F378005D9C9B /* Login.swift in Sources */,
+				FEFE57602A69025200CEB558 /* GroupChatView.swift in Sources */,
 				FE29CA752A5E858F00805A4F /* GradientButton.swift in Sources */,
 				FE0AAA3C2A56A9FD00E9A4D0 /* ChatLogViewModel.swift in Sources */,
 				FE0AAA4B2A5D321800E9A4D0 /* AudioPlayerHelper.swift in Sources */,

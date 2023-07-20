@@ -175,7 +175,7 @@ struct AddEditGroup: View {
                 .opacity(isLoading ? 1.0 : 0)
         }
         .background {
-            NavigationLink("", destination: AddMembersView(vm: CreateNewMessageViewModel()), isActive: $showAddMembersView)
+            NavigationLink("", destination: AddMembersView(vm: CreateNewMessageViewModel(), participants: []), isActive: $showAddMembersView)
         }
     }
     
