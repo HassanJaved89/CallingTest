@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-struct ChatLogView: View {
+struct ChatLogView<T>: View where T: ChatLogProtocol {
     
-    @ObservedObject var vm: ChatLogViewModel
+    @ObservedObject var vm: T
+    @StateObject var countObserver: CountObserver = CountObserver()
     @State private var showImagePicker = false
     @State private var isSheetPresented = false
     @State private var isCallingViewPresented = false
@@ -17,14 +18,14 @@ struct ChatLogView: View {
     @StateObject var audioRecorder = AudioRecorder()
     @Environment(\.presentationMode) var presentationMode
     
-    static let emptyScrollToString = "Empty"
+    let emptyScrollToString = "Empty"
     
     var body: some View {
         ZStack {
             messagesView
             Text(vm.errorMessage)
         }
-        .navigationTitle(vm.chatUser?.userName ?? "")
+        .navigationTitle(vm.chatParticipants[0].userName)
             .navigationBarTitleDisplayMode(.inline)
             .onDisappear {
                 self.vm.viewScreenRemoved()
@@ -68,7 +69,9 @@ struct ChatLogView: View {
             }
         }
         .onChange(of: audioRecorder.recordedFileURL, perform: { newValue in
-            vm.sendAudio(recordedFileURL: audioRecorder.recordedFileURL)
+            if audioRecorder.recordedFileURL != nil {
+                vm.sendAudio(recordedFileURL: audioRecorder.recordedFileURL)
+            }
         })
         .sheet(isPresented: $isSheetPresented) {
             if let image = selectedImage {
@@ -79,6 +82,9 @@ struct ChatLogView: View {
                     }
                 }
             }
+        }
+        .onAppear {
+            vm.handleCount = handleCount
         }
     }
     
@@ -131,11 +137,11 @@ struct ChatLogView: View {
                             }
                             
                             HStack{ Spacer() }
-                            .id(Self.emptyScrollToString)
+                            .id(emptyScrollToString)
                         }
-                        .onReceive(vm.$count) { _ in
+                        .onReceive(countObserver.$count) { _ in
                             withAnimation(.easeOut(duration: 1.0)) {
-                                scrollViewProxy.scrollTo(Self.emptyScrollToString, anchor: .bottom)
+                                scrollViewProxy.scrollTo(emptyScrollToString, anchor: .bottom)
                             }
                             
                         }
@@ -198,6 +204,10 @@ struct ChatLogView: View {
         }
         .padding(.horizontal)
         .padding(.vertical, 8)
+    }
+    
+    func handleCount() {
+        countObserver.count += 1
     }
 }
 
@@ -319,11 +329,12 @@ private struct DescriptionPlaceholder: View {
     }
 }
 
+/*
 struct ChatLogView_Previews: PreviewProvider {
     static var previews: some View {
         ChatLogView(vm: ChatLogViewModel(chatUser: ChatUser(data: ["userName": "Tekrowe"])))
     }
-}
+}*/
 
 
 extension Animation {

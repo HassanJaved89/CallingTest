@@ -54,6 +54,7 @@
 		FEFE575C2A66703F00CEB558 /* GroupsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFE575B2A66703F00CEB558 /* GroupsViewModel.swift */; };
 		FEFE575E2A67F40500CEB558 /* AddMembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFE575D2A67F40500CEB558 /* AddMembersView.swift */; };
 		FEFE57602A69025200CEB558 /* GroupChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFE575F2A69025200CEB558 /* GroupChatView.swift */; };
+		FEFE57622A69308C00CEB558 /* ChatLogProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFE57612A69308B00CEB558 /* ChatLogProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +100,7 @@
 		FEFE575B2A66703F00CEB558 /* GroupsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewModel.swift; sourceTree = "<group>"; };
 		FEFE575D2A67F40500CEB558 /* AddMembersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMembersView.swift; sourceTree = "<group>"; };
 		FEFE575F2A69025200CEB558 /* GroupChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatView.swift; sourceTree = "<group>"; };
+		FEFE57612A69308B00CEB558 /* ChatLogProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +257,7 @@
 				FE29CA742A5E858F00805A4F /* GradientButton.swift */,
 				FE29CA762A5E93BE00805A4F /* FontInfo.swift */,
 				FECDB1A92A5FFE1D006F41F7 /* CustomSearchBar.swift */,
+				FEFE57612A69308B00CEB558 /* ChatLogProtocol.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 				FEFE575C2A66703F00CEB558 /* GroupsViewModel.swift in Sources */,
 				FE0AAA3A2A569C2700E9A4D0 /* ChatLogScreen.swift in Sources */,
 				FEFE575E2A67F40500CEB558 /* AddMembersView.swift in Sources */,
+				FEFE57622A69308C00CEB558 /* ChatLogProtocol.swift in Sources */,
 				FEFE575A2A66700300CEB558 /* AddEditGroup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

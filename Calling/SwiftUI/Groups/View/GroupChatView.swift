@@ -20,7 +20,7 @@ struct GroupChatView: View {
                 emptyView
             }
             else {
-                
+                ChatLogView(vm: ChatLogViewModel(chatParticipants: [FirebaseManager.shared.currentUser!]))
             }
             
         }

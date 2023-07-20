@@ -9,48 +9,33 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 import FirebaseStorage
+import UIKit
 
-struct FirebaseConstants {
-    static let fromId = "fromId"
-    static let toId = "toId"
-    static let text = "text"
-    static let timestamp = "timestamp"
-    static let userName = "userName"
-    static let uid = "uid"
-    static let profileImageUrl = "profileImageUrl"
-    static let messages = "messages"
-    static let users = "users"
-    static let chatImageUrl = "chatImageUrl"
-    static let audioUrl = "audioUrl"
-}
-
-struct ChatMessage: Codable, Identifiable {
-    @DocumentID var id: String?
-    let fromId, toId, text: String
-    let chatImageUrl, audioUrl: String? 
-    let timestamp: Date
-}
-
-class ChatLogViewModel: ObservableObject {
+class ChatLogViewModel: ObservableObject, ChatLogProtocol {
+    
+    var chatParticipants: [ChatUser] = [] {
+        didSet {
+            self.chatUserObject = chatParticipants[0]
+        }
+    }
     
     @Published var chatText = ""
     var imageUploadUrl = ""
     var audioUrl = ""
     @Published var errorMessage = ""
     @Published var chatMessages = [ChatMessage]()
-    @Published var count = 0
     var fireStoreListener: ListenerRegistration?
+    private var chatUserObject: ChatUser?
+    var handleCount: (() -> Void)?
     
-    var chatUser: ChatUser?
-    
-    init(chatUser: ChatUser?) {
+    init(chatParticipants: [ChatUser]?) {
         print("Chat log init")
-        self.chatUser = chatUser
+        self.chatUserObject = chatParticipants?[0]
     }
     
     func fetch() {
         print("Fetch called")
-        if self.chatUser?.uid != "" {
+        if self.chatUserObject?.uid != "" {
             fetchMessages()
         }
     }
@@ -59,7 +44,7 @@ class ChatLogViewModel: ObservableObject {
         print(chatText)
         guard let fromId = FirebaseManager.shared.auth.currentUser?.uid else { return }
         
-        guard let toId = chatUser?.uid else { return }
+        guard let toId = chatUserObject?.uid else { return }
         
         let document = FirebaseManager.shared.fireStore.collection(FirebaseConstants.messages)
             .document(fromId)
@@ -80,7 +65,7 @@ class ChatLogViewModel: ObservableObject {
             self.persistRecentMessage()
             
             self.chatText = ""
-            self.count += 1
+            self.handleCount?()
         }
         
         let recipientMessageDocument = FirebaseManager.shared.fireStore.collection("messages")
@@ -99,96 +84,11 @@ class ChatLogViewModel: ObservableObject {
         }
     }
     
-    func sendImage(image: UIImage) {
-        guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }
-                
-        // Create a unique filename for the image
-        let filename = UUID().uuidString
-        
-        // Create a Firestore reference to the desired collection
-        let storageRef = Storage.storage().reference().child("images").child(filename)
-        
-        // Upload the image to Firestore
-        storageRef.putData(imageData, metadata: nil) { (_, error) in
-            if let error = error {
-                // Handle the upload error
-                print("Error uploading image: \(error.localizedDescription)")
-            } else {
-                // Image uploaded successfully
-                print("Image uploaded!")
-                
-                // Get the download URL for the image
-                storageRef.downloadURL { url, error in
-                    if let error = error {
-                        // Handle the download URL retrieval error
-                        print("Error getting download URL: \(error.localizedDescription)")
-                        return
-                    }
-                    
-                    if let downloadURL = url?.absoluteString {
-                       print(downloadURL)
-                        self.imageUploadUrl = downloadURL
-                        self.handleSend()
-                    }
-                }
-            }
-        }
-    }
-    
-    func sendAudio(recordedFileURL: URL?) {
-        if let fileURL = recordedFileURL {
-            let storage = Storage.storage()
-            let storageRef = storage.reference()
-            
-            let filename = UUID().uuidString
-            
-            let fileRef = storageRef.child("recordings/\(filename).wav")
-
-            // Start the upload
-            let uploadTask = fileRef.putFile(from: fileURL, metadata: nil) { metadata, error in
-                if let error = error {
-                    // Handle the error
-                    print("Error uploading file: \(error.localizedDescription)")
-                    return
-                }
-
-                // Upload success
-                print("File uploaded successfully")
-                
-                // Optionally, you can also get the download URL
-                fileRef.downloadURL { url, error in
-                    if let error = error {
-                        // Handle the error
-                        print("Error getting download URL: \(error.localizedDescription)")
-                        return
-                    }
-                    
-                    if let downloadURL = url {
-                        print("Download URL: \(downloadURL.absoluteString)")
-                        self.audioUrl = downloadURL.absoluteString
-                        self.handleSend()
-                    }
-                }
-            }
-
-            /*
-            // Observe the upload progress
-            uploadTask.observe(.progress) { snapshot in
-                guard let progress = snapshot.progress else {
-                    return
-                }
-
-                let percentComplete = 100.0 * Double(progress.completedUnitCount) / Double(progress.totalUnitCount)
-                print("Upload progress: \(percentComplete)%")
-            }*/
-        }
-    }
-    
     private func persistRecentMessage() {
-        guard let chatUser = chatUser else { return }
+        guard let chatUser = chatUserObject else { return }
         
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
-        guard let toId = self.chatUser?.uid else { return }
+        guard let toId = self.chatUserObject?.uid else { return }
         
         let document = FirebaseManager.shared.fireStore
             .collection("recent_messages")
@@ -235,13 +135,16 @@ class ChatLogViewModel: ObservableObject {
                     print("Failed to save recipient recent message: \(error)")
                     return
                 }
+                
+                self.imageUploadUrl = ""
+                self.audioUrl = ""
             }
     }
     
     private func fetchMessages() {
             self.chatMessages.removeAll()
             guard let fromId = FirebaseManager.shared.auth.currentUser?.uid else { return }
-            guard let toId = chatUser?.uid else { return }
+            guard let toId = chatUserObject?.uid else { return }
             fireStoreListener = FirebaseManager.shared.fireStore
                 .collection("messages")
                 .document(fromId)
@@ -266,7 +169,7 @@ class ChatLogViewModel: ObservableObject {
                     })
                     
                     DispatchQueue.main.async {
-                        self.count += 1
+                        self.handleCount?()
                     }
                 }
         }
@@ -274,72 +177,5 @@ class ChatLogViewModel: ObservableObject {
     
     func viewScreenRemoved() {
         self.fireStoreListener?.remove()
-    }
-}
-
-
-struct Callrequest:Codable{
-    let callerName: String
-    let deviceToken: String
-}
-
-extension ChatLogViewModel {
-    func sendCall() async {
-        guard let url = URL(string: "http://114.119.185.90:3001/callingApp/Api") else {
-            return
-        }
-        
-        let receiverDeviceToken = await FirebaseManager.shared.fetchUserWithId(uid: self.chatUser?.uid ?? "")?.voipDeviceToken
-        let caller = Callrequest(callerName: FirebaseManager.shared.currentUser?.userName ?? "", deviceToken: receiverDeviceToken ?? "")
-        let encoder = JSONEncoder()
-        do {
-            let jsonData = try encoder.encode(caller)
-            
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.httpBody = jsonData
-
-            let session = URLSession(configuration: .default, delegate: MyURLSessionDelegate(), delegateQueue: nil)
-            let task = session.dataTask(with: request) { (data, response, error) in
-                // Handle the API response
-                if let error = error {
-                    // Handle network error
-                    print("Error: \(error)")
-                    return
-                }
-
-                // Handle the API response data
-                if let data = data {
-                    // Parse the response JSON if needed
-                    do {
-//                        let response = try JSONDecoder().decode(Callrequest.self, from: data)
-                        print(response)
-                        print("Successfully sent call")
-                        // Process the response object
-                    } catch {
-                        // Handle decoding error
-                    }
-                }
-            }
-
-            task.resume()
-        } catch {
-            // Handle encoding error
-        }
-    }
-}
-
-
-class MyURLSessionDelegate: NSObject, URLSessionDelegate {
-    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
-            if let serverTrust = challenge.protectionSpace.serverTrust {
-                let credential = URLCredential(trust: serverTrust)
-                completionHandler(.useCredential, credential)
-                return
-            }
-        }
-        completionHandler(.performDefaultHandling, nil)
     }
 }

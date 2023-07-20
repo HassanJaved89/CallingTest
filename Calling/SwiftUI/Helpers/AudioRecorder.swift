@@ -14,6 +14,8 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate {
     @Published var recordedFileURL: URL?
     
     func startRecording() {
+        
+        recordedFileURL = nil
         AudioSessionManager.shared.configureAudioSessionForRecording()
         
         let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.wav")

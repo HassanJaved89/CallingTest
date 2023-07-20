@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeViewTab: View {
     @State private var selectedTab = 0
     @ObservedObject var vm = MainMessagesViewModel()
-    @ObservedObject var chatLogViewModel = ChatLogViewModel(chatUser: nil)
+    @ObservedObject var chatLogViewModel = ChatLogViewModel(chatParticipants: nil)
     @ObservedObject var accountSettingsVm = AccountSettingsViewModel()
     @ObservedObject var groupsViewModel = GroupsViewModel()
     

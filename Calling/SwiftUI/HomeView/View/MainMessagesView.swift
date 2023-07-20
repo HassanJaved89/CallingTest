@@ -98,7 +98,7 @@ struct MainMessagesView: View {
                     Button {
                         let uid = FirebaseManager.shared.auth.currentUser?.uid == recentMessage.fromId ? recentMessage.toId : recentMessage.fromId
                         self.chatUser = .init(data: [FirebaseConstants.userName: recentMessage.userName, FirebaseConstants.profileImageUrl: recentMessage.profileImageUrl, FirebaseConstants.uid: uid])
-                        self.chatLogViewModel.chatUser = self.chatUser
+                        self.chatLogViewModel.chatParticipants.insert(self.chatUser, at: 0)
                         self.chatLogViewModel.fetch()
                         self.shouldNavigateToChatLogView.toggle()
                     } label: {
@@ -174,7 +174,7 @@ struct MainMessagesView: View {
             CreateNewMessageView { user in
                 self.shouldNavigateToChatLogView.toggle()
                 self.chatUser = user
-                self.chatLogViewModel.chatUser = user
+                self.chatLogViewModel.chatParticipants.insert(user, at: 0)
                 self.chatLogViewModel.fetch()
             }
         }
