@@ -12,6 +12,7 @@ struct GroupChatView: View {
     @State var chatGroup: ChatGroup
     @State private var shouldShowAddMembersScreen = false
     @ObservedObject var groupsViewModel: GroupsViewModel
+    @State var chatLogViewModel: GroupChatViewModel
     
     var body: some View {
         VStack {
@@ -20,11 +21,14 @@ struct GroupChatView: View {
                 emptyView
             }
             else {
-                ChatLogView(vm: ChatLogViewModel(chatParticipants: [FirebaseManager.shared.currentUser!]))
+                ChatLogView(vm: chatLogViewModel)
+                    .navigationTitle(chatGroup.name)
             }
             
         }
-        .padding()
+        .onAppear {
+            chatLogViewModel.fetch()
+        }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {

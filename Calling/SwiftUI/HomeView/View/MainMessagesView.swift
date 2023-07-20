@@ -25,6 +25,7 @@ struct MainMessagesView: View {
             
             NavigationLink("", isActive: $shouldNavigateToChatLogView) {
                 ChatLogView(vm: chatLogViewModel)
+                    .navigationTitle(chatLogViewModel.chatParticipants.count > 0 ? chatLogViewModel.chatParticipants[0].userName : "")
             }
         }
         .padding(.top, 25)

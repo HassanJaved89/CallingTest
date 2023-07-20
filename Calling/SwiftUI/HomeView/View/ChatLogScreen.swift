@@ -25,9 +25,9 @@ struct ChatLogView<T>: View where T: ChatLogProtocol {
             messagesView
             Text(vm.errorMessage)
         }
-        .navigationTitle(vm.chatParticipants[0].userName)
-            .navigationBarTitleDisplayMode(.inline)
-            .onDisappear {
+        //.navigationTitle(vm.chatParticipants[0].userName)
+        .navigationBarTitleDisplayMode(.inline)
+        .onDisappear {
                 self.vm.viewScreenRemoved()
         }
         .toolbar {

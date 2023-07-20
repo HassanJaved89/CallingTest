@@ -13,6 +13,8 @@
 		FE0AAA3C2A56A9FD00E9A4D0 /* ChatLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0AAA3B2A56A9FD00E9A4D0 /* ChatLogViewModel.swift */; };
 		FE0AAA492A5D2A5100E9A4D0 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0AAA482A5D2A5100E9A4D0 /* AudioRecorder.swift */; };
 		FE0AAA4B2A5D321800E9A4D0 /* AudioPlayerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0AAA4A2A5D321800E9A4D0 /* AudioPlayerHelper.swift */; };
+		FE0FEA412A69564400C8A291 /* GroupChatProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0FEA402A69564400C8A291 /* GroupChatProtocol.swift */; };
+		FE0FEA432A6956C300C8A291 /* GroupChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0FEA422A6956C300C8A291 /* GroupChatViewModel.swift */; };
 		FE29CA752A5E858F00805A4F /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE29CA742A5E858F00805A4F /* GradientButton.swift */; };
 		FE29CA772A5E93BE00805A4F /* FontInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE29CA762A5E93BE00805A4F /* FontInfo.swift */; };
 		FE650C462A52D4EE005D9C9B /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE650C452A52D4EE005D9C9B /* FirebaseService.swift */; };
@@ -64,6 +66,8 @@
 		FE0AAA3B2A56A9FD00E9A4D0 /* ChatLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogViewModel.swift; sourceTree = "<group>"; };
 		FE0AAA482A5D2A5100E9A4D0 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		FE0AAA4A2A5D321800E9A4D0 /* AudioPlayerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerHelper.swift; sourceTree = "<group>"; };
+		FE0FEA402A69564400C8A291 /* GroupChatProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatProtocol.swift; sourceTree = "<group>"; };
+		FE0FEA422A6956C300C8A291 /* GroupChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatViewModel.swift; sourceTree = "<group>"; };
 		FE29CA742A5E858F00805A4F /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		FE29CA762A5E93BE00805A4F /* FontInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontInfo.swift; sourceTree = "<group>"; };
 		FE650C452A52D4EE005D9C9B /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
@@ -258,6 +262,7 @@
 				FE29CA762A5E93BE00805A4F /* FontInfo.swift */,
 				FECDB1A92A5FFE1D006F41F7 /* CustomSearchBar.swift */,
 				FEFE57612A69308B00CEB558 /* ChatLogProtocol.swift */,
+				FE0FEA402A69564400C8A291 /* GroupChatProtocol.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -329,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				FEFE575B2A66703F00CEB558 /* GroupsViewModel.swift */,
+				FE0FEA422A6956C300C8A291 /* GroupChatViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -428,6 +434,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEF29F892A5578400025564B /* MainMessagesView.swift in Sources */,
+				FE0FEA412A69564400C8A291 /* GroupChatProtocol.swift in Sources */,
 				FE0AAA362A55939700E9A4D0 /* CreateNewMessageViewModel.swift in Sources */,
 				FEFE57502A654B6700CEB558 /* AccountSettingsViewModel.swift in Sources */,
 				FE0AAA492A5D2A5100E9A4D0 /* AudioRecorder.swift in Sources */,
@@ -454,6 +461,7 @@
 				FE650C4F2A540223005D9C9B /* AccountSettings.swift in Sources */,
 				FE29CA772A5E93BE00805A4F /* FontInfo.swift in Sources */,
 				FEF29F8F2A557A950025564B /* MainMessagesViewModel.swift in Sources */,
+				FE0FEA432A6956C300C8A291 /* GroupChatViewModel.swift in Sources */,
 				FEAA14AD2A5D433100158FC0 /* AudioSessionManager.swift in Sources */,
 				FEFE57532A66622300CEB558 /* GroupsView.swift in Sources */,
 				FEFE575C2A66703F00CEB558 /* GroupsViewModel.swift in Sources */,
