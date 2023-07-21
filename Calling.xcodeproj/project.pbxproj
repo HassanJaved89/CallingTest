@@ -16,6 +16,8 @@
 		FE0FEA412A69564400C8A291 /* GroupChatProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0FEA402A69564400C8A291 /* GroupChatProtocol.swift */; };
 		FE0FEA432A6956C300C8A291 /* GroupChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0FEA422A6956C300C8A291 /* GroupChatViewModel.swift */; };
 		FE0FEA452A6A574400C8A291 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0FEA442A6A574400C8A291 /* HelperFunctions.swift */; };
+		FE0FEA482A6A9A3500C8A291 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FE0FEA472A6A9A3500C8A291 /* Kingfisher */; };
+		FE0FEA4A2A6A9CDC00C8A291 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0FEA492A6A9CDC00C8A291 /* ImageLoader.swift */; };
 		FE29CA752A5E858F00805A4F /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE29CA742A5E858F00805A4F /* GradientButton.swift */; };
 		FE29CA772A5E93BE00805A4F /* FontInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE29CA762A5E93BE00805A4F /* FontInfo.swift */; };
 		FE650C462A52D4EE005D9C9B /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE650C452A52D4EE005D9C9B /* FirebaseService.swift */; };
@@ -70,6 +72,7 @@
 		FE0FEA402A69564400C8A291 /* GroupChatProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatProtocol.swift; sourceTree = "<group>"; };
 		FE0FEA422A6956C300C8A291 /* GroupChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatViewModel.swift; sourceTree = "<group>"; };
 		FE0FEA442A6A574400C8A291 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
+		FE0FEA492A6A9CDC00C8A291 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		FE29CA742A5E858F00805A4F /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		FE29CA762A5E93BE00805A4F /* FontInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontInfo.swift; sourceTree = "<group>"; };
 		FE650C452A52D4EE005D9C9B /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
@@ -122,6 +125,7 @@
 				FEAA14C42A5D7BDD00158FC0 /* FirebaseFirestoreSwift in Frameworks */,
 				FEAA14BE2A5D7BDD00158FC0 /* FirebaseAnalytics in Frameworks */,
 				FEAA14C62A5D7BDD00158FC0 /* FirebaseStorage in Frameworks */,
+				FE0FEA482A6A9A3500C8A291 /* Kingfisher in Frameworks */,
 				FECEBC4D2A4AE46900550888 /* AgoraUIKit in Frameworks */,
 				FEAA14C22A5D7BDD00158FC0 /* FirebaseFirestore in Frameworks */,
 			);
@@ -266,6 +270,7 @@
 				FEFE57612A69308B00CEB558 /* ChatLogProtocol.swift */,
 				FE0FEA402A69564400C8A291 /* GroupChatProtocol.swift */,
 				FE0FEA442A6A574400C8A291 /* HelperFunctions.swift */,
+				FE0FEA492A6A9CDC00C8A291 /* ImageLoader.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -375,6 +380,7 @@
 				FEAA14C12A5D7BDD00158FC0 /* FirebaseFirestore */,
 				FEAA14C32A5D7BDD00158FC0 /* FirebaseFirestoreSwift */,
 				FEAA14C52A5D7BDD00158FC0 /* FirebaseStorage */,
+				FE0FEA472A6A9A3500C8A291 /* Kingfisher */,
 			);
 			productName = Calling;
 			productReference = FECEBC362A4AE2C900550888 /* Calling.app */;
@@ -407,6 +413,7 @@
 			packageReferences = (
 				FECEBC472A4AE46900550888 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS" */,
 				FEAA14BC2A5D7BDD00158FC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				FE0FEA462A6A9A3500C8A291 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = FECEBC372A4AE2C900550888 /* Products */;
 			projectDirPath = "";
@@ -464,6 +471,7 @@
 				FE650C4F2A540223005D9C9B /* AccountSettings.swift in Sources */,
 				FE29CA772A5E93BE00805A4F /* FontInfo.swift in Sources */,
 				FEF29F8F2A557A950025564B /* MainMessagesViewModel.swift in Sources */,
+				FE0FEA4A2A6A9CDC00C8A291 /* ImageLoader.swift in Sources */,
 				FE0FEA432A6956C300C8A291 /* GroupChatViewModel.swift in Sources */,
 				FE0FEA452A6A574400C8A291 /* HelperFunctions.swift in Sources */,
 				FEAA14AD2A5D433100158FC0 /* AudioSessionManager.swift in Sources */,
@@ -598,18 +606,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Calling/Calling.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Calling/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 9ZNYQKY8Z2;
+				DEVELOPMENT_TEAM = 9ZNYQKY8Z2;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Calling/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Tekrowe Calling";
+				INFOPLIST_KEY_CFBundleDisplayName = MIB;
 				INFOPLIST_KEY_NSCameraUsageDescription = Camera;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = Audio;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -627,7 +635,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tekrowe.Calling;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Calling;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -639,18 +646,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Calling/Calling.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Calling/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 9ZNYQKY8Z2;
+				DEVELOPMENT_TEAM = 9ZNYQKY8Z2;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Calling/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Tekrowe Calling";
+				INFOPLIST_KEY_CFBundleDisplayName = MIB;
 				INFOPLIST_KEY_NSCameraUsageDescription = Camera;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = Audio;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -668,7 +675,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tekrowe.Calling;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Calling;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -699,6 +705,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FE0FEA462A6A9A3500C8A291 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		FEAA14BC2A5D7BDD00158FC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -718,6 +732,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FE0FEA472A6A9A3500C8A291 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE0FEA462A6A9A3500C8A291 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		FEAA14BD2A5D7BDD00158FC0 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FEAA14BC2A5D7BDD00158FC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

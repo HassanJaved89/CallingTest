@@ -50,6 +50,18 @@ struct AddMembersView: View {
             } label: {
                 HStack(spacing: 16) {
                     
+                    ImageLoader(url: URL(string: user.profileImageUrl))
+                        .scaledToFill()
+                        .frame(width: 50, height: 50)
+                        .clipped()
+                        .cornerRadius(50)
+                        .overlay(RoundedRectangle(cornerRadius: 50)
+                            .stroke(Color(.label), lineWidth: 2)
+                        )
+                    
+                    
+                    
+                    /*
                     AsyncImage(url: URL(string: user.profileImageUrl )) { returnedImage in
                         returnedImage
                             .resizable()
@@ -62,7 +74,7 @@ struct AddMembersView: View {
                             )
                     } placeholder: {
                         ProgressView()
-                    }
+                    }*/
                     
                     
                     Text(user.userName)

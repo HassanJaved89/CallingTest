@@ -113,6 +113,23 @@ struct AddEditGroup: View {
                         }
                 }
                 else {
+                    
+                    ImageLoader(url: URL(string: chatGroup.imageUrl))
+                        .frame(width: 80, height: 80)
+                        .cornerRadius(40)
+                        .overlay(alignment: .bottomTrailing) {
+                            Button {
+                                showImagePicker.toggle()
+                            } label: {
+                                Image("imageUpload")
+                                    .frame(width: 35, height: 35 ,alignment: .bottom)
+                            }
+                            
+                        }
+                        .shadow(radius: 5)
+                    
+                    
+                    /*
                     AsyncImage(url: URL(string: chatGroup.imageUrl ?? "")) {
                         returnedImage in
                         returnedImage
@@ -134,7 +151,7 @@ struct AddEditGroup: View {
                             .shadow(radius: 5)
                     } placeholder: {
                         ProgressView()
-                    }
+                    }*/
                 }
             }
         }

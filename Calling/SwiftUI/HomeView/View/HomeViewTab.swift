@@ -57,6 +57,19 @@ struct HomeViewTab: View {
             
             ToolbarItem(placement: .navigationBarTrailing) {
                 VStack {
+                    
+                    ImageLoader(url: URL(string: vm.chatUser?.profileImageUrl ?? ""))
+                        .scaledToFill()
+                        .frame(width: 40, height: 40)
+                        .clipped()
+                        .cornerRadius(40)
+                        .overlay(RoundedRectangle(cornerRadius: 44)
+                            .stroke(Color(.label), lineWidth: 1)
+                        )
+                        .shadow(radius: 5)
+                    
+                    
+                    /*
                     AsyncImage(url: URL(string: vm.chatUser?.profileImageUrl ?? "")) { returnedImage in
                         returnedImage
                             .resizable()
@@ -70,7 +83,7 @@ struct HomeViewTab: View {
                             .shadow(radius: 5)
                     } placeholder: {
                         ProgressView()
-                    }
+                    }*/
                 }
                 .padding(.top, 5)
             }

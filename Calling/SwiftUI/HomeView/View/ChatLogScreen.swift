@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ChatLogView<T>: View where T: ChatLogProtocol {
     
@@ -302,6 +303,16 @@ struct MessageView: View {
     }
     
     private var chatImageView: some View {
+        
+        KFImage(URL(string: message.chatImageUrl ?? ""))
+            .placeholder {
+                ProgressView()
+            }
+            .resizable()
+            .scaledToFit()
+            .shadow(radius: 5)
+        
+        /*
         AsyncImage(url: URL(string: message.chatImageUrl ?? "")) { returnedImage in
             returnedImage
                 .resizable()
@@ -311,7 +322,7 @@ struct MessageView: View {
         } placeholder: {
             ProgressView()
                 .frame(width: 200, height: 200)
-        }
+        }*/
     }
     
     private var audioView: some View {

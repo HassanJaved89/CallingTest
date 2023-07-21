@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct MainMessagesView: View {
     
@@ -38,6 +39,18 @@ struct MainMessagesView: View {
         
         HStack(spacing: 16) {
             
+            ImageLoader(url: URL(string: vm.chatUser?.profileImageUrl ?? ""))
+                .scaledToFill()
+                .frame(width: 50, height: 50)
+                .clipped()
+                .cornerRadius(50)
+                .overlay(RoundedRectangle(cornerRadius: 44)
+                    .stroke(Color(.label), lineWidth: 1)
+                )
+                .shadow(radius: 5)
+            
+            
+            /*
             AsyncImage(url: URL(string: vm.chatUser?.profileImageUrl ?? "")) { returnedImage in
                                 returnedImage
                                     .resizable()
@@ -51,7 +64,7 @@ struct MainMessagesView: View {
                                     .shadow(radius: 5)
                             } placeholder: {
                                 ProgressView()
-                            }
+                            }*/
             
             
             VStack(alignment: .leading, spacing: 4) {
@@ -105,6 +118,17 @@ struct MainMessagesView: View {
                     } label: {
                         HStack(spacing: 16) {
                             
+                            ImageLoader(url: URL(string: recentMessage.profileImageUrl))
+                                .scaledToFill()
+                                .frame(width: 64, height: 64)
+                                .clipped()
+                                .cornerRadius(64)
+                                .overlay(RoundedRectangle(cornerRadius: 64)
+                                            .stroke(Color.black, lineWidth: 1))
+                                .shadow(radius: 5)
+                            
+                            
+                            /*
                             AsyncImage(url: URL(string: recentMessage.profileImageUrl)) { returnedImage in
                                                 returnedImage
                                     .resizable()
@@ -117,7 +141,7 @@ struct MainMessagesView: View {
                                     .shadow(radius: 5)
                                             } placeholder: {
                                                 ProgressView()
-                                            }
+                                            }*/
                             
                             
                             VStack(alignment: .leading, spacing: 8) {
