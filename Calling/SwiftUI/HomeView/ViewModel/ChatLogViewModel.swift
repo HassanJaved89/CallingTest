@@ -51,7 +51,7 @@ class ChatLogViewModel: ObservableObject, ChatLogProtocol {
             .collection(toId)
             .document()
         
-        let messageData = [FirebaseConstants.fromId: fromId, FirebaseConstants.toId: toId, FirebaseConstants.text: self.chatText, FirebaseConstants.chatImageUrl: imageUploadUrl, FirebaseConstants.audioUrl: audioUrl, FirebaseConstants.timestamp: Timestamp()] as [String : Any]
+        let messageData = [FirebaseConstants.fromId: fromId, FirebaseConstants.toId: toId, FirebaseConstants.text: self.chatText, FirebaseConstants.chatImageUrl: imageUploadUrl, FirebaseConstants.audioUrl: audioUrl, FirebaseConstants.timestamp: Timestamp(), FirebaseConstants.senderName: FirebaseManager.shared.currentUser?.userName] as [String : Any]
         
         document.setData(messageData) { error in
             if let error = error {
@@ -102,7 +102,8 @@ class ChatLogViewModel: ObservableObject, ChatLogProtocol {
             FirebaseConstants.fromId: uid,
             FirebaseConstants.toId: toId,
             FirebaseConstants.profileImageUrl: chatUser.profileImageUrl,
-            FirebaseConstants.userName: chatUser.userName
+            FirebaseConstants.userName: chatUser.userName,
+            FirebaseConstants.senderName: FirebaseManager.shared.currentUser?.userName
         ] as [String : Any]
         
         // you'll need to save another very similar dictionary for the recipient of this message...how?
@@ -122,7 +123,8 @@ class ChatLogViewModel: ObservableObject, ChatLogProtocol {
             FirebaseConstants.fromId: uid,
             FirebaseConstants.toId: toId,
             FirebaseConstants.profileImageUrl: currentUser.profileImageUrl,
-            FirebaseConstants.userName: currentUser.userName
+            FirebaseConstants.userName: currentUser.userName,
+            FirebaseConstants.senderName: FirebaseManager.shared.currentUser?.userName
         ] as [String : Any]
         
         FirebaseManager.shared.fireStore
@@ -161,6 +163,8 @@ class ChatLogViewModel: ObservableObject, ChatLogProtocol {
                         if change.type == .added {
                             do {
                                 if let cm = try? change.document.data(as: ChatMessage.self) {
+                                    var cm = cm
+                                    cm.timeString = cm.timestamp.convertToTime()
                                     self.chatMessages.append(cm)
                                     print("Appending chatMessage in ChatLogView: \(Date())")
                                 }

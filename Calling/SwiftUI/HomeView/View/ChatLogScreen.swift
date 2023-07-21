@@ -133,7 +133,7 @@ struct ChatLogView<T>: View where T: ChatLogProtocol {
                     ScrollViewReader { scrollViewProxy in
                         VStack {
                             ForEach(vm.chatMessages) { message in
-                                MessageView(message: message)
+                                MessageView(message: message, vm: vm)
                             }
                             
                             HStack{ Spacer() }
@@ -216,62 +216,83 @@ struct MessageView: View {
     @StateObject var audioPlayerHelper = AudioPlayerHelper()
     @State private var isAnimating = false
     let message: ChatMessage
+    var vm: any ChatLogProtocol
     
     var body: some View {
         VStack {
             if message.fromId == FirebaseManager.shared.auth.currentUser?.uid {
-                HStack {
-                    Spacer()
+                VStack(alignment: .trailing) {
+                    HStack {
+                        Spacer()
+                        if message.chatImageUrl != nil && message.chatImageUrl != "" {
+                            HStack {
+                                Spacer()
+                                chatImageView
+                                .frame(width: 200, height: 200, alignment: .trailing)
+                            }
+                            .padding(.vertical, 5)
+                        }
+                        else if message.audioUrl != nil && message.audioUrl != "" {
+                            HStack {
+                                Spacer()
+                                audioView
+                            }
+                        }
+                        else {
+                            HStack {
+                                Text(message.text)
+                                    .foregroundColor(.white)
+                            }
+                            .padding()
+                            .background(AppColors.greenColor.color)
+                            .cornerRadius(8)
+                        }
+                    }
+                    
+                    Text(message.timeString ?? "")
+                        .foregroundColor(.gray.opacity(0.9))
+                        .font(.customFont(size: .small))
+                }
+                
+            } else {
+                VStack(alignment: .leading) {
+                    //if vm.chatParticipants.count > 2 {
+                        Text(message.senderName ?? "")
+                        .padding()
+                            .font(.customFont(size: .medium))
+                            .fontWeight(.bold)
+                    //}
                     if message.chatImageUrl != nil && message.chatImageUrl != "" {
                         HStack {
-                            Spacer()
                             chatImageView
-                            .frame(width: 200, height: 200, alignment: .trailing)
+                            .frame(width: 200, height: 200, alignment: .leading)
+                            Spacer()
                         }
                         .padding(.vertical, 5)
                     }
                     else if message.audioUrl != nil && message.audioUrl != "" {
                         HStack {
-                            Spacer()
                             audioView
+                            Spacer()
                         }
                     }
                     else {
                         HStack {
-                            Text(message.text)
-                                .foregroundColor(.white)
+                            HStack {
+                                Text(message.text)
+                                    .foregroundColor(.black)
+                            }
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(8)
+                            Spacer()
                         }
-                        .padding()
-                        .background(AppColors.greenColor.color)
-                        .cornerRadius(8)
                     }
-                }
-            } else {
-                if message.chatImageUrl != nil && message.chatImageUrl != "" {
-                    HStack {
-                        chatImageView
-                        .frame(width: 200, height: 200, alignment: .leading)
-                        Spacer()
-                    }
-                    .padding(.vertical, 5)
-                }
-                else if message.audioUrl != nil && message.audioUrl != "" {
-                    HStack {
-                        audioView
-                        Spacer()
-                    }
-                }
-                else {
-                    HStack {
-                        HStack {
-                            Text(message.text)
-                                .foregroundColor(.black)
-                        }
-                        .padding()
-                        .background(Color.white)
-                        .cornerRadius(8)
-                        Spacer()
-                    }
+                    
+                    Text(message.timeString ?? "")
+                        .foregroundColor(.gray.opacity(0.9))
+                        .font(.customFont(size: .small))
+                        .padding(.horizontal)
                 }
                 
             }

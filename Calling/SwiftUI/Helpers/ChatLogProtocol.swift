@@ -23,11 +23,12 @@ struct FirebaseConstants {
     static let users = "users"
     static let chatImageUrl = "chatImageUrl"
     static let audioUrl = "audioUrl"
+    static let senderName = "senderName"
 }
 
 struct Callrequest:Codable{
     let callerName: String
-    let deviceToken: String
+    let deviceToken: [String]
 }
 
 struct ChatMessage: Codable, Identifiable {
@@ -35,6 +36,8 @@ struct ChatMessage: Codable, Identifiable {
     let fromId, toId, text: String
     let chatImageUrl, audioUrl: String?
     let timestamp: Date
+    let senderName: String?
+    var timeString: String? = ""
 }
 
 class CountObserver: ObservableObject {
@@ -163,8 +166,15 @@ extension ChatLogProtocol {
             return
         }
         
-        let receiverDeviceToken = await FirebaseManager.shared.fetchUserWithId(uid: self.chatParticipants[0].uid ?? "")?.voipDeviceToken
-        let caller = Callrequest(callerName: FirebaseManager.shared.currentUser?.userName ?? "", deviceToken: receiverDeviceToken ?? "")
+        var deviceTokensArray: [String] = []
+        for participant in self.chatParticipants {
+            if participant.uid != FirebaseManager.shared.currentUser?.uid {
+                let receiverDeviceToken = await FirebaseManager.shared.fetchUserWithId(uid: participant.uid)?.voipDeviceToken ?? ""
+                deviceTokensArray.append(receiverDeviceToken)
+            }
+        }
+        
+        let caller = Callrequest(callerName: FirebaseManager.shared.currentUser?.userName ?? "", deviceToken: deviceTokensArray)
         let encoder = JSONEncoder()
         do {
             let jsonData = try encoder.encode(caller)

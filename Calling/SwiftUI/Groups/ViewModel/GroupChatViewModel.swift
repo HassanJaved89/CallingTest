@@ -56,6 +56,8 @@ class GroupChatViewModel: ObservableObject, ChatLogProtocol, GroupChatProtocol {
                     if change.type == .added {
                         do {
                             if let cm = try? change.document.data(as: ChatMessage.self) {
+                                var cm = cm
+                                cm.timeString = cm.timestamp.convertToTime()
                                 self.chatMessages.append(cm)
                                 print("Appending chatMessage in ChatLogView: \(Date())")
                             }
@@ -75,7 +77,7 @@ class GroupChatViewModel: ObservableObject, ChatLogProtocol, GroupChatProtocol {
         
         let document = FirebaseManager.shared.fireStore.collection("groups").document(chatGroup.id ?? "").collection("messages").document()
         
-        let messageData = [FirebaseConstants.fromId: fromId, FirebaseConstants.toId: toId,  FirebaseConstants.text: self.chatText, FirebaseConstants.chatImageUrl: imageUploadUrl, FirebaseConstants.audioUrl: audioUrl, FirebaseConstants.timestamp: Timestamp()] as [String : Any]
+        let messageData = [FirebaseConstants.fromId: fromId, FirebaseConstants.toId: toId,  FirebaseConstants.text: self.chatText, FirebaseConstants.chatImageUrl: imageUploadUrl, FirebaseConstants.audioUrl: audioUrl, FirebaseConstants.timestamp: Timestamp(), FirebaseConstants.senderName: FirebaseManager.shared.currentUser?.userName] as [String : Any]
         
         document.setData(messageData) { error in
             if let error = error {
