@@ -49,24 +49,6 @@ struct MainMessagesView: View {
                 )
                 .shadow(radius: 5)
             
-            
-            /*
-            AsyncImage(url: URL(string: vm.chatUser?.profileImageUrl ?? "")) { returnedImage in
-                                returnedImage
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 50, height: 50)
-                                    .clipped()
-                                    .cornerRadius(50)
-                                    .overlay(RoundedRectangle(cornerRadius: 44)
-                                        .stroke(Color(.label), lineWidth: 1)
-                                    )
-                                    .shadow(radius: 5)
-                            } placeholder: {
-                                ProgressView()
-                            }*/
-            
-            
             VStack(alignment: .leading, spacing: 4) {
                 
                 Text(vm.chatUser?.userName ?? "")
@@ -126,22 +108,6 @@ struct MainMessagesView: View {
                                 .overlay(RoundedRectangle(cornerRadius: 64)
                                             .stroke(Color.black, lineWidth: 1))
                                 .shadow(radius: 5)
-                            
-                            
-                            /*
-                            AsyncImage(url: URL(string: recentMessage.profileImageUrl)) { returnedImage in
-                                                returnedImage
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 64, height: 64)
-                                    .clipped()
-                                    .cornerRadius(64)
-                                    .overlay(RoundedRectangle(cornerRadius: 64)
-                                                .stroke(Color.black, lineWidth: 1))
-                                    .shadow(radius: 5)
-                                            } placeholder: {
-                                                ProgressView()
-                                            }*/
                             
                             
                             VStack(alignment: .leading, spacing: 8) {

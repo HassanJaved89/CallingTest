@@ -56,22 +56,6 @@ struct GroupsView: View {
                                                 .stroke(Color.black, lineWidth: 1))
                                     .shadow(radius: 5)
                                 
-                                
-                                
-                                /*
-                                AsyncImage(url: URL(string: group.imageUrl)) { returnedImage in
-                                                    returnedImage
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 40, height: 40)
-                                        .clipped()
-                                        .cornerRadius(40)
-                                        .overlay(RoundedRectangle(cornerRadius: 40)
-                                                    .stroke(Color.black, lineWidth: 1))
-                                        .shadow(radius: 5)
-                                                } placeholder: {
-                                                    ProgressView()
-                                                }*/
                             }
                             
                             

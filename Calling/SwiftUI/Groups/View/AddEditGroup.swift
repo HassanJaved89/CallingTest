@@ -127,31 +127,6 @@ struct AddEditGroup: View {
                             
                         }
                         .shadow(radius: 5)
-                    
-                    
-                    /*
-                    AsyncImage(url: URL(string: chatGroup.imageUrl ?? "")) {
-                        returnedImage in
-                        returnedImage
-                            .resizable()
-                        //.scaledToFill()
-                        //.font(.system(size: 60))
-                            .frame(width: 80, height: 80)
-                        //.clipped()
-                            .cornerRadius(40)
-                            .overlay(alignment: .bottomTrailing) {
-                                Button {
-                                    showImagePicker.toggle()
-                                } label: {
-                                    Image("imageUpload")
-                                        .frame(width: 35, height: 35 ,alignment: .bottom)
-                                }
-                                
-                            }
-                            .shadow(radius: 5)
-                    } placeholder: {
-                        ProgressView()
-                    }*/
                 }
             }
         }

@@ -311,18 +311,6 @@ struct MessageView: View {
             .resizable()
             .scaledToFit()
             .shadow(radius: 5)
-        
-        /*
-        AsyncImage(url: URL(string: message.chatImageUrl ?? "")) { returnedImage in
-            returnedImage
-                .resizable()
-                .scaledToFit()
-                //.frame(width: 200, height: 200, alignment: .trailing)
-                .shadow(radius: 5)
-        } placeholder: {
-            ProgressView()
-                .frame(width: 200, height: 200)
-        }*/
     }
     
     private var audioView: some View {

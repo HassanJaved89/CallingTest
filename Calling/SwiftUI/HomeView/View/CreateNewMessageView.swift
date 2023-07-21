@@ -37,24 +37,6 @@ struct CreateNewMessageView: View {
                                 .stroke(Color(.label), lineWidth: 2)
                                 )
                             
-                            
-                            
-                            /*
-                            AsyncImage(url: URL(string: user.profileImageUrl )) { returnedImage in
-                                                returnedImage
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 50, height: 50)
-                                    .clipped()
-                                    .cornerRadius(50)
-                                    .overlay(RoundedRectangle(cornerRadius: 50)
-                                    .stroke(Color(.label), lineWidth: 2)
-                                    )
-                                    } placeholder: {
-                                        ProgressView()
-                                    }*/
-                            
-                            
                             Text(user.userName)
                                 .foregroundColor(Color(.label))
                             Spacer()
