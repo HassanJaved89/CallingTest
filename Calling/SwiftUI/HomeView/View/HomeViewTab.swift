@@ -15,69 +15,82 @@ struct HomeViewTab: View {
     @ObservedObject var groupsViewModel = GroupsViewModel()
     
     var body: some View {
-        TabView(selection: $selectedTab) {
-            MainMessagesView(chatUser: ChatUser(data: ["" : ""]), chatLogViewModel: chatLogViewModel, vm: vm)
-                .tabItem {
-                    Image("Message")
-                    Text("Chats")
-                }
-                .tag(0)
+        ZStack {
             
-            Text("Calls")
-                .tabItem {
-                    Image("Calls")
-                    Text("Calls")
+            TabView(selection: $selectedTab) {
+                MainMessagesView(chatUser: ChatUser(data: ["" : ""]), chatLogViewModel: chatLogViewModel, vm: vm)
+                    .tabItem {
+                        Image("Message")
+                        Text("Chats")
+                    }
+                    .tag(0)
+                
+                Text("Calls")
+                    .tabItem {
+                        Image("Calls")
+                        Text("Calls")
+                    }
+                    .tag(1)
+                
+                GroupsView(groupsViewModel: groupsViewModel)
+                    .tabItem {
+                        Image("Groups")
+                        Text("Groups")
+                    }
+                    .tag(2)
+                
+                AccountSettings(accountSettingsVm: accountSettingsVm)
+                    .tabItem {
+                        Image("Settings")
+                        Text("Settings")
+                    }
+                    .tag(3)
+            }
+            .tabViewStyle(.automatic)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    VStack {
+                        Image("MinistryImage")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 40, height: 40, alignment: .leading)
+                    }
+                    .padding(.top, 5)
                 }
-                .tag(1)
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    VStack {
+                        
+                        ImageLoader(url: URL(string: vm.chatUser?.profileImageUrl ?? ""))
+                            .scaledToFill()
+                            .frame(width: 40, height: 40)
+                            .clipped()
+                            .cornerRadius(40)
+                            .overlay(RoundedRectangle(cornerRadius: 44)
+                                .stroke(Color(.label), lineWidth: 1)
+                            )
+                            .shadow(radius: 5)
+                        
+                    }
+                    .padding(.top, 5)
+                }
+            }
+            .navigationBarHidden(false)
+            .navigationTitle(titleForSelectedTab(selectedTab))
+            .navigationBarTitleDisplayMode(.inline)
+            .font(.customFont(size: .medium))
+            .tint(AppColors.greenColor.color)
+            .edgesIgnoringSafeArea(.all)
             
-            GroupsView(groupsViewModel: groupsViewModel)
-                .tabItem {
-                    Image("Groups")
-                    Text("Groups")
-                }
-                .tag(2)
-            
-            AccountSettings(accountSettingsVm: accountSettingsVm)
-                .tabItem {
-                    Image("Settings")
-                    Text("Settings")
-                }
-                .tag(3)
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                VStack {
-                    Image("MinistryImage")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 40, height: 40, alignment: .leading)
-                }
-                .padding(.top, 5)
+            VStack {
+                Spacer()
+                Rectangle()
+                    .frame(maxWidth: .infinity, maxHeight: 1)
+                    .foregroundColor(.gray.opacity(0.5))
+                    .padding(.bottom, 60)
             }
             
-            ToolbarItem(placement: .navigationBarTrailing) {
-                VStack {
-                    
-                    ImageLoader(url: URL(string: vm.chatUser?.profileImageUrl ?? ""))
-                        .scaledToFill()
-                        .frame(width: 40, height: 40)
-                        .clipped()
-                        .cornerRadius(40)
-                        .overlay(RoundedRectangle(cornerRadius: 44)
-                            .stroke(Color(.label), lineWidth: 1)
-                        )
-                        .shadow(radius: 5)
-                    
-                }
-                .padding(.top, 5)
-            }
         }
-        .navigationBarHidden(false)
-        .navigationTitle(titleForSelectedTab(selectedTab))
-        .navigationBarTitleDisplayMode(.inline)
-        .font(.customFont(size: .medium))
-        .tint(AppColors.greenColor.color)
-        .edgesIgnoringSafeArea(.all)
     }
     
     func titleForSelectedTab(_ selectedTab: Int) -> String {

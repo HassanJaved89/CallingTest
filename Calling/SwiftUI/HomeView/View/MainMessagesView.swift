@@ -33,6 +33,7 @@ struct MainMessagesView: View {
         .overlay(
             newMessageButton, alignment: .bottomTrailing)
         .padding(.horizontal)
+        .padding(.bottom, 40)
     }
     
     private var customNavBar: some View {

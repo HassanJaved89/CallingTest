@@ -14,6 +14,7 @@ struct AccountSettings: View {
     @State private var showImagePicker = false
     @State private var selectedImage: UIImage?
     @State private var isLoading = false
+    @State private var shouldShowEditView = false
     @ObservedObject var accountSettingsVm: AccountSettingsViewModel
     
     var body: some View {
@@ -71,35 +72,67 @@ struct AccountSettings: View {
                 
             }
             
-            VStack {
-                TextField("Type name here", text: $userName)
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)
-                    .background {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(Color.gray.opacity(0.1))
+            if FirebaseManager.shared.currentUser != nil {
+                HStack(alignment: .center) {
+                    Text("\(FirebaseManager.shared.currentUser?.userName ?? "")")
+                        .font(.customFont(size: .large))
+                    
+                    Button {
+                        shouldShowEditView.toggle()
+                    } label: {
+                        Image("EditPen")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxWidth: 25, maxHeight: 25)
                     }
-            }
-            .padding()
-            
-            Button {
-                createAccountTapped()
-            } label: {
-                HStack {
-                    Text("Save")
-                        .foregroundColor(.white)
-                        .padding(.vertical, 12)
-//                        .overlay {
-//                            ProgressView()
-//                                .opacity(isLoading ? 1.0 : 0)
-//                        }
+
                 }
             }
-            .buttonStyle(GradientButtonStyle()).opacity(isLoading ? 0.1 : 1.0)
-            .overlay {
-                ProgressView()
-                    .foregroundColor(.white)
-                    .opacity(isLoading ? 1.0 : 0)
+            
+            if shouldShowEditView || FirebaseManager.shared.currentUser == nil {
+                VStack {
+                    TextField("Type name here", text: $userName)
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)
+                        .background {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color.gray.opacity(0.1))
+                        }
+                }
+                .padding()
+                
+                Button {
+                    createAccountTapped()
+                } label: {
+                    HStack {
+                        Text("Save")
+                            .foregroundColor(.white)
+                            .padding(.vertical, 12)
+    //                        .overlay {
+    //                            ProgressView()
+    //                                .opacity(isLoading ? 1.0 : 0)
+    //                        }
+                    }
+                }
+                .buttonStyle(GradientButtonStyle()).opacity(isLoading ? 0.1 : 1.0)
+                .overlay {
+                    ProgressView()
+                        .foregroundColor(.white)
+                        .opacity(isLoading ? 1.0 : 0)
+                }
+            }
+            
+            Spacer()
+            
+            if FirebaseManager.shared.currentUser != nil {
+                Button {
+                    FirebaseManager.shared.logout()
+                } label: {
+                    Text("Log out")
+                        .foregroundColor(.white)
+                }
+                .buttonStyle(GradientButtonStyle(startColor: AppColors.redColor.color, endColor: AppColors.redColor.color))
+
             }
         }
         .toolbar {

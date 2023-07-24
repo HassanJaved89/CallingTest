@@ -97,6 +97,14 @@ class FirebaseManager: NSObject {
         return nil
     }
     
+    func logout() {
+        do {
+            try FirebaseManager.shared.auth.signOut()
+        }
+        catch {
+            
+        }
+    }
 }
 
 
