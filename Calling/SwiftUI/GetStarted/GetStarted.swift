@@ -16,11 +16,13 @@ struct GetStarted: View {
         ZStack(alignment: .top) {
             Image("GetStartedBackgroundImage", bundle: nil)
                 .resizable()
-                .scaledToFill()
+                .aspectRatio(contentMode: .fill)
+                //.scaledToFit()
+                //.scaledToFill()
                 .ignoresSafeArea()
-                .overlay {
-                    Color.black.opacity(0.3)
-                }
+//                .overlay {
+//                    Color.black.opacity(0.3)
+//                }
             
             VStack(alignment: .leading) {
                 if isShowingView {
@@ -48,7 +50,9 @@ struct GetStarted: View {
                         Text("Our chat app is the perfect way to securely connect with your business contacts")
                             .foregroundColor(.white)
                             .font(.customFont(size: .large))
-                            .padding(.top, 30)
+                            .padding(.top, 20)
+                        
+                        Spacer()
                         
                         Button {
                             navigateToNextScreen = true
@@ -56,7 +60,7 @@ struct GetStarted: View {
                             Text("Get Started")
                         }
                         .buttonStyle(GradientButtonStyle())
-                        .padding(.top, 40)
+                        .padding(.bottom, 10)
 
                         Spacer()
                     }

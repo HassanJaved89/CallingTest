@@ -23,6 +23,7 @@ struct GroupsView: View {
         .overlay(
             addNewGroupButton, alignment: .bottomTrailing)
         .padding(.horizontal)
+        .padding(.bottom, 40)
         .onAppear {
             groupsViewModel.fetchGroups()
         }

@@ -13,6 +13,7 @@ struct Verification: View {
     @EnvironmentObject var otpModel: AnyOTPModel
     @FocusState var activeField: OTPField?
     @State var otpFields: [String] = Array(repeating: "", count: 6)
+    @State var otpText: String = ""
     @State var isLoading = false
     
     var body: some View {
@@ -95,6 +96,9 @@ struct Verification: View {
         .onChange(of: otpFields) { newValue in
             otpCondition(value: newValue)
         }
+//        .onChange(of: otpText, perform: { newValue in
+//            otpFields = otpText.map { String($0) }
+//        })
         .alert(otpModel.errorMsg, isPresented: $otpModel.showAlert){}
     }
     
@@ -130,11 +134,16 @@ struct Verification: View {
     @ViewBuilder
     func otpField() -> some View {
         HStack(spacing: 14) {
+//            ZStack {
+//                TextField("", text: $otpText)
+//                    .textContentType(.oneTimeCode)
+//            }
+            
             ForEach(0..<6, id: \.self) { index in
                 VStack(spacing: 8) {
                     TextField("", text: $otpFields[index])
                         .keyboardType(.numberPad)
-                        .textContentType(.oneTimeCode)
+                        //.textContentType(.oneTimeCode)
                         .multilineTextAlignment(.center)
                         .focused($activeField, equals: activeStateForIndex(index: index))
                         .tint(AppColors.greenColor.color)
@@ -167,11 +176,12 @@ struct Verification: View {
     }
 }
 
+/*
 struct Verification_Previews: PreviewProvider {
     static var previews: some View {
         Verification()
     }
-}
+}*/
 
 enum OTPField {
     case field1

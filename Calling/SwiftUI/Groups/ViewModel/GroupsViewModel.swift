@@ -86,7 +86,8 @@ class GroupsViewModel: ObservableObject {
                 
                 do {
                     if let rm = try? change.document.data(as: ChatGroup.self) {
-                        if rm.participants.contains(FirebaseManager.shared.currentUser!) {
+                        let userExists = rm.participants.filter { $0.id ==  FirebaseManager.shared.currentUser?.id }
+                        if userExists.count > 0 {
                             self.groups.append(rm)
                         }
                     }

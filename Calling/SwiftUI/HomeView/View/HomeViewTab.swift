@@ -13,6 +13,7 @@ struct HomeViewTab: View {
     @ObservedObject var chatLogViewModel = ChatLogViewModel(chatParticipants: nil)
     @ObservedObject var accountSettingsVm = AccountSettingsViewModel()
     @ObservedObject var groupsViewModel = GroupsViewModel()
+    @ObservedObject var callsViewModel = CallsViewModel()
     
     var body: some View {
         ZStack {
@@ -25,7 +26,7 @@ struct HomeViewTab: View {
                     }
                     .tag(0)
                 
-                Text("Calls")
+                CallsView(vm: callsViewModel)
                     .tabItem {
                         Image("Calls")
                         Text("Calls")
