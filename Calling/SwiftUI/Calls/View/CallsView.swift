@@ -30,9 +30,10 @@ struct CallsView: View {
                         .frame(minHeight: 60)
                         .padding(.horizontal)
                     }
+                    
                     Divider()
                         .padding(.vertical, 8)
-                    
+
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
@@ -58,9 +59,15 @@ struct CallsView: View {
                 .foregroundColor(call.status == .Accepted ? Color(.label) : .red)
                 .font(.customFont(size: .large))
             
-            Text(call.status == .Accepted ? call.type.description : CallStatus.Missed.description)
-                .font(.customFont(size: .small))
-                .foregroundColor(call.status == .Accepted ? Color(.label).opacity(0.5) : .red)
+            HStack {
+                Image("PhoneIcon")
+                    .font(.customFont(size: .small))
+                    .tint(call.status == .Accepted ? Color(.label).opacity(0.5) : .red)
+                Text(call.status == .Accepted ? call.type.description : CallStatus.Missed.description)
+                    .font(.customFont(size: .small))
+                    .foregroundColor(call.status == .Accepted ? Color(.label).opacity(0.5) : .red)
+            }
+            
         }
         
         

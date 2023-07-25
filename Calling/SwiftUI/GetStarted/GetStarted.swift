@@ -20,13 +20,13 @@ struct GetStarted: View {
                 //.scaledToFit()
                 //.scaledToFill()
                 .ignoresSafeArea()
-//                .overlay {
-//                    Color.black.opacity(0.3)
-//                }
+                .overlay {
+                    Color.black.opacity(0.3)
+                }
             
-            VStack(alignment: .leading) {
+            VStack {
                 if isShowingView {
-                    VStack {
+                    VStack(spacing: 20) {
                         HStack {
                             Image("MinistryImage", bundle: nil)
                                 .resizable()
@@ -34,10 +34,12 @@ struct GetStarted: View {
                                 .frame(width: 40, height: 40)
                             VStack(alignment: .leading) {
                                 Text("MINISTRY OF INFORMATION AND BROADCASTING")
+                                    .fixedSize(horizontal: false, vertical: true)
                                 Divider()
+                                    .tint(.white)
                                 Text("Government of Pakistan")
                             }
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                             .font(.customFont(size: .medium))
                         }
                         .padding(.top, 120)
@@ -45,12 +47,12 @@ struct GetStarted: View {
                         Text("Connect with your colleagues securely")
                             .foregroundColor(.white)
                             .font(.customFont(size: .xxLarge))
-                            .padding(.top, 30)
+                            //.padding(.top, 10)
                         
                         Text("Our chat app is the perfect way to securely connect with your business contacts")
                             .foregroundColor(.white)
                             .font(.customFont(size: .large))
-                            .padding(.top, 20)
+                            //.padding(.top, 5)
                         
                         Spacer()
                         

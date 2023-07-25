@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct Call: Codable, Identifiable {
+struct Call: Codable, Identifiable , Equatable {
     @DocumentID var id: String?
     let user: ChatUser
     let timestamp: Date

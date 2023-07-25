@@ -82,13 +82,18 @@ struct HomeViewTab: View {
             .font(.customFont(size: .medium))
             .tint(AppColors.greenColor.color)
             .edgesIgnoringSafeArea(.all)
+            .onAppear {
+                FirebaseManager.shared.userDidSet = {
+                    vm.chatUser = FirebaseManager.shared.currentUser
+                }
+            }
             
             VStack {
                 Spacer()
                 Rectangle()
                     .frame(maxWidth: .infinity, maxHeight: 1)
-                    .foregroundColor(.gray.opacity(0.5))
-                    .padding(.bottom, 60)
+                    .foregroundColor(.gray.opacity(0.3))
+                    .padding(.bottom, 55)
             }
             
         }

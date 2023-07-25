@@ -20,6 +20,8 @@ class GroupChatViewModel: ObservableObject, ChatLogProtocol, GroupChatProtocol {
     
     var audioUrl: String = ""
     
+    @Published var callSent = false
+    
     @Published var chatMessages = [ChatMessage]()
     
     @Published var errorMessage: String = ""

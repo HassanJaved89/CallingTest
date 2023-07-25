@@ -23,6 +23,7 @@
 		FE0FEA542A6E823100C8A291 /* CallsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0FEA532A6E823100C8A291 /* CallsViewModel.swift */; };
 		FE29CA752A5E858F00805A4F /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE29CA742A5E858F00805A4F /* GradientButton.swift */; };
 		FE29CA772A5E93BE00805A4F /* FontInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE29CA762A5E93BE00805A4F /* FontInfo.swift */; };
+		FE4B75FD2A6FD8B7006DE085 /* CallLogProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4B75FC2A6FD8B7006DE085 /* CallLogProtocol.swift */; };
 		FE650C462A52D4EE005D9C9B /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE650C452A52D4EE005D9C9B /* FirebaseService.swift */; };
 		FE650C492A52F378005D9C9B /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE650C482A52F378005D9C9B /* Login.swift */; };
 		FE650C4F2A540223005D9C9B /* AccountSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE650C4E2A540223005D9C9B /* AccountSettings.swift */; };
@@ -81,6 +82,7 @@
 		FE0FEA532A6E823100C8A291 /* CallsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallsViewModel.swift; sourceTree = "<group>"; };
 		FE29CA742A5E858F00805A4F /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		FE29CA762A5E93BE00805A4F /* FontInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontInfo.swift; sourceTree = "<group>"; };
+		FE4B75FC2A6FD8B7006DE085 /* CallLogProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallLogProtocol.swift; sourceTree = "<group>"; };
 		FE650C452A52D4EE005D9C9B /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		FE650C472A52F0B9005D9C9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		FE650C482A52F378005D9C9B /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				FE0FEA402A69564400C8A291 /* GroupChatProtocol.swift */,
 				FE0FEA442A6A574400C8A291 /* HelperFunctions.swift */,
 				FE0FEA492A6A9CDC00C8A291 /* ImageLoader.swift */,
+				FE4B75FC2A6FD8B7006DE085 /* CallLogProtocol.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 				FEAA14AD2A5D433100158FC0 /* AudioSessionManager.swift in Sources */,
 				FEFE57532A66622300CEB558 /* GroupsView.swift in Sources */,
 				FEFE575C2A66703F00CEB558 /* GroupsViewModel.swift in Sources */,
+				FE4B75FD2A6FD8B7006DE085 /* CallLogProtocol.swift in Sources */,
 				FE0AAA3A2A569C2700E9A4D0 /* ChatLogScreen.swift in Sources */,
 				FE0FEA522A6E81C200C8A291 /* CallsView.swift in Sources */,
 				FEFE575E2A67F40500CEB558 /* AddMembersView.swift in Sources */,

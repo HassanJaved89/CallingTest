@@ -53,6 +53,7 @@ protocol ChatLogProtocol: AnyObject, ObservableObject {
     var chatMessages: [ChatMessage] { get set }
     var errorMessage: String { get set }
     var handleCount: (() -> Void)? { get set }
+    var callSent: Bool { get set }
     
     func fetch()
     func handleSend()
@@ -167,9 +168,12 @@ extension ChatLogProtocol {
         }
         
         var deviceTokensArray: [String] = []
+        var receiverUser: ChatUser?
+        
         for participant in self.chatParticipants {
             if participant.uid != FirebaseManager.shared.currentUser?.uid {
-                let receiverDeviceToken = await FirebaseManager.shared.fetchUserWithId(uid: participant.uid)?.voipDeviceToken ?? ""
+                receiverUser = await FirebaseManager.shared.fetchUserWithId(uid: participant.uid)
+                let receiverDeviceToken = receiverUser?.voipDeviceToken ?? ""
                 deviceTokensArray.append(receiverDeviceToken)
             }
         }
@@ -200,9 +204,10 @@ extension ChatLogProtocol {
 //                        let response = try JSONDecoder().decode(Callrequest.self, from: data)
                         print(response)
                         print("Successfully sent call")
-                        // Process the response object
-                    } catch {
-                        // Handle decoding error
+                        
+                        let call = Call(user: receiverUser ?? ChatUser(data: [:]), timestamp: Date(), status: .Accepted, type: .Outgoing)
+                        self.saveCall(call: call)
+                        
                     }
                 }
             }
@@ -210,6 +215,29 @@ extension ChatLogProtocol {
             task.resume()
         } catch {
             // Handle encoding error
+        }
+    }
+    
+    
+    func saveCall(call: Call) {
+        let document = FirebaseManager.shared.fireStore.collection("Calls")
+            .document(FirebaseManager.shared.currentUser?.id ?? "")
+            .collection(FirebaseManager.shared.currentUser?.id ?? "")
+            .document()
+        
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601 // Use ISO8601 date format
+
+        do {
+            let jsonData = try Firestore.Encoder().encode(call)
+            document.setData(jsonData) { error in
+                if let error = error {
+                    print(error)
+                    return
+                }
+            }
+        } catch {
+            print("Error encoding Call to JSON and converting to [String: Any]: \(error)")
         }
     }
 }

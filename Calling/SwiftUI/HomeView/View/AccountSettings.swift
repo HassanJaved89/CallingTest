@@ -145,8 +145,12 @@ struct AccountSettings: View {
         .onAppear {
             Task {
                 let _ = await accountSettingsVm.fetchAllUsers()
-                userName = accountSettingsVm.user?.userName ?? ""
+                DispatchQueue.main.async {
+                    userName = accountSettingsVm.user?.userName ?? ""
+                }
             }
+            
+            FirebaseManager.shared.listenForUserChanges()
         }
         .navigationTitle("Profile")
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)

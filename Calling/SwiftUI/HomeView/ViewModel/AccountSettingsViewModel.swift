@@ -25,7 +25,10 @@ class AccountSettingsViewModel: ObservableObject {
                 let data = snapshot.data()
                 let user = ChatUser(data: data)
                 if user.uid == FirebaseManager.shared.auth.currentUser?.uid {
-                    self.user = .init(data: data)
+                    DispatchQueue.main.async {
+                        self.user = .init(data: data)
+                    }
+                    
                     return true
                 }
             }

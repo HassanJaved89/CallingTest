@@ -11,6 +11,10 @@ import FirebaseFirestoreSwift
 import FirebaseStorage
 import UIKit
 
+protocol ChatLogViewModelDelegate: AnyObject {
+    func didSendNewCall(user: ChatUser?)
+}
+
 class ChatLogViewModel: ObservableObject, ChatLogProtocol {
     
     var chatParticipants: [ChatUser] = [] {
@@ -19,6 +23,7 @@ class ChatLogViewModel: ObservableObject, ChatLogProtocol {
         }
     }
     
+    @Published var callSent = false
     @Published var chatText = ""
     var imageUploadUrl = ""
     var audioUrl = ""

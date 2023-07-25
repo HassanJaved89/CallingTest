@@ -15,8 +15,14 @@ class FirebaseManager: NSObject {
     let auth: Auth
     let storage: Storage
     let fireStore: Firestore
+    var fireStoreListener: ListenerRegistration?
+    var userDidSet: (() -> Void)?
     
-    var currentUser: ChatUser?
+    var currentUser: ChatUser? {
+        didSet {
+            userDidSet?()
+        }
+    }
     
     static let shared = FirebaseManager()
     
@@ -95,6 +101,35 @@ class FirebaseManager: NSObject {
         }
         
         return nil
+    }
+    
+    
+    func listenForUserChanges() {
+        guard let userId = FirebaseManager.shared.auth.currentUser?.uid else { return }
+        
+        fireStoreListener?.remove()
+        
+        fireStoreListener = FirebaseManager.shared.fireStore
+            .collection("users")
+            .addSnapshotListener { querySnapshot, error in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                
+                querySnapshot?.documentChanges.forEach({ change in
+                    if change.type == .modified {
+                        do {
+                            if let cm = try? change.document.data(as: ChatUser.self) {
+                                var cm = cm
+                                if cm.id == FirebaseManager.shared.currentUser?.id {
+                                    FirebaseManager.shared.currentUser = cm
+                                }
+                            }
+                        }
+                    }
+                })
+            }
     }
     
     func logout() {
