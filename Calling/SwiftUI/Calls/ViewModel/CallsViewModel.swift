@@ -29,13 +29,14 @@ class CallsViewModel: ObservableObject, CallLogProtocol {
     }
     
     func fetch() {
-        /*
+        
         self.calls.removeAll()
         guard let fromId = FirebaseManager.shared.auth.currentUser?.uid else { return }
     
         fireStoreListener = FirebaseManager.shared.fireStore
             .collection("Calls")
             .document(fromId)
+            .collection(fromId)
             .addSnapshotListener { querySnapshot, error in
                 if let error = error {
                     print(error)
@@ -46,21 +47,16 @@ class CallsViewModel: ObservableObject, CallLogProtocol {
                 querySnapshot?.documentChanges.forEach({ change in
                     if change.type == .added {
                         do {
-                            if let cm = try? change.document.data(as: ChatMessage.self) {
-                                var cm = cm
-                                cm.timeString = cm.timestamp.convertToTime()
-                                self.chatMessages.append(cm)
-                                print("Appending chatMessage in ChatLogView: \(Date())")
+                            if let cm = try? change.document.data(as: Call.self) {
+                                DispatchQueue.main.async {
+                                    self.calls.append(cm)
+                                }
                             }
                         }
                     }
                 })
-                
-                DispatchQueue.main.async {
-                    self.handleCount?()
-                }
             }
-         */
+         
     }
     
     /*

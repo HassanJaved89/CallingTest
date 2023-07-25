@@ -28,6 +28,7 @@ struct FirebaseConstants {
 
 struct Callrequest:Codable{
     let callerName: String
+    let callerId: String
     let deviceToken: [String]
 }
 
@@ -163,6 +164,7 @@ extension ChatLogProtocol {
     }
     
     func sendCall() async {
+        
         guard let url = URL(string: "http://114.119.185.90:3001/callingApp/Api") else {
             return
         }
@@ -178,7 +180,7 @@ extension ChatLogProtocol {
             }
         }
         
-        let caller = Callrequest(callerName: FirebaseManager.shared.currentUser?.userName ?? "", deviceToken: deviceTokensArray)
+        let caller = Callrequest(callerName: FirebaseManager.shared.currentUser?.userName ?? "", callerId: FirebaseManager.shared.currentUser?.id ?? "", deviceToken: deviceTokensArray)
         let encoder = JSONEncoder()
         do {
             let jsonData = try encoder.encode(caller)
@@ -201,7 +203,6 @@ extension ChatLogProtocol {
                 if let data = data {
                     // Parse the response JSON if needed
                     do {
-//                        let response = try JSONDecoder().decode(Callrequest.self, from: data)
                         print(response)
                         print("Successfully sent call")
                         

@@ -38,6 +38,9 @@ struct CallsView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
         }
+        .onAppear {
+            vm.fetch()
+        }
         .searchable(text: $searchText)
     }
     
