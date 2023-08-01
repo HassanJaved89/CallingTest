@@ -96,7 +96,7 @@
 		FECDB1AB2A6121DE006F41F7 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FECDB1B22A6285ED006F41F7 /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = System/Library/Frameworks/PushKit.framework; sourceTree = SDKROOT; };
 		FECDB1B72A6285FC006F41F7 /* CallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CallKit.framework; path = System/Library/Frameworks/CallKit.framework; sourceTree = SDKROOT; };
-		FECEBC362A4AE2C900550888 /* Calling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calling.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FECEBC362A4AE2C900550888 /* MIB Pak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MIB Pak.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FECEBC392A4AE2C900550888 /* CallingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallingApp.swift; sourceTree = "<group>"; };
 		FECEBC3B2A4AE2C900550888 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FECEBC3D2A4AE2CB00550888 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -243,7 +243,7 @@
 		FECEBC372A4AE2C900550888 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FECEBC362A4AE2C900550888 /* Calling.app */,
+				FECEBC362A4AE2C900550888 /* MIB Pak.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -402,9 +402,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FECEBC352A4AE2C900550888 /* Calling */ = {
+		FECEBC352A4AE2C900550888 /* MIB Pak */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FECEBC442A4AE2CB00550888 /* Build configuration list for PBXNativeTarget "Calling" */;
+			buildConfigurationList = FECEBC442A4AE2CB00550888 /* Build configuration list for PBXNativeTarget "MIB Pak" */;
 			buildPhases = (
 				FECEBC322A4AE2C900550888 /* Sources */,
 				FECEBC332A4AE2C900550888 /* Frameworks */,
@@ -414,7 +414,7 @@
 			);
 			dependencies = (
 			);
-			name = Calling;
+			name = "MIB Pak";
 			packageProductDependencies = (
 				FECEBC482A4AE46900550888 /* AgoraAppGroupDataHelper */,
 				FECEBC4A2A4AE46900550888 /* AgoraBroadcastExtensionHelper */,
@@ -427,7 +427,7 @@
 				FE0FEA472A6A9A3500C8A291 /* Kingfisher */,
 			);
 			productName = Calling;
-			productReference = FECEBC362A4AE2C900550888 /* Calling.app */;
+			productReference = FECEBC362A4AE2C900550888 /* MIB Pak.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -463,7 +463,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FECEBC352A4AE2C900550888 /* Calling */,
+				FECEBC352A4AE2C900550888 /* MIB Pak */,
 			);
 		};
 /* End PBXProject section */
@@ -741,7 +741,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FECEBC442A4AE2CB00550888 /* Build configuration list for PBXNativeTarget "Calling" */ = {
+		FECEBC442A4AE2CB00550888 /* Build configuration list for PBXNativeTarget "MIB Pak" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FECEBC452A4AE2CB00550888 /* Debug */,
