@@ -16,13 +16,19 @@
 		FE0FEA412A69564400C8A291 /* GroupChatProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0FEA402A69564400C8A291 /* GroupChatProtocol.swift */; };
 		FE0FEA432A6956C300C8A291 /* GroupChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0FEA422A6956C300C8A291 /* GroupChatViewModel.swift */; };
 		FE0FEA452A6A574400C8A291 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0FEA442A6A574400C8A291 /* HelperFunctions.swift */; };
-		FE0FEA482A6A9A3500C8A291 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FE0FEA472A6A9A3500C8A291 /* Kingfisher */; };
 		FE0FEA4A2A6A9CDC00C8A291 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0FEA492A6A9CDC00C8A291 /* ImageLoader.swift */; };
 		FE0FEA502A6E811200C8A291 /* Call.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0FEA4F2A6E811200C8A291 /* Call.swift */; };
 		FE0FEA522A6E81C200C8A291 /* CallsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0FEA512A6E81C200C8A291 /* CallsView.swift */; };
 		FE0FEA542A6E823100C8A291 /* CallsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0FEA532A6E823100C8A291 /* CallsViewModel.swift */; };
 		FE29CA752A5E858F00805A4F /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE29CA742A5E858F00805A4F /* GradientButton.swift */; };
 		FE29CA772A5E93BE00805A4F /* FontInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE29CA762A5E93BE00805A4F /* FontInfo.swift */; };
+		FE4190392A79276600947509 /* AgoraUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = FE4190382A79276600947509 /* AgoraUIKit */; };
+		FE41903C2A7927FB00947509 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = FE41903B2A7927FB00947509 /* FirebaseAnalytics */; };
+		FE41903E2A7927FB00947509 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FE41903D2A7927FB00947509 /* FirebaseAuth */; };
+		FE4190402A7927FB00947509 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FE41903F2A7927FB00947509 /* FirebaseFirestore */; };
+		FE4190422A7927FB00947509 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FE4190412A7927FB00947509 /* FirebaseFirestoreSwift */; };
+		FE4190442A7927FB00947509 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FE4190432A7927FB00947509 /* FirebaseStorage */; };
+		FE4190472A79282600947509 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FE4190462A79282600947509 /* Kingfisher */; };
 		FE4B75FD2A6FD8B7006DE085 /* CallLogProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4B75FC2A6FD8B7006DE085 /* CallLogProtocol.swift */; };
 		FE650C462A52D4EE005D9C9B /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE650C452A52D4EE005D9C9B /* FirebaseService.swift */; };
 		FE650C492A52F378005D9C9B /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE650C482A52F378005D9C9B /* Login.swift */; };
@@ -31,11 +37,6 @@
 		FE650C532A5441B2005D9C9B /* AnyOTPModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE650C522A5441B2005D9C9B /* AnyOTPModel.swift */; };
 		FEAA14AD2A5D433100158FC0 /* AudioSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAA14AC2A5D433100158FC0 /* AudioSessionManager.swift */; };
 		FEAA14B02A5D6B0700158FC0 /* GetStarted.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAA14AF2A5D6B0700158FC0 /* GetStarted.swift */; };
-		FEAA14BE2A5D7BDD00158FC0 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = FEAA14BD2A5D7BDD00158FC0 /* FirebaseAnalytics */; };
-		FEAA14C02A5D7BDD00158FC0 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FEAA14BF2A5D7BDD00158FC0 /* FirebaseAuth */; };
-		FEAA14C22A5D7BDD00158FC0 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FEAA14C12A5D7BDD00158FC0 /* FirebaseFirestore */; };
-		FEAA14C42A5D7BDD00158FC0 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FEAA14C32A5D7BDD00158FC0 /* FirebaseFirestoreSwift */; };
-		FEAA14C62A5D7BDD00158FC0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FEAA14C52A5D7BDD00158FC0 /* FirebaseStorage */; };
 		FECDB1A82A5FD87D006F41F7 /* HomeViewTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECDB1A72A5FD87D006F41F7 /* HomeViewTab.swift */; };
 		FECDB1AA2A5FFE1D006F41F7 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECDB1A92A5FFE1D006F41F7 /* CustomSearchBar.swift */; };
 		FECDB1AC2A6121DE006F41F7 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FECDB1AB2A6121DE006F41F7 /* Launch Screen.storyboard */; };
@@ -43,9 +44,6 @@
 		FECEBC3C2A4AE2C900550888 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECEBC3B2A4AE2C900550888 /* ContentView.swift */; };
 		FECEBC3E2A4AE2CB00550888 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FECEBC3D2A4AE2CB00550888 /* Assets.xcassets */; };
 		FECEBC412A4AE2CB00550888 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FECEBC402A4AE2CB00550888 /* Preview Assets.xcassets */; };
-		FECEBC492A4AE46900550888 /* AgoraAppGroupDataHelper in Frameworks */ = {isa = PBXBuildFile; productRef = FECEBC482A4AE46900550888 /* AgoraAppGroupDataHelper */; };
-		FECEBC4B2A4AE46900550888 /* AgoraBroadcastExtensionHelper in Frameworks */ = {isa = PBXBuildFile; productRef = FECEBC4A2A4AE46900550888 /* AgoraBroadcastExtensionHelper */; };
-		FECEBC4D2A4AE46900550888 /* AgoraUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = FECEBC4C2A4AE46900550888 /* AgoraUIKit */; };
 		FECEBCBD2A52B7FB00550888 /* AgoraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECEBCBC2A52B7FB00550888 /* AgoraViewController.swift */; };
 		FECEBCBF2A52B81B00550888 /* AgoraRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECEBCBE2A52B81B00550888 /* AgoraRep.swift */; };
 		FECEBCD12A52CE7900550888 /* Verification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECEBCD02A52CE7900550888 /* Verification.swift */; };
@@ -126,16 +124,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEFE574B2A629AC600CEB558 /* CallKit.framework in Frameworks */,
+				FE41903E2A7927FB00947509 /* FirebaseAuth in Frameworks */,
 				FEFE574A2A629ABD00CEB558 /* PushKit.framework in Frameworks */,
-				FECEBC492A4AE46900550888 /* AgoraAppGroupDataHelper in Frameworks */,
-				FEAA14C02A5D7BDD00158FC0 /* FirebaseAuth in Frameworks */,
-				FECEBC4B2A4AE46900550888 /* AgoraBroadcastExtensionHelper in Frameworks */,
-				FEAA14C42A5D7BDD00158FC0 /* FirebaseFirestoreSwift in Frameworks */,
-				FEAA14BE2A5D7BDD00158FC0 /* FirebaseAnalytics in Frameworks */,
-				FEAA14C62A5D7BDD00158FC0 /* FirebaseStorage in Frameworks */,
-				FE0FEA482A6A9A3500C8A291 /* Kingfisher in Frameworks */,
-				FECEBC4D2A4AE46900550888 /* AgoraUIKit in Frameworks */,
-				FEAA14C22A5D7BDD00158FC0 /* FirebaseFirestore in Frameworks */,
+				FE4190472A79282600947509 /* Kingfisher in Frameworks */,
+				FE4190422A7927FB00947509 /* FirebaseFirestoreSwift in Frameworks */,
+				FE41903C2A7927FB00947509 /* FirebaseAnalytics in Frameworks */,
+				FE4190442A7927FB00947509 /* FirebaseStorage in Frameworks */,
+				FE4190392A79276600947509 /* AgoraUIKit in Frameworks */,
+				FE4190402A7927FB00947509 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,15 +412,13 @@
 			);
 			name = "MIB Pak";
 			packageProductDependencies = (
-				FECEBC482A4AE46900550888 /* AgoraAppGroupDataHelper */,
-				FECEBC4A2A4AE46900550888 /* AgoraBroadcastExtensionHelper */,
-				FECEBC4C2A4AE46900550888 /* AgoraUIKit */,
-				FEAA14BD2A5D7BDD00158FC0 /* FirebaseAnalytics */,
-				FEAA14BF2A5D7BDD00158FC0 /* FirebaseAuth */,
-				FEAA14C12A5D7BDD00158FC0 /* FirebaseFirestore */,
-				FEAA14C32A5D7BDD00158FC0 /* FirebaseFirestoreSwift */,
-				FEAA14C52A5D7BDD00158FC0 /* FirebaseStorage */,
-				FE0FEA472A6A9A3500C8A291 /* Kingfisher */,
+				FE4190382A79276600947509 /* AgoraUIKit */,
+				FE41903B2A7927FB00947509 /* FirebaseAnalytics */,
+				FE41903D2A7927FB00947509 /* FirebaseAuth */,
+				FE41903F2A7927FB00947509 /* FirebaseFirestore */,
+				FE4190412A7927FB00947509 /* FirebaseFirestoreSwift */,
+				FE4190432A7927FB00947509 /* FirebaseStorage */,
+				FE4190462A79282600947509 /* Kingfisher */,
 			);
 			productName = Calling;
 			productReference = FECEBC362A4AE2C900550888 /* MIB Pak.app */;
@@ -455,9 +449,9 @@
 			);
 			mainGroup = FECEBC2D2A4AE2C900550888;
 			packageReferences = (
-				FECEBC472A4AE46900550888 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS" */,
-				FEAA14BC2A5D7BDD00158FC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				FE0FEA462A6A9A3500C8A291 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				FE4190372A79276600947509 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS" */,
+				FE41903A2A7927FB00947509 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				FE4190452A79282600947509 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = FECEBC372A4AE2C900550888 /* Products */;
 			projectDirPath = "";
@@ -753,23 +747,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FE0FEA462A6A9A3500C8A291 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
-			};
-		};
-		FEAA14BC2A5D7BDD00158FC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.0.0;
-			};
-		};
-		FECEBC472A4AE46900550888 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS" */ = {
+		FE4190372A79276600947509 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AgoraIO-Community/VideoUIKit-iOS.git";
 			requirement = {
@@ -777,53 +755,59 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		FE41903A2A7927FB00947509 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+		FE4190452A79282600947509 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		FE0FEA472A6A9A3500C8A291 /* Kingfisher */ = {
+		FE4190382A79276600947509 /* AgoraUIKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FE0FEA462A6A9A3500C8A291 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
+			package = FE4190372A79276600947509 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS" */;
+			productName = AgoraUIKit;
 		};
-		FEAA14BD2A5D7BDD00158FC0 /* FirebaseAnalytics */ = {
+		FE41903B2A7927FB00947509 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FEAA14BC2A5D7BDD00158FC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = FE41903A2A7927FB00947509 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
-		FEAA14BF2A5D7BDD00158FC0 /* FirebaseAuth */ = {
+		FE41903D2A7927FB00947509 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FEAA14BC2A5D7BDD00158FC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = FE41903A2A7927FB00947509 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		FEAA14C12A5D7BDD00158FC0 /* FirebaseFirestore */ = {
+		FE41903F2A7927FB00947509 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FEAA14BC2A5D7BDD00158FC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = FE41903A2A7927FB00947509 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
-		FEAA14C32A5D7BDD00158FC0 /* FirebaseFirestoreSwift */ = {
+		FE4190412A7927FB00947509 /* FirebaseFirestoreSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FEAA14BC2A5D7BDD00158FC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = FE41903A2A7927FB00947509 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
 		};
-		FEAA14C52A5D7BDD00158FC0 /* FirebaseStorage */ = {
+		FE4190432A7927FB00947509 /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FEAA14BC2A5D7BDD00158FC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = FE41903A2A7927FB00947509 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
 		};
-		FECEBC482A4AE46900550888 /* AgoraAppGroupDataHelper */ = {
+		FE4190462A79282600947509 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FECEBC472A4AE46900550888 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS" */;
-			productName = AgoraAppGroupDataHelper;
-		};
-		FECEBC4A2A4AE46900550888 /* AgoraBroadcastExtensionHelper */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FECEBC472A4AE46900550888 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS" */;
-			productName = AgoraBroadcastExtensionHelper;
-		};
-		FECEBC4C2A4AE46900550888 /* AgoraUIKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FECEBC472A4AE46900550888 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS" */;
-			productName = AgoraUIKit;
+			package = FE4190452A79282600947509 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
