@@ -165,11 +165,11 @@ extension ChatLogProtocol {
     
     func sendCall() async {
         
-        guard let url = URL(string: "http://114.119.185.90:3001/callingApp/Api") else {
+        guard let url = URL(string: "http://114.119.185.90:3004/callingApp/Api") else {
             return
         }
         
-        var deviceTokensArray: [String] = []
+         var deviceTokensArray: [String] = []
         var receiverUser: ChatUser?
         
         for participant in self.chatParticipants {
