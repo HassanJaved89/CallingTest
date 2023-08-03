@@ -37,7 +37,7 @@
 		<key>FirebaseCore.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false/>
+			<true/>
 		</dict>
 		<key>FirebaseCoreExtension.xcscheme</key>
 		<dict>
