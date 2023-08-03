@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		30CCA09D7E08EBBD0D4209C2 /* Pods_MIB_Pak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E401A82873CBDD527F79E29 /* Pods_MIB_Pak.framework */; };
-		F01F49B93A26B28ABDEBB625 /* libPods-MIB PakTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8ED8E577480E05282B02BC /* libPods-MIB PakTests.a */; };
 		FE0AAA362A55939700E9A4D0 /* CreateNewMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0AAA352A55939700E9A4D0 /* CreateNewMessageViewModel.swift */; };
 		FE0AAA382A5593EC00E9A4D0 /* CreateNewMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0AAA372A5593EC00E9A4D0 /* CreateNewMessageView.swift */; };
 		FE0AAA3A2A569C2700E9A4D0 /* ChatLogScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0AAA392A569C2700E9A4D0 /* ChatLogScreen.swift */; };
@@ -24,7 +22,6 @@
 		FE0FEA542A6E823100C8A291 /* CallsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0FEA532A6E823100C8A291 /* CallsViewModel.swift */; };
 		FE29CA752A5E858F00805A4F /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE29CA742A5E858F00805A4F /* GradientButton.swift */; };
 		FE29CA772A5E93BE00805A4F /* FontInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE29CA762A5E93BE00805A4F /* FontInfo.swift */; };
-		FE41906B2A7B876B00947509 /* MIB_PakTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE41906A2A7B876B00947509 /* MIB_PakTests.swift */; };
 		FE4190732A7B8D2600947509 /* AgoraUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = FE4190722A7B8D2600947509 /* AgoraUIKit */; };
 		FE4190762A7B8D3B00947509 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FE4190752A7B8D3B00947509 /* Kingfisher */; };
 		FE4B75FD2A6FD8B7006DE085 /* CallLogProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4B75FC2A6FD8B7006DE085 /* CallLogProtocol.swift */; };
@@ -35,6 +32,12 @@
 		FE650C532A5441B2005D9C9B /* AnyOTPModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE650C522A5441B2005D9C9B /* AnyOTPModel.swift */; };
 		FEAA14AD2A5D433100158FC0 /* AudioSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAA14AC2A5D433100158FC0 /* AudioSessionManager.swift */; };
 		FEAA14B02A5D6B0700158FC0 /* GetStarted.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAA14AF2A5D6B0700158FC0 /* GetStarted.swift */; };
+		FEAC06EB2A7BCE5D00E87D9D /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = FEAC06EA2A7BCE5D00E87D9D /* FirebaseAppCheck */; };
+		FEAC06ED2A7BCE5D00E87D9D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FEAC06EC2A7BCE5D00E87D9D /* FirebaseAuth */; };
+		FEAC06EF2A7BCE5D00E87D9D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FEAC06EE2A7BCE5D00E87D9D /* FirebaseFirestore */; };
+		FEAC06F12A7BCE5D00E87D9D /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FEAC06F02A7BCE5D00E87D9D /* FirebaseFirestoreSwift */; };
+		FEAC06F32A7BCE5D00E87D9D /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = FEAC06F22A7BCE5D00E87D9D /* FirebaseFunctions */; };
+		FEAC06F52A7BCE5D00E87D9D /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FEAC06F42A7BCE5D00E87D9D /* FirebaseStorage */; };
 		FECDB1A82A5FD87D006F41F7 /* HomeViewTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECDB1A72A5FD87D006F41F7 /* HomeViewTab.swift */; };
 		FECDB1AA2A5FFE1D006F41F7 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECDB1A92A5FFE1D006F41F7 /* CustomSearchBar.swift */; };
 		FECDB1AC2A6121DE006F41F7 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FECDB1AB2A6121DE006F41F7 /* Launch Screen.storyboard */; };
@@ -62,23 +65,7 @@
 		FEFE57622A69308C00CEB558 /* ChatLogProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFE57612A69308B00CEB558 /* ChatLogProtocol.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		FE41906C2A7B876B00947509 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FECEBC2E2A4AE2C900550888 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FECEBC352A4AE2C900550888;
-			remoteInfo = "MIB Pak";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		0983ADAD7CB67F613C27C1FA /* Pods-MIB Pak.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MIB Pak.release.xcconfig"; path = "Target Support Files/Pods-MIB Pak/Pods-MIB Pak.release.xcconfig"; sourceTree = "<group>"; };
-		1E401A82873CBDD527F79E29 /* Pods_MIB_Pak.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MIB_Pak.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		268E68657FB38F656761961A /* Pods-MIB PakTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MIB PakTests.release.xcconfig"; path = "Target Support Files/Pods-MIB PakTests/Pods-MIB PakTests.release.xcconfig"; sourceTree = "<group>"; };
-		56C8D2A6EC25CAE9218F2294 /* Pods-MIB Pak.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MIB Pak.debug.xcconfig"; path = "Target Support Files/Pods-MIB Pak/Pods-MIB Pak.debug.xcconfig"; sourceTree = "<group>"; };
-		7C8ED8E577480E05282B02BC /* libPods-MIB PakTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MIB PakTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC355AB51675C6EC45F0A92A /* Pods-MIB PakTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MIB PakTests.debug.xcconfig"; path = "Target Support Files/Pods-MIB PakTests/Pods-MIB PakTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FE0AAA352A55939700E9A4D0 /* CreateNewMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewMessageViewModel.swift; sourceTree = "<group>"; };
 		FE0AAA372A5593EC00E9A4D0 /* CreateNewMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewMessageView.swift; sourceTree = "<group>"; };
 		FE0AAA392A569C2700E9A4D0 /* ChatLogScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogScreen.swift; sourceTree = "<group>"; };
@@ -94,7 +81,6 @@
 		FE0FEA532A6E823100C8A291 /* CallsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallsViewModel.swift; sourceTree = "<group>"; };
 		FE29CA742A5E858F00805A4F /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		FE29CA762A5E93BE00805A4F /* FontInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontInfo.swift; sourceTree = "<group>"; };
-		FE4190682A7B876B00947509 /* MIB PakTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MIB PakTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE41906A2A7B876B00947509 /* MIB_PakTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIB_PakTests.swift; sourceTree = "<group>"; };
 		FE4190772A7B93C500947509 /* FirebaseAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE4B75FC2A6FD8B7006DE085 /* CallLogProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallLogProtocol.swift; sourceTree = "<group>"; };
@@ -136,14 +122,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		FE4190652A7B876B00947509 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F01F49B93A26B28ABDEBB625 /* libPods-MIB PakTests.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FECEBC332A4AE2C900550888 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -151,25 +129,19 @@
 				FEFE574B2A629AC600CEB558 /* CallKit.framework in Frameworks */,
 				FEFE574A2A629ABD00CEB558 /* PushKit.framework in Frameworks */,
 				FE4190732A7B8D2600947509 /* AgoraUIKit in Frameworks */,
-				30CCA09D7E08EBBD0D4209C2 /* Pods_MIB_Pak.framework in Frameworks */,
 				FE4190762A7B8D3B00947509 /* Kingfisher in Frameworks */,
+				FEAC06EB2A7BCE5D00E87D9D /* FirebaseAppCheck in Frameworks */,
+				FEAC06EF2A7BCE5D00E87D9D /* FirebaseFirestore in Frameworks */,
+				FEAC06ED2A7BCE5D00E87D9D /* FirebaseAuth in Frameworks */,
+				FEAC06F32A7BCE5D00E87D9D /* FirebaseFunctions in Frameworks */,
+				FEAC06F52A7BCE5D00E87D9D /* FirebaseStorage in Frameworks */,
+				FEAC06F12A7BCE5D00E87D9D /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		06A101C9FC12A562458F73D3 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				56C8D2A6EC25CAE9218F2294 /* Pods-MIB Pak.debug.xcconfig */,
-				0983ADAD7CB67F613C27C1FA /* Pods-MIB Pak.release.xcconfig */,
-				BC355AB51675C6EC45F0A92A /* Pods-MIB PakTests.debug.xcconfig */,
-				268E68657FB38F656761961A /* Pods-MIB PakTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		FE0FEA4B2A6E80DD00C8A291 /* Calls */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,8 +234,6 @@
 				FE4190772A7B93C500947509 /* FirebaseAuth.framework */,
 				FECDB1B72A6285FC006F41F7 /* CallKit.framework */,
 				FECDB1B22A6285ED006F41F7 /* PushKit.framework */,
-				1E401A82873CBDD527F79E29 /* Pods_MIB_Pak.framework */,
-				7C8ED8E577480E05282B02BC /* libPods-MIB PakTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -277,7 +247,6 @@
 				FECEBC372A4AE2C900550888 /* Products */,
 				FEFE574D2A62F00900CEB558 /* GoogleService-Info.plist */,
 				FECDB1B12A6285EC006F41F7 /* Frameworks */,
-				06A101C9FC12A562458F73D3 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -285,7 +254,6 @@
 			isa = PBXGroup;
 			children = (
 				FECEBC362A4AE2C900550888 /* MIB Pak.app */,
-				FE4190682A7B876B00947509 /* MIB PakTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -444,34 +412,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FE4190672A7B876B00947509 /* MIB PakTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FE41906E2A7B876B00947509 /* Build configuration list for PBXNativeTarget "MIB PakTests" */;
-			buildPhases = (
-				2CC15E5FA2DAB0773904317F /* [CP] Check Pods Manifest.lock */,
-				FE4190642A7B876B00947509 /* Sources */,
-				FE4190652A7B876B00947509 /* Frameworks */,
-				FE4190662A7B876B00947509 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FE41906D2A7B876B00947509 /* PBXTargetDependency */,
-			);
-			name = "MIB PakTests";
-			productName = "MIB PakTests";
-			productReference = FE4190682A7B876B00947509 /* MIB PakTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		FECEBC352A4AE2C900550888 /* MIB Pak */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FECEBC442A4AE2CB00550888 /* Build configuration list for PBXNativeTarget "MIB Pak" */;
 			buildPhases = (
-				3130218E77966349D552B8C3 /* [CP] Check Pods Manifest.lock */,
 				FECEBC322A4AE2C900550888 /* Sources */,
 				FECEBC332A4AE2C900550888 /* Frameworks */,
 				FECEBC342A4AE2C900550888 /* Resources */,
-				2C4100FAE32D5B7A4391978A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -481,6 +428,12 @@
 			packageProductDependencies = (
 				FE4190722A7B8D2600947509 /* AgoraUIKit */,
 				FE4190752A7B8D3B00947509 /* Kingfisher */,
+				FEAC06EA2A7BCE5D00E87D9D /* FirebaseAppCheck */,
+				FEAC06EC2A7BCE5D00E87D9D /* FirebaseAuth */,
+				FEAC06EE2A7BCE5D00E87D9D /* FirebaseFirestore */,
+				FEAC06F02A7BCE5D00E87D9D /* FirebaseFirestoreSwift */,
+				FEAC06F22A7BCE5D00E87D9D /* FirebaseFunctions */,
+				FEAC06F42A7BCE5D00E87D9D /* FirebaseStorage */,
 			);
 			productName = Calling;
 			productReference = FECEBC362A4AE2C900550888 /* MIB Pak.app */;
@@ -496,10 +449,6 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					FE4190672A7B876B00947509 = {
-						CreatedOnToolsVersion = 14.3;
-						TestTargetID = FECEBC352A4AE2C900550888;
-					};
 					FECEBC352A4AE2C900550888 = {
 						CreatedOnToolsVersion = 14.3;
 					};
@@ -515,27 +464,20 @@
 			);
 			mainGroup = FECEBC2D2A4AE2C900550888;
 			packageReferences = (
-				FE4190712A7B8D2600947509 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS" */,
-				FE4190742A7B8D3B00947509 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				FE4190712A7B8D2600947509 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS.git" */,
+				FE4190742A7B8D3B00947509 /* XCRemoteSwiftPackageReference "Kingfisher.git" */,
+				FEAC06E92A7BCE5D00E87D9D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = FECEBC372A4AE2C900550888 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				FECEBC352A4AE2C900550888 /* MIB Pak */,
-				FE4190672A7B876B00947509 /* MIB PakTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		FE4190662A7B876B00947509 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FECEBC342A4AE2C900550888 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -549,79 +491,7 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		2C4100FAE32D5B7A4391978A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MIB Pak/Pods-MIB Pak-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MIB Pak/Pods-MIB Pak-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MIB Pak/Pods-MIB Pak-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2CC15E5FA2DAB0773904317F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MIB PakTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3130218E77966349D552B8C3 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MIB Pak-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		FE4190642A7B876B00947509 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FE41906B2A7B876B00947509 /* MIB_PakTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FECEBC322A4AE2C900550888 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -673,67 +543,7 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		FE41906D2A7B876B00947509 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FECEBC352A4AE2C900550888 /* MIB Pak */;
-			targetProxy = FE41906C2A7B876B00947509 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		FE41906F2A7B876B00947509 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC355AB51675C6EC45F0A92A /* Pods-MIB PakTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9ZNYQKY8Z2;
-				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-				);
-				MARKETING_VERSION = 1.0;
-				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tekrowe.MIB-PakTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MIB Pak.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MIB Pak";
-			};
-			name = Debug;
-		};
-		FE4190702A7B876B00947509 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 268E68657FB38F656761961A /* Pods-MIB PakTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9ZNYQKY8Z2;
-				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-				);
-				MARKETING_VERSION = 1.0;
-				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tekrowe.MIB-PakTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MIB Pak.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MIB Pak";
-			};
-			name = Release;
-		};
 		FECEBC422A4AE2CB00550888 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -850,7 +660,6 @@
 		};
 		FECEBC452A4AE2CB00550888 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 56C8D2A6EC25CAE9218F2294 /* Pods-MIB Pak.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -891,7 +700,6 @@
 		};
 		FECEBC462A4AE2CB00550888 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0983ADAD7CB67F613C27C1FA /* Pods-MIB Pak.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -933,15 +741,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FE41906E2A7B876B00947509 /* Build configuration list for PBXNativeTarget "MIB PakTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FE41906F2A7B876B00947509 /* Debug */,
-				FE4190702A7B876B00947509 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		FECEBC312A4AE2C900550888 /* Build configuration list for PBXProject "Calling" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -963,7 +762,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FE4190712A7B8D2600947509 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS" */ = {
+		FE4190712A7B8D2600947509 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AgoraIO-Community/VideoUIKit-iOS.git";
 			requirement = {
@@ -971,7 +770,7 @@
 				minimumVersion = 4.0.0;
 			};
 		};
-		FE4190742A7B8D3B00947509 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		FE4190742A7B8D3B00947509 /* XCRemoteSwiftPackageReference "Kingfisher.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -979,18 +778,56 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		FEAC06E92A7BCE5D00E87D9D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		FE4190722A7B8D2600947509 /* AgoraUIKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FE4190712A7B8D2600947509 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS" */;
+			package = FE4190712A7B8D2600947509 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS.git" */;
 			productName = AgoraUIKit;
 		};
 		FE4190752A7B8D3B00947509 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FE4190742A7B8D3B00947509 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = FE4190742A7B8D3B00947509 /* XCRemoteSwiftPackageReference "Kingfisher.git" */;
 			productName = Kingfisher;
+		};
+		FEAC06EA2A7BCE5D00E87D9D /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FEAC06E92A7BCE5D00E87D9D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		FEAC06EC2A7BCE5D00E87D9D /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FEAC06E92A7BCE5D00E87D9D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		FEAC06EE2A7BCE5D00E87D9D /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FEAC06E92A7BCE5D00E87D9D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		FEAC06F02A7BCE5D00E87D9D /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FEAC06E92A7BCE5D00E87D9D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		FEAC06F22A7BCE5D00E87D9D /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FEAC06E92A7BCE5D00E87D9D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
+		FEAC06F42A7BCE5D00E87D9D /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FEAC06E92A7BCE5D00E87D9D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

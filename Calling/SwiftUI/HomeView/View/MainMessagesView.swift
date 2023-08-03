@@ -11,7 +11,7 @@ import Kingfisher
 struct MainMessagesView: View {
     
     @State var shouldShowLogOutOptions = false
-    @State var shouldShowNewMessageScreen = true
+    @State var shouldShowNewMessageScreen = false
     @State var shouldNavigateToChatLogView = false
     @State var chatUser: ChatUser
     @ObservedObject var chatLogViewModel: ChatLogViewModel
