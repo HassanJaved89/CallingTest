@@ -40,6 +40,17 @@
                ReferencedContainer = "container:Calling.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FEAC06F92A7BD8BC00E87D9D"
+               BuildableName = "MIB PakTests2.xctest"
+               BlueprintName = "MIB PakTests2"
+               ReferencedContainer = "container:Calling.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

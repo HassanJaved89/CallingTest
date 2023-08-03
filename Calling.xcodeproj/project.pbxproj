@@ -38,6 +38,7 @@
 		FEAC06F12A7BCE5D00E87D9D /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FEAC06F02A7BCE5D00E87D9D /* FirebaseFirestoreSwift */; };
 		FEAC06F32A7BCE5D00E87D9D /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = FEAC06F22A7BCE5D00E87D9D /* FirebaseFunctions */; };
 		FEAC06F52A7BCE5D00E87D9D /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FEAC06F42A7BCE5D00E87D9D /* FirebaseStorage */; };
+		FEAC06FD2A7BD8BC00E87D9D /* MIB_PakTests2.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAC06FC2A7BD8BC00E87D9D /* MIB_PakTests2.swift */; };
 		FECDB1A82A5FD87D006F41F7 /* HomeViewTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECDB1A72A5FD87D006F41F7 /* HomeViewTab.swift */; };
 		FECDB1AA2A5FFE1D006F41F7 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECDB1A92A5FFE1D006F41F7 /* CustomSearchBar.swift */; };
 		FECDB1AC2A6121DE006F41F7 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FECDB1AB2A6121DE006F41F7 /* Launch Screen.storyboard */; };
@@ -64,6 +65,16 @@
 		FEFE57602A69025200CEB558 /* GroupChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFE575F2A69025200CEB558 /* GroupChatView.swift */; };
 		FEFE57622A69308C00CEB558 /* ChatLogProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFE57612A69308B00CEB558 /* ChatLogProtocol.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FEAC06FE2A7BD8BC00E87D9D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FECEBC2E2A4AE2C900550888 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FECEBC352A4AE2C900550888;
+			remoteInfo = "MIB Pak";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		FE0AAA352A55939700E9A4D0 /* CreateNewMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewMessageViewModel.swift; sourceTree = "<group>"; };
@@ -92,6 +103,8 @@
 		FE650C522A5441B2005D9C9B /* AnyOTPModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyOTPModel.swift; sourceTree = "<group>"; };
 		FEAA14AC2A5D433100158FC0 /* AudioSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSessionManager.swift; sourceTree = "<group>"; };
 		FEAA14AF2A5D6B0700158FC0 /* GetStarted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStarted.swift; sourceTree = "<group>"; };
+		FEAC06FA2A7BD8BC00E87D9D /* MIB PakTests2.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MIB PakTests2.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEAC06FC2A7BD8BC00E87D9D /* MIB_PakTests2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIB_PakTests2.swift; sourceTree = "<group>"; };
 		FECDB1A72A5FD87D006F41F7 /* HomeViewTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewTab.swift; sourceTree = "<group>"; };
 		FECDB1A92A5FFE1D006F41F7 /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		FECDB1AB2A6121DE006F41F7 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -122,6 +135,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		FEAC06F72A7BD8BC00E87D9D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FECEBC332A4AE2C900550888 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -228,6 +248,14 @@
 			path = GetStarted;
 			sourceTree = "<group>";
 		};
+		FEAC06FB2A7BD8BC00E87D9D /* MIB PakTests2 */ = {
+			isa = PBXGroup;
+			children = (
+				FEAC06FC2A7BD8BC00E87D9D /* MIB_PakTests2.swift */,
+			);
+			path = "MIB PakTests2";
+			sourceTree = "<group>";
+		};
 		FECDB1B12A6285EC006F41F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,6 +272,7 @@
 				FECEBC382A4AE2C900550888 /* Calling */,
 				FECEBC3D2A4AE2CB00550888 /* Assets.xcassets */,
 				FE4190692A7B876B00947509 /* MIB PakTests */,
+				FEAC06FB2A7BD8BC00E87D9D /* MIB PakTests2 */,
 				FECEBC372A4AE2C900550888 /* Products */,
 				FEFE574D2A62F00900CEB558 /* GoogleService-Info.plist */,
 				FECDB1B12A6285EC006F41F7 /* Frameworks */,
@@ -254,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				FECEBC362A4AE2C900550888 /* MIB Pak.app */,
+				FEAC06FA2A7BD8BC00E87D9D /* MIB PakTests2.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -412,6 +442,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		FEAC06F92A7BD8BC00E87D9D /* MIB PakTests2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FEAC07022A7BD8BC00E87D9D /* Build configuration list for PBXNativeTarget "MIB PakTests2" */;
+			buildPhases = (
+				FEAC06F62A7BD8BC00E87D9D /* Sources */,
+				FEAC06F72A7BD8BC00E87D9D /* Frameworks */,
+				FEAC06F82A7BD8BC00E87D9D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FEAC06FF2A7BD8BC00E87D9D /* PBXTargetDependency */,
+			);
+			name = "MIB PakTests2";
+			productName = "MIB PakTests2";
+			productReference = FEAC06FA2A7BD8BC00E87D9D /* MIB PakTests2.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		FECEBC352A4AE2C900550888 /* MIB Pak */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FECEBC442A4AE2CB00550888 /* Build configuration list for PBXNativeTarget "MIB Pak" */;
@@ -449,6 +497,10 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					FEAC06F92A7BD8BC00E87D9D = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = FECEBC352A4AE2C900550888;
+					};
 					FECEBC352A4AE2C900550888 = {
 						CreatedOnToolsVersion = 14.3;
 					};
@@ -464,8 +516,8 @@
 			);
 			mainGroup = FECEBC2D2A4AE2C900550888;
 			packageReferences = (
-				FE4190712A7B8D2600947509 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS.git" */,
-				FE4190742A7B8D3B00947509 /* XCRemoteSwiftPackageReference "Kingfisher.git" */,
+				FE4190712A7B8D2600947509 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS" */,
+				FE4190742A7B8D3B00947509 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				FEAC06E92A7BCE5D00E87D9D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = FECEBC372A4AE2C900550888 /* Products */;
@@ -473,11 +525,19 @@
 			projectRoot = "";
 			targets = (
 				FECEBC352A4AE2C900550888 /* MIB Pak */,
+				FEAC06F92A7BD8BC00E87D9D /* MIB PakTests2 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		FEAC06F82A7BD8BC00E87D9D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FECEBC342A4AE2C900550888 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -492,6 +552,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		FEAC06F62A7BD8BC00E87D9D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEAC06FD2A7BD8BC00E87D9D /* MIB_PakTests2.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FECEBC322A4AE2C900550888 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -543,7 +611,51 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		FEAC06FF2A7BD8BC00E87D9D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FECEBC352A4AE2C900550888 /* MIB Pak */;
+			targetProxy = FEAC06FE2A7BD8BC00E87D9D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		FEAC07002A7BD8BC00E87D9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9ZNYQKY8Z2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tekrowe.MIB-PakTests2";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MIB Pak.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MIB Pak";
+			};
+			name = Debug;
+		};
+		FEAC07012A7BD8BC00E87D9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9ZNYQKY8Z2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tekrowe.MIB-PakTests2";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MIB Pak.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MIB Pak";
+			};
+			name = Release;
+		};
 		FECEBC422A4AE2CB00550888 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -741,6 +853,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		FEAC07022A7BD8BC00E87D9D /* Build configuration list for PBXNativeTarget "MIB PakTests2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FEAC07002A7BD8BC00E87D9D /* Debug */,
+				FEAC07012A7BD8BC00E87D9D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FECEBC312A4AE2C900550888 /* Build configuration list for PBXProject "Calling" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -762,7 +883,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FE4190712A7B8D2600947509 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS.git" */ = {
+		FE4190712A7B8D2600947509 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AgoraIO-Community/VideoUIKit-iOS.git";
 			requirement = {
@@ -770,7 +891,7 @@
 				minimumVersion = 4.0.0;
 			};
 		};
-		FE4190742A7B8D3B00947509 /* XCRemoteSwiftPackageReference "Kingfisher.git" */ = {
+		FE4190742A7B8D3B00947509 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -791,12 +912,12 @@
 /* Begin XCSwiftPackageProductDependency section */
 		FE4190722A7B8D2600947509 /* AgoraUIKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FE4190712A7B8D2600947509 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS.git" */;
+			package = FE4190712A7B8D2600947509 /* XCRemoteSwiftPackageReference "VideoUIKit-iOS" */;
 			productName = AgoraUIKit;
 		};
 		FE4190752A7B8D3B00947509 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FE4190742A7B8D3B00947509 /* XCRemoteSwiftPackageReference "Kingfisher.git" */;
+			package = FE4190742A7B8D3B00947509 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 		FEAC06EA2A7BCE5D00E87D9D /* FirebaseAppCheck */ = {
