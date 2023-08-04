@@ -10,6 +10,8 @@ import SwiftUI
 struct CallsView: View {
     
     @State private var searchText = ""
+    @State private var isCallingViewPresented = false
+    @State private var selectedCallObject: Call = Call(user: ChatUser(data: [:]), timestamp: Date(), status: .Accepted, type: .Outgoing)
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var vm: CallsViewModel
     
@@ -38,8 +40,24 @@ struct CallsView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
         }
+        .onChange(of: selectedCallObject, perform: { newValue in
+            isCallingViewPresented = true
+        })
+        .fullScreenCover(isPresented: $isCallingViewPresented, content: {
+            AgoraRep(presentationMode: $isCallingViewPresented).frame(maxWidth: .infinity, maxHeight: .infinity)
+                .onDisappear {
+                    isCallingViewPresented = false
+                }
+        })
+        .onChange(of: isCallingViewPresented, perform: { newValue in
+            if newValue {
+                Task {
+                    vm.sendCall(call: selectedCallObject)
+                }
+            }
+        })
         .onAppear {
-            vm.fetch()
+            //vm.fetch()
         }
         .searchable(text: $searchText)
     }
@@ -63,9 +81,14 @@ struct CallsView: View {
                 .font(.customFont(size: .large))
             
             HStack {
-                Image("PhoneIcon")
-                    .font(.customFont(size: .small))
-                    .tint(call.status == .Accepted ? Color(.label).opacity(0.5) : .red)
+                Button {
+                    
+                } label: {
+                    Image("PhoneIcon")
+                        .font(.customFont(size: .small))
+                        .tint(call.status == .Accepted ? Color(.label).opacity(0.5) : .red)
+                }
+                
                 Text(call.status == .Accepted ? call.type.description : CallStatus.Missed.description)
                     .font(.customFont(size: .small))
                     .foregroundColor(call.status == .Accepted ? Color(.label).opacity(0.5) : .red)
@@ -81,16 +104,14 @@ struct CallsView: View {
                 .font(.customFont(size: .small))
             
             Button {
-                
+                selectedCallObject = call
             } label: {
                 Image("CallButton")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 30, height: 30)
             }
-
         }
-        
         
     }
 }

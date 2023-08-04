@@ -35,7 +35,10 @@ class ChatLogViewModel: ObservableObject, ChatLogProtocol {
     
     init(chatParticipants: [ChatUser]?) {
         print("Chat log init")
-        self.chatUserObject = chatParticipants?[0]
+        if let chatParticipants {
+            self.chatParticipants = chatParticipants
+            self.chatUserObject = chatParticipants[0]
+        }
     }
     
     func fetch() {

@@ -26,18 +26,22 @@ class CallsViewModel: ObservableObject, CallLogProtocol {
         calls.append(Call(id: "7", user: ChatUser(data: ["userName": "Hassan Javed"]), timestamp: Date(), status: .Missed, type: .Incoming))
         calls.append(Call(id: "8", user: ChatUser(data: ["userName": "Hassan Javed"]), timestamp: Date(), status: .Accepted, type: .Outgoing))
         calls.append(Call(id: "9", user: ChatUser(data: ["userName": "Hassan Javed"]), timestamp: Date(), status: .Accepted, type: .Outgoing))*/
+        
+        fetch()
     }
     
     func fetch() {
         
         self.calls.removeAll()
+        fireStoreListener?.remove()
+        
         guard let fromId = FirebaseManager.shared.auth.currentUser?.uid else { return }
     
         fireStoreListener = FirebaseManager.shared.fireStore
             .collection("Calls")
             .document(fromId)
             .collection(fromId)
-            .order(by: "timestamp", descending: true)
+            .order(by: "timestamp", descending: false)
             .addSnapshotListener { querySnapshot, error in
                 if let error = error {
                     print(error)
@@ -49,45 +53,21 @@ class CallsViewModel: ObservableObject, CallLogProtocol {
                         do {
                             if let cm = try? change.document.data(as: Call.self) {
                                 DispatchQueue.main.async {
-                                    self.calls.append(cm)
+                                    self.calls.insert(cm, at: 0)
                                 }
                             }
                         }
+                        
                     }
                 })
             }
          
     }
     
-    /*
-    func saveCall(call: Call) {
-        
-        let document = FirebaseManager.shared.fireStore.collection("Calls")
-            .document(call.user.id)
-        
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601 // Use ISO8601 date format
-
-        do {
-            // Encode the Call struct to JSON data
-            let jsonData = try encoder.encode(call)
-            
-            // Convert the JSON data to a dictionary
-            if let jsonObject = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
-                print(jsonObject)
-                
-                let dictionary = ["timestamp": call.timestamp, "status": call.status, "type": call.type,  "user": jsonObject] as [String : Any]
-                
-                document.setData(dictionary) { error in
-                    if let error = error {
-                        print(error)
-                        return
-                    }
-                }
-            }
-        } catch {
-            print("Error encoding Call to JSON and converting to [String: Any]: \(error)")
+    func sendCall(call: Call) {
+        Task {
+            let chatLogViewModel = ChatLogViewModel(chatParticipants: [call.user])
+            await chatLogViewModel.sendCall()
         }
-        
-    }*/
+    }
 }

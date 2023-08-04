@@ -18,7 +18,16 @@ struct Call: Codable, Identifiable , Equatable {
     var timeAgo: String {
         let formatter = RelativeDateTimeFormatter()
         formatter.unitsStyle = .abbreviated
-        return formatter.localizedString(for: timestamp, relativeTo: Date())
+
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.second], from: timestamp, to: Date())
+        
+        if abs(components.second ?? 0) < 10 {
+            return "Now"
+        }
+        else {
+            return formatter.localizedString(for: timestamp, relativeTo: Date())
+        }
     }
 }
 

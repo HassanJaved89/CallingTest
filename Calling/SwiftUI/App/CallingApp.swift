@@ -82,7 +82,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, PKPushRegistryDelegate, UNUs
             
             if let callerName = payload.dictionaryPayload["callerName"] as? String {
                 let callerId = payload.dictionaryPayload["callerId"] as? String ?? ""
-                callObject = Callrequest(callerName: callerName, callerId: callerId, deviceToken: [], type: .Incoming, status: .Accepted)
+                callObject = Callrequest(callerName: callerName, callerId: callerId, deviceToken: [], type: .Incoming, status: .Missed)
                 callTimer?.invalidate()
                 callTimer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(callTimerExpired), userInfo: nil, repeats: false)
                 
@@ -135,15 +135,16 @@ extension AppDelegate: CXProviderDelegate {
             window.rootViewController?.present(callViewController, animated: true, completion: nil)
             
             // Save Call log
+            callObject?.status = .Accepted
             invalidateTimer()
-            saveCallLog(callLogObject: callObject)
         }
     }
     
     func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
-        
         // Handle ending the ongoing call
+        invalidateTimer()
         action.fulfill()
+        saveCallLog(callLogObject: callObject)
     }
 }
 
@@ -161,9 +162,6 @@ extension AppDelegate {
     
     @objc func callTimerExpired() {
         self.endCall()
-        
-        callObject?.status = .Missed
-        self.saveCallLog(callLogObject: callObject)
     }
     
     func invalidateTimer() {
