@@ -37,12 +37,12 @@ class CallsViewModel: ObservableObject, CallLogProtocol {
             .collection("Calls")
             .document(fromId)
             .collection(fromId)
+            .order(by: "timestamp", descending: true)
             .addSnapshotListener { querySnapshot, error in
                 if let error = error {
                     print(error)
                     return
                 }
-                
                 
                 querySnapshot?.documentChanges.forEach({ change in
                     if change.type == .added {

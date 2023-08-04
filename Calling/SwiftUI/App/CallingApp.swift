@@ -16,6 +16,8 @@ class AppDelegate: NSObject, UIApplicationDelegate, PKPushRegistryDelegate, UNUs
     var pushRegistry: PKPushRegistry!
     var voipDeviceToken: String = ""
     var activeCallUUid = UUID()
+    var callObject: Callrequest?
+    var callTimer: Timer?
     
     func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
@@ -79,29 +81,29 @@ class AppDelegate: NSObject, UIApplicationDelegate, PKPushRegistryDelegate, UNUs
             // Display a CallKit incoming call UI
             
             if let callerName = payload.dictionaryPayload["callerName"] as? String {
-                displayIncomingCall(callerName: callerName)
+                let callerId = payload.dictionaryPayload["callerId"] as? String ?? ""
+                callObject = Callrequest(callerName: callerName, callerId: callerId, deviceToken: [], type: .Incoming, status: .Accepted)
+                callTimer?.invalidate()
+                callTimer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(callTimerExpired), userInfo: nil, repeats: false)
+                
+                displayIncomingCall(callerObject: callObject)
             }
-            
-            /*
-            if let aps = payload.dictionaryPayload["aps"] as? [String: Any],
-               let callerName = aps["callerName"] as? String {
-                displayIncomingCall(callerName: callerName)
-            }*/
         }
     }
     
     // Display a CallKit incoming call UI
-    func displayIncomingCall(callerName: String) {
+    func displayIncomingCall(callerObject: Callrequest?) {
         let providerConfiguration = CXProviderConfiguration(localizedName: "Calling")
         providerConfiguration.supportsVideo = false
         let provider = CXProvider(configuration: providerConfiguration)
         provider.setDelegate(self, queue: DispatchQueue.main)
         
         let update = CXCallUpdate()
-        update.localizedCallerName = callerName
+        update.localizedCallerName = callerObject?.callerName
         // Set up the call update properties, such as caller information
         
         activeCallUUid = UUID()
+        print("Received call \(activeCallUUid)")
         
         provider.reportNewIncomingCall(with: activeCallUUid, update: update) { error in
             if error == nil {
@@ -131,10 +133,15 @@ extension AppDelegate: CXProviderDelegate {
                 self.endCall()
             }
             window.rootViewController?.present(callViewController, animated: true, completion: nil)
+            
+            // Save Call log
+            invalidateTimer()
+            saveCallLog(callLogObject: callObject)
         }
     }
     
     func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
+        
         // Handle ending the ongoing call
         action.fulfill()
     }
@@ -143,12 +150,36 @@ extension AppDelegate: CXProviderDelegate {
 
 extension AppDelegate {
     func endCall() {
+        print("End call \(activeCallUUid)")
         let controller = CXCallController()
         let transaction = CXTransaction(action: CXEndCallAction(call: activeCallUUid))
+        
         controller.request(transaction) { error in
             
         }
     }
+    
+    @objc func callTimerExpired() {
+        self.endCall()
+        
+        callObject?.status = .Missed
+        self.saveCallLog(callLogObject: callObject)
+    }
+    
+    func invalidateTimer() {
+        self.callTimer?.invalidate()
+        self.callTimer = nil
+    }
+    
+    func saveCallLog(callLogObject: Callrequest?) {
+        Task {
+            let user = await FirebaseManager.shared.fetchUserWithId(uid: callObject?.callerId ?? "")
+            let chatLogViewModel = ChatLogViewModel(chatParticipants: [user!])
+            let call = Call(user: user ?? ChatUser(data: [:]), timestamp: Date(), status: callObject!.status, type: callLogObject!.type)
+            chatLogViewModel.saveCall(call: call)
+        }
+    }
+    
 }
 
 @main

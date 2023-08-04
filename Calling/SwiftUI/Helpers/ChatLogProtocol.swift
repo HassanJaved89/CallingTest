@@ -30,6 +30,8 @@ struct Callrequest:Codable{
     let callerName: String
     let callerId: String
     let deviceToken: [String]
+    let type: CallType
+    var status: CallStatus
 }
 
 struct ChatMessage: Codable, Identifiable {
@@ -165,11 +167,11 @@ extension ChatLogProtocol {
     
     func sendCall() async {
         
-        guard let url = URL(string: "http://114.119.185.90:3004/callingApp/Api") else {
+        guard let url = URL(string: "http://114.119.185.90:3004/callingApp/Api/Multiple") else {
             return
         }
         
-         var deviceTokensArray: [String] = []
+        var deviceTokensArray: [String] = []
         var receiverUser: ChatUser?
         
         for participant in self.chatParticipants {
@@ -180,7 +182,7 @@ extension ChatLogProtocol {
             }
         }
         
-        let caller = Callrequest(callerName: FirebaseManager.shared.currentUser?.userName ?? "", callerId: FirebaseManager.shared.currentUser?.id ?? "", deviceToken: deviceTokensArray)
+        let caller = Callrequest(callerName: FirebaseManager.shared.currentUser?.userName ?? "", callerId: FirebaseManager.shared.currentUser?.id ?? "", deviceToken: deviceTokensArray, type: .Outgoing, status: .Accepted)
         let encoder = JSONEncoder()
         do {
             let jsonData = try encoder.encode(caller)
