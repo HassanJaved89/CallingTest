@@ -18,6 +18,7 @@ struct ChatLogView<T>: View where T: ChatLogProtocol {
     @State var selectedImage: UIImage?
     @State var isUploadingImage = false
     @StateObject var audioRecorder = AudioRecorder()
+    @State private var isSendingAudio = false
     @Environment(\.presentationMode) var presentationMode
     
     let emptyScrollToString = "Empty"
@@ -72,7 +73,17 @@ struct ChatLogView<T>: View where T: ChatLogProtocol {
         }
         .onChange(of: audioRecorder.recordedFileURL, perform: { newValue in
             if audioRecorder.recordedFileURL != nil {
-                vm.sendAudio(recordedFileURL: audioRecorder.recordedFileURL)
+                isSendingAudio = true
+                
+//                withAnimation(Animation.linear(duration: 4.0).repeatForever(autoreverses: true), {
+//                    isSendingAudio = true
+//                })
+            
+                vm.sendAudio(recordedFileURL: audioRecorder.recordedFileURL) { success in
+                    isSendingAudio = false
+                } failureHandler: { failure in
+                    isSendingAudio = false
+                }
             }
         })
         .sheet(isPresented: $isSheetPresented) {
@@ -183,6 +194,7 @@ struct ChatLogView<T>: View where T: ChatLogProtocol {
                 }
                 .background(Color(.init(white: 0.95, alpha: 1)))
                 .safeAreaInset(edge: .bottom) {
+                    
                     chatBottomBar
                         .background(Color(.systemBackground).ignoresSafeArea())
                 }
@@ -193,49 +205,65 @@ struct ChatLogView<T>: View where T: ChatLogProtocol {
     }
     
     private var chatBottomBar: some View {
-        HStack(spacing: 16) {
-            Button {
-                showImagePicker.toggle()
-            } label: {
-                Image("Attachement")
-                    .font(.system(size: 24))
-                    .foregroundColor(Color(.darkGray))
+        VStack {
+            VStack {
+              if(self.isSendingAudio == true){
+                  VStack {
+                      AppColors.greenColor.color
+                  }
+                  .frame(maxWidth: 500, maxHeight: 5)
+                  .background(Color(UIColor.systemBackground))
+                  .transition(.move(edge: self.isSendingAudio ? .leading : .trailing))
+                 // .offset(x: self.isSendingAudio ? 0 : UIScreen.main.bounds.width)
+              }
             }
+            .animation(isSendingAudio ? Animation.easeInOut(duration: 0.5).repeatForever(autoreverses: false) : Animation.easeInOut(duration: 1.0), value: isSendingAudio)
             
-            ZStack {
-                DescriptionPlaceholder()
-                TextEditor(text: $vm.chatText)
-                    .cornerRadius(5)
-                    .background(Color.gray.opacity(0.3))
-                    .opacity(vm.chatText.isEmpty ? 0.5 : 1)
-            }
-            .frame(height: 40)
-            
-            Button {
-                if audioRecorder.isRecording {
-                    audioRecorder.stopRecording()
-                } else {
-                    audioRecorder.startRecording()
+            HStack(spacing: 16) {
+                Button {
+                    showImagePicker.toggle()
+                } label: {
+                    Image("Attachement")
+                        .font(.system(size: 24))
+                        .foregroundColor(Color(.darkGray))
                 }
                 
-                audioRecorder.isRecording.toggle()
-            } label: {
-                Image(systemName: audioRecorder.isRecording ? "stop.circle" :  "mic.circle")
-                    .font(.system(size: 40))
-            }
-            .tint(AppColors.greenColor.color)
+                ZStack {
+                    DescriptionPlaceholder()
+                    TextEditor(text: $vm.chatText)
+                        .cornerRadius(5)
+                        .background(Color.gray.opacity(0.3))
+                        .opacity(vm.chatText.isEmpty ? 0.5 : 1)
+                }
+                .frame(height: 40)
+                
+                Button {
+                    if audioRecorder.isRecording {
+                        audioRecorder.stopRecording()
+                    } else {
+                        audioRecorder.startRecording()
+                    }
+                    
+                    audioRecorder.isRecording.toggle()
+                } label: {
+                    Image(systemName: audioRecorder.isRecording ? "stop.circle" :  "mic.circle")
+                        .font(.system(size: 40))
+                }
+                .tint(AppColors.greenColor.color)
 
-            Button {
-                vm.handleSend()
-            } label: {
-                Image("sendButton")
-                    .font(.system(size: 45))
+                Button {
+                    vm.handleSend()
+                } label: {
+                    Image("sendButton")
+                        .font(.system(size: 45))
+                }
+                //.padding(.horizontal)
+                //.padding(.vertical, 8)
             }
-            //.padding(.horizontal)
-            //.padding(.vertical, 8)
+            .padding(.horizontal)
+            .padding(.vertical, 8)
         }
-        .padding(.horizontal)
-        .padding(.vertical, 8)
+        
     }
     
     func handleCount() {
@@ -394,6 +422,24 @@ extension Animation {
             return self.repeatForever(autoreverses: autoreverses)
         } else {
             return self
+        }
+    }
+}
+
+
+struct LineView: View {
+    @Binding var isAnimating: Bool
+    
+    var body: some View {
+        GeometryReader { geometry in
+            Rectangle()
+                .fill(Color.blue)
+                .frame(width: geometry.size.width * 0.3, height: 2)
+                .offset(x: isAnimating ? -geometry.size.width * 0.35 : geometry.size.width * 0.35, y: 0)
+                .animation(
+                    Animation.linear(duration: 1.0)
+                        .repeatForever(autoreverses: true)
+                )
         }
     }
 }

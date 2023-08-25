@@ -61,7 +61,7 @@ protocol ChatLogProtocol: AnyObject, ObservableObject {
     func fetch()
     func handleSend()
     func sendImage(image: UIImage, completionHandler: @escaping (String) -> Void, failureHandler: @escaping (String) -> Void)
-    func sendAudio(recordedFileURL: URL?)
+    func sendAudio(recordedFileURL: URL?, completionHandler: @escaping (String) -> Void, failureHandler: @escaping (String) -> Void)
     func sendCall() async
     func viewScreenRemoved()
 }
@@ -119,7 +119,7 @@ extension ChatLogProtocol {
         }
     }
     
-    func sendAudio(recordedFileURL: URL?) {
+    func sendAudio(recordedFileURL: URL?, completionHandler: @escaping (String) -> Void, failureHandler: @escaping (String) -> Void) {
         if let fileURL = recordedFileURL {
             let storage = Storage.storage()
             let storageRef = storage.reference()
@@ -133,6 +133,7 @@ extension ChatLogProtocol {
                 if let error = error {
                     // Handle the error
                     print("Error uploading file: \(error.localizedDescription)")
+                    failureHandler("")
                     return
                 }
 
@@ -144,11 +145,13 @@ extension ChatLogProtocol {
                     if let error = error {
                         // Handle the error
                         print("Error getting download URL: \(error.localizedDescription)")
+                        failureHandler("")
                         return
                     }
                     
                     if let downloadURL = url {
                         print("Download URL: \(downloadURL.absoluteString)")
+                        completionHandler("")
                         self.audioUrl = downloadURL.absoluteString
                         self.handleSend()
                     }
