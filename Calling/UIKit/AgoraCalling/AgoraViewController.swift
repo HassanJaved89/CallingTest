@@ -19,9 +19,9 @@ class ViewController: UIViewController {
     // Update with the App ID of your project generated on Agora Console.
     let appID = "317cf867d022435cb977d949d6cdb530"
     // Update with the temporary token generated in Agora Console.
-    var token = "007eJxTYBBm3d0hF+C5cfrDm428xa3ZXg1OhZsXMnG+mW3EskudR0iBwdjQPDnNwsw8xcDIyMTYNDnJ0tw8xdLEMsUsOSXJ1NjgmP6ulIZARga+ibcZGKEQxOdmcE7MycnMSw9JLS5hYAAAJQYe5g=="
+    var token = "007eJxTYHhbGbntR1S8V2XjJuPXopvY+Rvv7v/S/vBxFoNvR7KpqLoCg7GheXKahZl5ioGRkYmxaXKSpbl5iqWJZYpZckqSqbHBTJ8XKQ2BjAzcAo8ZGKEQxGdncE7MycnMS2dgAACjPB/N"
     // Update with the channel name you used to generate the token in Agora Console.
-    var channelName = "CallingTest"
+    var channelName = "Calling"
     
     // The video feed for the local user is displayed here
     var localView: UIView!
@@ -50,14 +50,14 @@ class ViewController: UIViewController {
         self.agoraView = AgoraVideoViewer(
           connectionData: AgoraConnectionData(
             appId: "317cf867d022435cb977d949d6cdb530",
-            rtcToken: "007eJxTYBBm3d0hF+C5cfrDm428xa3ZXg1OhZsXMnG+mW3EskudR0iBwdjQPDnNwsw8xcDIyMTYNDnJ0tw8xdLEMsUsOSXJ1NjgmP6ulIZARga+ibcZGKEQxOdmcE7MycnMSw9JLS5hYAAAJQYe5g=="
+            rtcToken: "007eJxTYHhbGbntR1S8V2XjJuPXopvY+Rvv7v/S/vBxFoNvR7KpqLoCg7GheXKahZl5ioGRkYmxaXKSpbl5iqWJZYpZckqSqbHBTJ8XKQ2BjAzcAo8ZGKEQxGdncE7MycnMS2dgAACjPB/N"
           ),
           delegate: self
         )
         // fill the view
           self.agoraView.fills(view: self.view)
         // join the channel "test"
-          agoraView.join(channel: "CallingTest", as: .broadcaster)
+          agoraView.join(channel: "Calling", as: .broadcaster)
 
 //    override func viewDidLoad() {
 //         super.viewDidLoad()

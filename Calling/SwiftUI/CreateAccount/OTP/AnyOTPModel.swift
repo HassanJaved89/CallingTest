@@ -39,15 +39,14 @@ class AnyOTPModel: OTPProtocol, ObservableObject {
             }
         }
         
-        
-        
         return result
     }
     
     func verifyOTP(otp: String) async -> Bool {
         let result = await baseVerifyOTP(otp)
-        errorMsg = otpObject.errorMsg
+        
         DispatchQueue.main.async {
+            self.errorMsg = self.otpObject.errorMsg
             self.state = self.otpObject.state
             
             if !result {

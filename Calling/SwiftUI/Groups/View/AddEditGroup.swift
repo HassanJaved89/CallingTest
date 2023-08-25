@@ -196,7 +196,7 @@ struct AddEditGroup: View {
         Task {
             isLoading = true
             do {
-                try await groupsViewModel.addEditGroup(chatGroup: chatGroup, selectedImage: selectedImage ?? UIImage())
+                try await groupsViewModel.addEditGroup(chatGroup: chatGroup, selectedImage: selectedImage)
             }
             
             DispatchQueue.main.async {

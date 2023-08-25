@@ -60,7 +60,7 @@ protocol ChatLogProtocol: AnyObject, ObservableObject {
     
     func fetch()
     func handleSend()
-    func sendImage(image: UIImage)
+    func sendImage(image: UIImage, completionHandler: @escaping (String) -> Void, failureHandler: @escaping (String) -> Void)
     func sendAudio(recordedFileURL: URL?)
     func sendCall() async
     func viewScreenRemoved()
@@ -80,7 +80,7 @@ class MyURLSessionDelegate: NSObject, URLSessionDelegate {
 }
 
 extension ChatLogProtocol {
-    func sendImage(image: UIImage) {
+    func sendImage(image: UIImage, completionHandler: @escaping (String) -> Void, failureHandler: @escaping (String) -> Void) {
         guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }
                 
         // Create a unique filename for the image
@@ -94,6 +94,7 @@ extension ChatLogProtocol {
             if let error = error {
                 // Handle the upload error
                 print("Error uploading image: \(error.localizedDescription)")
+                failureHandler("")
             } else {
                 // Image uploaded successfully
                 print("Image uploaded!")
@@ -103,11 +104,13 @@ extension ChatLogProtocol {
                     if let error = error {
                         // Handle the download URL retrieval error
                         print("Error getting download URL: \(error.localizedDescription)")
+                        failureHandler("")
                         return
                     }
                     
                     if let downloadURL = url?.absoluteString {
                        print(downloadURL)
+                        completionHandler("")
                         self?.imageUploadUrl = downloadURL
                         self?.handleSend()
                     }

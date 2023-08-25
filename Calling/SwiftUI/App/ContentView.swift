@@ -38,6 +38,7 @@ struct ContentView: View {
             } else {
                 print("User is signed out")
                 isUserSignedIn = false
+                FirebaseManager.shared.currentUser = nil
             }
         }
     }

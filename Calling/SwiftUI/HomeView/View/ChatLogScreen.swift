@@ -16,6 +16,7 @@ struct ChatLogView<T>: View where T: ChatLogProtocol {
     @State private var isSheetPresented = false
     @State private var isCallingViewPresented = false
     @State var selectedImage: UIImage?
+    @State var isUploadingImage = false
     @StateObject var audioRecorder = AudioRecorder()
     @Environment(\.presentationMode) var presentationMode
     
@@ -75,11 +76,39 @@ struct ChatLogView<T>: View where T: ChatLogProtocol {
             }
         })
         .sheet(isPresented: $isSheetPresented) {
+            
             if let image = selectedImage {
                 SelectedImageView(image: image) { image in
                     DispatchQueue.main.async {
+                        isUploadingImage = true
+                    }
+                    
+                    vm.sendImage(image: image) { success in
+                        isUploadingImage = false
                         isSheetPresented = false
-                        vm.sendImage(image: image)
+                    } failureHandler: { failure in
+                        isUploadingImage = false
+                        isSheetPresented = false
+                    }
+                }
+                .overlay {
+                    if isUploadingImage {
+                        Color.gray.opacity(0.8)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    }
+                }
+                .overlay {
+                    if isUploadingImage {
+                        ZStack {
+//                            Color.gray.opacity(0.8)
+//                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            ProgressView()
+                                .foregroundColor(.white)
+                                .font(.system(size: 40))
+                                .scaleEffect(1.5)
+                                .padding()
+                        }
+                        
                     }
                 }
             }
@@ -96,7 +125,7 @@ struct ChatLogView<T>: View where T: ChatLogProtocol {
     
     struct SelectedImageView: View {
         var image: UIImage
-        var handleSend: (UIImage) -> ()
+        var handleSend: (UIImage) async -> ()
         
         var body: some View {
             VStack {
@@ -110,7 +139,9 @@ struct ChatLogView<T>: View where T: ChatLogProtocol {
                 Spacer()
                 
                 Button {
-                    handleSend(image)
+                    Task {
+                        await handleSend(image)
+                    }
                 } label: {
                     Text("Send")
                         .frame(width: 80, height: 30)
